@@ -11,7 +11,12 @@ let projections = {
     "rosterBaseId": {
         "name": 1,
         "allyCode": 1,
-        "rosterUnit.defId": 1
+        "playerId": 1,
+        "rosterUnit.definitionId": 1
+    },
+    "register": {
+        "playerId": 1,
+        "name": 1
     }
 }
 

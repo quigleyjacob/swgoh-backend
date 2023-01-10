@@ -1,7 +1,7 @@
 import express from 'express'
 const app = express()
 const PORT = 8080
-import { getCategoryList, getDetailedGuildData, getGuildData, getPlatoons, getPlayerData, refreshGuild, refreshLocalization, getUnitsMap, refreshUnits, getUnitImage, refreshImages } from './lib/database.js'
+import { getCategoryList, getDetailedGuildData, getGuildData, getPlatoons, getPlayerData, refreshGuild, refreshLocalization, getUnitsMap, refreshUnits, getUnitImage, refreshImages, refreshPlayer } from './lib/database.js'
 import { getCurrentGAC, test, getImage } from './lib/hu.js'
 import Comlink from './lib/comlink.js'
 import cors from 'cors'
@@ -51,6 +51,11 @@ app.get('/api/guild/:id', async (req, res) => {
 app.get('/api/guild/update/:allyCode', async (req, res) => {
     let allyCode = req.params.allyCode
     res.send(await refreshGuild(allyCode))
+})
+
+app.get('/api/player/update/:allyCode', async (req, res) => {
+    let allyCode = req.params.allyCode
+    res.send(await refreshPlayer({"allyCode": allyCode}))
 })
 
 app.get('/api/image/:baseId', async (req, res) => {
