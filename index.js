@@ -5,6 +5,7 @@ import { getCategoryList, getDetailedGuildData, getGuildData, getPlatoons, getPl
 import { getCurrentGAC, test, getImage } from './lib/hu.js'
 import Comlink from './lib/comlink.js'
 import cors from 'cors'
+import { getIdealPlatoons } from './platoons/platoon.js'
 
 app.use(cors())
 
@@ -63,12 +64,13 @@ app.get('/api/image/:baseId', async (req, res) => {
     res.send(await getUnitImage(baseId))
 })
 
-app.get('/api/platoon/:tb/:ls_phase/:mix_phase/:ds_phase', async (req, res) => {
+app.get('/api/platoon/:guildId/:tb/:ds_phase/:mix_phase/:ls_phase', async (req, res) => {
+    let guildId = req.params.guildId
     let tb = req.params.tb
     let ls_phase = Number(req.params.ls_phase)
     let mix_phase = Number(req.params.mix_phase)
     let ds_phase = Number(req.params.ds_phase)
-    res.send(await getPlatoons(tb, ls_phase, mix_phase, ds_phase))
+    res.send(await getIdealPlatoons(guildId, tb, ds_phase, mix_phase, ls_phase))
 })
 
 app.get('/api/gac/current', async (req, res) => {
