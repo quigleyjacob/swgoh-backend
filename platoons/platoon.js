@@ -2,8 +2,7 @@ import fetch from 'node-fetch'
 import Guild from './Guild.js'
 import Phase from "./Phase.js"
 import Strategy from "./Strategy.js"
-import fs from 'fs'
-import { getPlatoons, getDetailedGuildData } from '../lib/database.js'
+import DB from '../lib/database.js'
 // index 0 is a burner value as phase 0 does not exist
 const requiredRelic = [0, 7, 8, 9, 10, 11, 11] // relic tier + 2 to handle the way the backend data is structured
 const zoneNumber = {
@@ -16,11 +15,6 @@ const alreadyFilled = [
     [0,0,0,0,0,0], //Mix (6,5,4,3,2,1)
     [0,0,0,0,0,0]  //LS (6,5,4,3,2,1)
 ] // in reverse to maintain that DS are highest 6 bits, mix are middle 6 bits, and LS are lowest six bits in same order as already implemented
-// Hijinx: G810398809
-// BBU: 7KsGX9kTRqSzbXDcIqIGvg
-// CU: G3789348074
-// MU: G2020356151
-const guildId = '7KsGX9kTRqSzbXDcIqIGvg'
 
 function numToArray(number) {
     let array = []
@@ -115,38 +109,12 @@ function binarySearch(guild, phase) {
 }
 
 export async function getIdealPlatoons(guildId, tb, dsPhase, mixPhase, lsPhase) {
-    // let guildData = await (await fetch(`http://localhost:8080/api/guild/${guildId}?detailed=true&projection=platoons`)).json()
-    // let platoons = await (await fetch(`http://localhost:8080/api/platoon/ROTE/${zoneNumber["LS"]}/${zoneNumber["Mix"]}/${zoneNumber["DS"]}`)).json()
-    let guildData = await getDetailedGuildData(guildId, false, "platoons")
-    let platoons = await getPlatoons(tb, lsPhase, mixPhase, dsPhase)
+    let guildData = await DB.getGuildData(guildId, false, true, "platoons")
+    let platoons = await DB.getPlatoons(tb, lsPhase, mixPhase, dsPhase)
     let phase = new Phase(zoneNumber, platoons)
-    let guild = new Guild(guildData.response)
+    let guild = new Guild(guildData)
     let result = binarySearch(guild, phase)
-    // console.log(result.operations)
     result.operations = Object.fromEntries(result.operations)
-    // console.log("LS", zoneNumber["LS"], "Mix", zoneNumber["Mix"], "DS", zoneNumber["DS"])
-    // console.log(operations)
-    // console.log(score)
-    // let file = ""
-    // optimalPlacement.forEach(player => {
-    //     file += `${player.name}\n`
-    //     file += `\tLS\n`
-    //     player.placements["LS"].forEach(platoon => {
-    //         file += `\t\tOperation ${platoon.operation}: ${platoon.nameKey}\n`
-    //     })
-    //     file += `\tMix\n`
-    //     player.placements["Mix"].forEach(platoon => {
-    //         file += `\t\tOperation ${platoon.operation}: ${platoon.nameKey}\n`
-    //     })
-    //     file += `\tDS\n`
-    //     player.placements["DS"].forEach(platoon => {
-    //         file += `\t\tOperation ${platoon.operation}: ${platoon.nameKey}\n`
-    //     })
-    // })
-    // fs.writeFile(`Output_${zoneNumber["LS"]}_${zoneNumber["Mix"]}_${zoneNumber["DS"]}_${guildId}.txt`, file, (err) => {
-    //     // In case of a error throw err.
-    //     if (err) throw err;
-    // }) 
     return {success: true, response: result}
 }
 
@@ -160,11 +128,3 @@ async function canFillPlatoons(guildId, ls_phase, ls_operations, mix_phase, mix_
     let guild = new Guild(guildData)
     console.log(strat.isValid(guild))
 }
-
-
-// async function run() {
-//     // canFillPlatoons(guildId, 1, [1,2,3,4,5,6], 1, [1,2,3,4,5,6], 1, [1,2,3,4,5,6])
-//     getIdealPlatoons()
-// }
-
-// run()

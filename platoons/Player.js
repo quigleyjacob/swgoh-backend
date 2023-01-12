@@ -1,6 +1,5 @@
 export default class Player {
     constructor(playerData) {
-        // console.log(playerData)
         this.allyCode = playerData.allyCode
         this.roster = playerData.rosterMap
         this.name = playerData.name
@@ -42,7 +41,6 @@ export default class Player {
 
     meetsRelicRequirement(defId, relic) {
         let toon = this.roster[defId]
-        // console.log(toon, relic)
         if(toon) { //ensure toon is in roster
             if(toon.combatType === 1) { // if character, must meet relic req of phase
                 return toon.relic.currentTier >= relic
