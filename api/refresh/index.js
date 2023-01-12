@@ -9,10 +9,10 @@ router.route('/localization')
 router.route('/units')
     .post(refreshUnits)
 
-router.route('/player/:allyCode')
+router.route('/player')
     .post(refreshPlayer)
 
-router.route('/guild/:id')
+router.route('/guild/')
     .post(refreshGuild)
 
 router.route('/images')

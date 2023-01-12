@@ -6,6 +6,7 @@ import platoon from './platoon/index.js'
 import image from './image/index.js'
 import unit from './unit/index.js'
 import category from './category/index.js'
+import discord from './discord/index.js'
 
 let router = express.Router()
 
@@ -21,6 +22,7 @@ router.use('/platoon', platoon)
 router.use('/image', image)
 router.use('/unit', unit)
 router.use('/category', category)
+router.use('/discord', discord)
 
 
 export default router

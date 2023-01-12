@@ -3,7 +3,7 @@ import { getPlayerData } from './player.js'
 
 let router = express.Router()
 
-router.route('/:allyCode')
+router.route('/')
     .post(getPlayerData)
 
 export default router

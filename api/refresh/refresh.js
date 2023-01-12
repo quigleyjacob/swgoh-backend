@@ -10,13 +10,14 @@ export async function refreshUnits(req, res) {
 }
 
 export async function refreshPlayer(req, res) {
-    let allyCode = req.params.allyCode
-    processRequest(res, () => DB.refreshPlayer({"allyCode": allyCode}))
+    let payload  = req.body.payload
+    processRequest(res, () => DB.refreshPlayer(payload))
 }
 
 export async function refreshGuild(req, res) {
-    let guildId = req.params.id
-    let detailed = req.params.detailed === "true" ? true : false
+    let guildId = req.body.guildId
+    let detailed = req.body.detailed ? true : false
+    console.log(detailed)
     processRequest(res, () => DB.refreshGuild(guildId, detailed))
 }
 

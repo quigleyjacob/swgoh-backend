@@ -108,14 +108,15 @@ function binarySearch(guild, phase) {
     return ref
 }
 
-export async function getIdealPlatoons(guildId, tb, dsPhase, mixPhase, lsPhase) {
+export async function getIdealPlatoons(payload) {
+    let {guildId, tb, ds_phase, mix_phase, ls_phase} = payload
     let guildData = await DB.getGuildData(guildId, false, true, "platoons")
-    let platoons = await DB.getPlatoons(tb, lsPhase, mixPhase, dsPhase)
+    let platoons = await DB.getPlatoons(tb, ls_phase, mix_phase, ds_phase)
     let phase = new Phase(zoneNumber, platoons)
     let guild = new Guild(guildData)
-    let result = binarySearch(guild, phase)
-    result.operations = Object.fromEntries(result.operations)
-    return {success: true, response: result}
+    let response = binarySearch(guild, phase)
+    response.operations = Object.fromEntries(response.operations)
+    return response
 }
 
 // each operations parameter is a length 6 array for each operation checking for fill (1 means want to fill, 0 means don't want to fill)

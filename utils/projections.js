@@ -17,7 +17,8 @@ let projections = {
     },
     "register": {
         "playerId": 1,
-        "name": 1
+        "name": 1,
+        "allyCode": 1
     }
 }
 
