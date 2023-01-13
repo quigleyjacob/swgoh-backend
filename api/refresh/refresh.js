@@ -17,7 +17,6 @@ export async function refreshPlayer(req, res) {
 export async function refreshGuild(req, res) {
     let guildId = req.body.guildId
     let detailed = req.body.detailed ? true : false
-    console.log(detailed)
     processRequest(res, () => DB.refreshGuild(guildId, detailed))
 }
 

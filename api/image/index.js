@@ -4,6 +4,6 @@ import { getUnitImage } from './image.js'
 let router = express.Router()
 
 router.route('/:baseId')
-    .post(getUnitImage)
+    .get(getUnitImage)
 
 export default router
