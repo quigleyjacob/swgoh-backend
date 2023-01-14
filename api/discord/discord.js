@@ -51,3 +51,8 @@ export async function unregisterUser(req, res) {
     let payload = req.body
     processRequest(res, () => DB.unregisterUser(payload))
 }
+
+export async function getGuildMemberDiscordRegistrations(req, res) {
+    let guildId = req.body.guildId
+    processRequest(res, () => DB.getGuildMemberDiscordRegistrations(guildId))
+}

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAccounts, getGuilds, getDefaultAccount, getDefaultGuild, getRoles, addRole, removeRole, registerUser, unregisterUser, setDefaultAccount } from './discord.js'
+import { getAccounts, getGuilds, getDefaultAccount, getDefaultGuild, getRoles, addRole, removeRole, registerUser, unregisterUser, setDefaultAccount, getGuildMemberDiscordRegistrations } from './discord.js'
 
 let router = express.Router()
 
@@ -20,6 +20,9 @@ router.route('/guild')
 
 router.route('/guild/default')
     .post(getDefaultGuild)
+
+router.route('/guild/registration')
+.post(getGuildMemberDiscordRegistrations)
 
 router.route('/guild/role')
     .post(getRoles)

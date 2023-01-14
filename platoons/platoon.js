@@ -5,11 +5,7 @@ import Strategy from "./Strategy.js"
 import DB from '../lib/database.js'
 // index 0 is a burner value as phase 0 does not exist
 const requiredRelic = [0, 7, 8, 9, 10, 11, 11] // relic tier + 2 to handle the way the backend data is structured
-const zoneNumber = {
-    "LS": 1,
-    "Mix": 1,
-    "DS": 1
-}
+
 const alreadyFilled = [
     [0,0,0,0,0,0], //DS (6,5,4,3,2,1)
     [0,0,0,0,0,0], //Mix (6,5,4,3,2,1)
@@ -40,15 +36,15 @@ function test(guild, strat, ref) {
     return valid
 }
 
-function getSubsetsMap(maxLength) {
+function getSubsetsMap(maxLength, skipMask) {
     let array = [0]
     for(let i = 1; i < 2 ** maxLength; ++i) {
         array.push((i % 2 == 0 ? 0 : 1) + array[i >> 1])
     }
     let map = new Map()
     array.forEach((value, index) => {
-        let alreadyFilledMask = getAlreadyFilledMask(alreadyFilled)
-        if((index & alreadyFilledMask) === 0) {
+        // let alreadyFilledMask = getAlreadyFilledMask(alreadyFilled)
+        if((index & skipMask) === 0) {
             if(map.get(value)) {
                 map.get(value).push(index)
             } else {
@@ -70,11 +66,11 @@ function getAlreadyFilledMask(arrays) {
     return number
 }
 
-function binarySearch(guild, phase) {
+function binarySearch(guild, phase, skipMask) {
     let length = 18
     let shift = length / 3
     let mask = (2 ** shift) - 1
-    let combinationsMap = getSubsetsMap(length)
+    let combinationsMap = getSubsetsMap(length, skipMask)
     let ref = {
         score: 0,
         optimalPlacement: [],
@@ -84,15 +80,15 @@ function binarySearch(guild, phase) {
     let end = length
     while(start <= end) {
         let mid = (start + end)/2>>0
-        let combinations = combinationsMap.get(mid)
+        let combinations = combinationsMap.get(mid) || []
         let foundValueHere = false
         for(let i = 0; i < combinations.length; ++i) {
             let number = combinations[i]
-            let ls = number & mask
+            let ds = number & mask
             number >>= shift
             let mix = number & mask
             number >>= shift
-            let ds = number & mask
+            let ls = number & mask
             let strat = new Strategy(phase, new Map().set("LS", numToArray(ls)).set("Mix", numToArray(mix)).set("DS", numToArray(ds)), requiredRelic)
             if(test(guild, strat, ref)) {
                 foundValueHere = true
@@ -109,12 +105,17 @@ function binarySearch(guild, phase) {
 }
 
 export async function getIdealPlatoons(payload) {
-    let {guildId, tb, ds_phase, mix_phase, ls_phase} = payload
+    let {guildId, tb, ds_phase, mix_phase, ls_phase, skipMask} = payload
+    const zoneNumber = {
+        "LS": ls_phase,
+        "Mix": mix_phase,
+        "DS": ds_phase
+    }
     let guildData = await DB.getGuildData(guildId, false, true, "platoons")
     let platoons = await DB.getPlatoons(tb, ls_phase, mix_phase, ds_phase)
     let phase = new Phase(zoneNumber, platoons)
     let guild = new Guild(guildData)
-    let response = binarySearch(guild, phase)
+    let response = binarySearch(guild, phase, skipMask)
     response.operations = Object.fromEntries(response.operations)
     return response
 }

@@ -3,7 +3,7 @@ import { getGuildData } from './guild.js'
 
 let router = express.Router()
 
-router.route('/:id')
+router.route('/')
     .post(getGuildData)
 
 export default router

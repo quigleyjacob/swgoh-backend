@@ -6,8 +6,8 @@ export async function getUnitsMap(req, res) {
 }
 
 export async function getPlayableUnits(req, res) {
-    let nameFragment = req.body.nameFragment || ''
+    let filter = req.body.filter || {}
     let projection = req.body.projection || {_id: 0, nameKey: 1, baseId: 1}
     let limit = req.body.limit || 0
-    processRequest(res, () => DB.getPlayableUnits(nameFragment, projection, limit))
+    processRequest(res, () => DB.getPlayableUnits(filter, limit, projection))
 }
