@@ -56,3 +56,25 @@ export async function getGuildMemberDiscordRegistrations(req, res) {
     let guildId = req.body.guildId
     processRequest(res, () => DB.getGuildMemberDiscordRegistrations(guildId))
 }
+
+export async function getServerRegistrations(req, res) {
+    let filter = req.body.filter
+    processRequest(res, () => DB.getServerRegistrations(filter))
+}
+
+export async function registerServer(req, res) {
+    let serverId = req.body.serverId
+    let build = req.body.build
+    processRequest(res, () => DB.registerServer(serverId, build))
+}
+
+export async function unregisterServer(req, res) {
+    let serverId = req.body.serverId
+    let build = req.body.build
+    processRequest(res, () => DB.unregisterServer(serverId, build))
+}
+
+export async function getActiveBuilds(req, res) {
+    let serverId = req.body.serverId
+    processRequest(res, () => DB.getActiveBuilds(serverId))
+}
