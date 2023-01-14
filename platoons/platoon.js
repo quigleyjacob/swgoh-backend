@@ -111,7 +111,20 @@ export async function getIdealPlatoons(payload) {
         "Mix": mix_phase,
         "DS": ds_phase
     }
-    let guildData = await DB.getGuildData(guildId, false, true, "platoons")
+    let guildData = await DB.getGuildData(guildId, false, true, {
+        name: 1,
+        allyCode: 1,
+        playerId: 1,
+        rosterUnit: {
+            definitionId: 1,
+            currentRarity: 1,
+            currentLevel: 1,
+            currentTier: 1,
+            relic: {
+                currentTier: 1
+            }
+        }
+    })
     let platoons = await DB.getPlatoons(tb, ls_phase, mix_phase, ds_phase)
     let phase = new Phase(zoneNumber, platoons)
     let guild = new Guild(guildData)
