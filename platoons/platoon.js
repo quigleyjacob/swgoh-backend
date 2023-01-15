@@ -73,8 +73,7 @@ function binarySearch(guild, phase, skipMask) {
     let combinationsMap = getSubsetsMap(length, skipMask)
     let ref = {
         score: 0,
-        optimalPlacement: [],
-        operations: []
+        optimalPlacement: []
     }
     let start = 0
     let end = length
