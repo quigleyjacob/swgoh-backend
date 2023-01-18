@@ -18,8 +18,8 @@ export async function getDefaultAccount(req, res) {
 
 export async function setDefaultAccount(req, res) {
     let discordId = req.body.discordId
-    let playerId = req.body.playerId
-    processRequest(res, () => DB.setDefaultAccount(discordId, playerId))
+    let allyCode = req.body.allyCode
+    processRequest(res, () => DB.setDefaultAccount(discordId, allyCode))
 }
 
 export async function getDefaultGuild(req, res) {

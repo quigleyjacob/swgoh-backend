@@ -12,7 +12,7 @@ router.route('/user')
 router.route('/user/default')
     .post(getDefaultAccount)
 
-    router.route('/user/default/set')
+router.route('/user/default/set')
     .post(setDefaultAccount)
 
 router.route('/guild')
