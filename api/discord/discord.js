@@ -1,8 +1,10 @@
 import DB from '../../lib/database.js'
+import OAuth from '../../lib/oauth.js'
 import { processRequest } from '../../lib/validation.js'
 
 export async function getAccounts(req, res) {
-    let discordId = req.body.discordId
+    let sessionId = req.body.sessionId
+    let discordId = sessionId === null ? req.body.discordId : (await DB.sessionToDiscord(sessionId)).id
     processRequest(res, () => DB.getAccountsByDiscordId(discordId))
 }
 
@@ -77,4 +79,16 @@ export async function unregisterServer(req, res) {
 export async function getActiveBuilds(req, res) {
     let serverId = req.body.serverId
     processRequest(res, () => DB.getActiveBuilds(serverId))
+}
+
+export async function getDiscordAuthURL(req, res) {
+    processRequest(res, () => OAuth.getDiscordAuthURL())
+}
+
+export async function authenticateUser(req, res) {
+    let code = req.body.code
+    let state = req.body.state
+    if(code && state) {
+        processRequest(res, () => OAuth.authenticateUser(code, state))
+    }
 }

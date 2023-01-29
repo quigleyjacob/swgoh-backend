@@ -113,7 +113,6 @@ export async function getIdealPlatoons(payload) {
     let guildData = await DB.getGuildData(guildId, false, true, {
         name: 1,
         allyCode: 1,
-        playerId: 1,
         rosterUnit: {
             definitionId: 1,
             currentRarity: 1,

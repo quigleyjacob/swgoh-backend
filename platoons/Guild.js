@@ -16,7 +16,7 @@ export default class Guild {
 
     placements() {
         let placements = []
-        this.roster.forEach(member => placements.push({name: member.name, allyCode: member.allyCode, playerId: member.playerId, placements: Object.fromEntries(member.placements)}))
+        this.roster.forEach(member => placements.push({name: member.name, allyCode: member.allyCode, placements: Object.fromEntries(member.placements)}))
         return placements
     }
 

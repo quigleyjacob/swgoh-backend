@@ -1,7 +1,6 @@
 export default class Player {
     constructor(playerData) {
         this.allyCode = playerData.allyCode
-        this.playerId = playerData.playerId
         this.roster = playerData.rosterMap
         this.name = playerData.name
         this.placements = this._initializePlacements()
