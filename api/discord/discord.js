@@ -4,7 +4,7 @@ import { processRequest } from '../../lib/validation.js'
 
 export async function getAccounts(req, res) {
     let sessionId = req.body.sessionId
-    let discordId = sessionId === null ? req.body.discordId : (await DB.sessionToDiscord(sessionId)).id
+    let discordId = sessionId === undefined ? req.body.discordId : (await DB.sessionToDiscord(sessionId)).id
     processRequest(res, () => DB.getAccountsByDiscordId(discordId))
 }
 
