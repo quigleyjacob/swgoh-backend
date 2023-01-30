@@ -36,3 +36,15 @@ export async function addCommand(req, res) {
         return DB.addCommand(commandId, type, title, description, guildId)
     })
 }
+
+export async function deleteCommand(req, res) {
+    let guildId = req.body.guildId
+    let session = req.body.session
+    let commandId = req.body.commandId
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        } 
+        return DB.deleteCommand(commandId)
+    })
+}
