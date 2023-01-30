@@ -30,7 +30,7 @@ export async function addCommand(req, res) {
     let title = req.body.title
     let description = req.body.description
     processRequest(res, async () => {
-        if(session && await DB.sessionIsGuildOfficer(session, guildId)) {
+        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
         return DB.addCommand(commandId, type, title, description, guildId)
