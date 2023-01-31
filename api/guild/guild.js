@@ -14,12 +14,19 @@ export async function getCommands(req, res) {
     let guildId = req.body.guildId
     let session = req.body.session
     let type = req.body.type
+    let projection = req.body.projection || {}
     processRequest(res, async () => {
         if(session && await DB.sessionInGuild(session)) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
-        return DB.getCommands(guildId, type)
+        return DB.getCommands(guildId, type, projection)
     })
+}
+
+export async function getCommand(req, res) {
+    let commandId = req.body.commandId
+    let projection = req.body.projection || {}
+    processRequest(res, () => DB.getCommand(commandId, projection))
 }
 
 export async function addCommand(req, res) {
