@@ -26,7 +26,13 @@ export async function getCommands(req, res) {
 export async function getCommand(req, res) {
     let commandId = req.body.commandId
     let projection = req.body.projection || {}
-    processRequest(res, () => DB.getCommand(commandId, projection))
+    let session = req.body.session
+    processRequest(res, async () => {
+        if(session && await DB.sessionInGuild(session)) {
+            throw new MyError(401, 'Session Id is not present in guild')
+        }
+        return DB.getCommand(commandId, projection)
+    })
 }
 
 export async function addCommand(req, res) {

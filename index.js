@@ -10,12 +10,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api', api)
 
 app.get("/", async (req, res) => {
-    console.log(req.get('host'))
     res.send('Hello world!')
 })
 
 app.get('/token', (req, res) => {
-    console.log(req.originalUrl)
     res.send('hello from token')
 })
 

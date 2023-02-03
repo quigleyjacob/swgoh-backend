@@ -3,8 +3,8 @@ import OAuth from '../../lib/oauth.js'
 import { processRequest } from '../../lib/validation.js'
 
 export async function getAccounts(req, res) {
-    let sessionId = req.body.sessionId
-    let discordId = sessionId === undefined ? req.body.discordId : (await DB.sessionToDiscord(sessionId)).id
+    let session = req.body.session
+    let discordId = session === undefined ? req.body.discordId : (await DB.sessionToDiscord(session)).id
     processRequest(res, () => DB.getAccountsByDiscordId(discordId))
 }
 
@@ -31,7 +31,6 @@ export async function getDefaultGuild(req, res) {
 
 export async function getRoles(req, res) {
     let filter = req.body.filter
-    console.log(req.hostname)
     processRequest(res, () => DB.getRoles(filter))
 }
 

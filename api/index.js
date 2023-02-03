@@ -8,8 +8,11 @@ import unit from './unit/index.js'
 import category from './category/index.js'
 import discord from './discord/index.js'
 import data from './data/index.js'
+import { validate } from '../middleware/index.js'
 
 let router = express.Router()
+
+router.use('*', validate)
 
 router.route('/')
     .get((req, res) => {
