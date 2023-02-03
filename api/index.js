@@ -7,6 +7,7 @@ import image from './image/index.js'
 import unit from './unit/index.js'
 import category from './category/index.js'
 import discord from './discord/index.js'
+import data from './data/index.js'
 
 let router = express.Router()
 
@@ -23,6 +24,7 @@ router.use('/image', image)
 router.use('/unit', unit)
 router.use('/category', category)
 router.use('/discord', discord)
+router.use('/data', data)
 
 
 export default router
