@@ -31,6 +31,7 @@ export async function getDefaultGuild(req, res) {
 
 export async function getRoles(req, res) {
     let filter = req.body.filter
+    console.log(req.hostname)
     processRequest(res, () => DB.getRoles(filter))
 }
 
