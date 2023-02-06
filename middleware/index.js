@@ -3,7 +3,6 @@ dotenv.config()
 import DB from '../lib/database.js'
 
 export async function validate(req, res, next) {
-    console.log(req.originalUrl)
     let discordKey = req.body.discordKey
     let session = req.body.session
     let url = req.originalUrl
