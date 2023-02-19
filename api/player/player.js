@@ -30,5 +30,43 @@ export async function addGAC(req, res) {
             throw new MyError(401, 'Session Id is not player')
         }
         return DB.addGAC(id, gac)
-})
+    })
+}
+
+export async function getAllSquads(req, res) {
+    let session = req.body.session
+    let allyCode = req.body.allyCode
+
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.getSquads(allyCode)
+    })
+}
+
+export async function addSquad(req, res) {
+    let session = req.body.session
+    let allyCode = req.body.payload.allyCode
+    let squadData = req.body.payload
+
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.addSquad(squadData)
+    })
+}
+
+export async function deleteSquad(req, res) {
+    let session = req.body.session
+    let allyCode = req.body.allyCode
+    let squadId = req.body.squadId
+
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.deleteSquad(squadId)
+    })
 }
