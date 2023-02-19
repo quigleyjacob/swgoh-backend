@@ -46,6 +46,10 @@ export async function removeRole(req, res) {
 
 export async function registerUser(req, res) {
     let payload = req.body
+    if(req.body.session !== undefined) {
+        let discordUser = await DB.sessionToDiscord(req.body.session)
+        payload.discord_id = discordUser.id
+    }
     processRequest(res, () => DB.registerUser(payload))
 }
 
