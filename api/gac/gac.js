@@ -19,10 +19,10 @@ export async function addGACHistory(req, res) {
 }
 
 export async function getGACBattles(req, res) {
-    let mode = req.body.mode
-    let combatType = req.body.combatType
-    let allyCode = req.body.allyCode
-    let win = req.body.win
+    let mode = Number(req.body.mode)
+    let combatType = Number(req.body.combatType)
+    let allyCode = String(req.body.allyCode)
+    let win = Boolean(req.body.win)
     console.log(mode, combatType, allyCode, win)
     console.log(typeof win)
     processRequest(res, () => GG.getGACBattles(mode, combatType, allyCode, win))
