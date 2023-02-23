@@ -3,6 +3,9 @@ const app = express()
 const PORT = process.env.PORT || 8080
 import cors from 'cors'
 import api from './api/index.js'
+import fs from 'fs'
+import { load } from 'cheerio'
+import { getGACData } from './lib/gg.js'
 
 app.use(cors())
 app.use(express.json())
@@ -18,7 +21,10 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    res.send('testing route')
+    let data = fs.readFileSync('scrape.html')
+    const $ = load(data)
+    getGACData($)
+    res.send(getGACData($))
 })
 
 app.listen(PORT, () => {
