@@ -23,7 +23,6 @@ app.get('/token', (req, res) => {
 app.post('/test', async (req, res) => {
     let data = fs.readFileSync('scrape.html')
     const $ = load(data)
-    getGACData($)
     res.send(getGACData($))
 })
 

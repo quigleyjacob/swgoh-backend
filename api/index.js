@@ -8,6 +8,7 @@ import unit from './unit/index.js'
 import category from './category/index.js'
 import discord from './discord/index.js'
 import data from './data/index.js'
+import gac from './gac/index.js'
 import { validate } from '../middleware/index.js'
 
 let router = express.Router()
@@ -28,6 +29,7 @@ router.use('/unit', unit)
 router.use('/category', category)
 router.use('/discord', discord)
 router.use('/data', data)
+router.use('/gac', gac)
 
 
 export default router
