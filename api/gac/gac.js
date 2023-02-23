@@ -1,13 +1,24 @@
-import { load } from "cheerio"
-import fetch from "node-fetch"
+import GG from "../../lib/gg.js"
+import { processRequest } from "../../lib/validation.js"
+
 
 export async function getLatestGacNumber(req, res) {
-    let response = await fetch('https://swgoh.gg/p/134232169/gac-history/', {method: 'GET'})
-    if(response.ok) {
-        const $ = load(await response.text())
-        let latest = $('.content-container-primary .list-group .list-group-item .dropdown-menu li a').first().attr('href')?.replace('?gac=', '')
-        res.send(latest)
-    } else {
-        res.status(404).send('Unable to get latest GAC number.')
-    }
+    processRequest(res, () => GG.getLatestGacNumber())
+}
+
+export async function addGACReport(req, res) {
+    let allyCode = req.body.allyCode
+    let gacNumber = req.body.gacNumber
+    let roundNumber = req.body.roundNumber
+    processRequest(res, () => GG.insertGACHistory(allyCode, gacNumber, roundNumber))
+}
+
+export async function addGACHistory(req, res) {
+    let allyCode = req.body.allyCode
+    processRequest(res, () => GG.addEntireHistory(allyCode))
+}
+
+export async function getGACBattles(req, res) {
+    let filter = req.body.filter
+    processRequest(res, () => GG.getGACBattles(filter))
 }

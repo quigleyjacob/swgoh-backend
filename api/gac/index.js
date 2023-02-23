@@ -1,14 +1,18 @@
 import express from 'express'
-import { getLatestGacNumber } from './gac.js'
+import { getLatestGacNumber, addGACReport, addGACHistory, getGACBattles } from './gac.js'
 
 let router = express.Router()
 
 router.route('/')
-    .post((req, res) => {
-        res.send('hello there')
-    })
+    .post(getGACBattles)
 
 router.route('/latest')
     .post(getLatestGacNumber)
+
+router.route('/insert')
+    .post(addGACReport)
+
+router.route('/insertAll')
+    .post(addGACHistory)
 
 export default router
