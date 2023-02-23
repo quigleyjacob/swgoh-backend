@@ -24,5 +24,6 @@ export async function getGACBattles(req, res) {
     let allyCode = req.body.allyCode
     let win = req.body.win
     console.log(mode, combatType, allyCode, win)
+    console.log(typeof win)
     processRequest(res, () => GG.getGACBattles(mode, combatType, allyCode, win))
 }
