@@ -19,6 +19,9 @@ export async function addGACHistory(req, res) {
 }
 
 export async function getGACBattles(req, res) {
-    let filter = req.body.filter
-    processRequest(res, () => GG.getGACBattles(filter))
+    let mode = req.body.mode
+    let combatType = req.body.combatType
+    let allyCode = req.body.allyCode
+    let win = req.body.win
+    processRequest(res, () => GG.getGACBattles(mode, combatType, allyCode, win))
 }
