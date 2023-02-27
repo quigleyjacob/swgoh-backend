@@ -18,9 +18,7 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    // let data = fs.readFileSync('scrape.html')
-    // const $ = load(data)
-    // res.send(getGACData($))
+    res.send('testing route')
 })
 
 app.listen(PORT, () => {
