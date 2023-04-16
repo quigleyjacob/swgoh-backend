@@ -27,3 +27,11 @@ export async function refreshImages(req, res) {
 export async function refreshSkills(req, res) {
     processRequest(res, () => DB.refreshSkills())
 }
+
+export async function refreshBattleTargetingRule(req, res) {
+    processRequest(res, () => DB.refreshBattleTargetingRule())
+}
+
+export async function refreshDatacron(req, res) {
+    processRequest(res, () => DB.refreshDatacron())
+}

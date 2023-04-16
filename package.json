@@ -22,7 +22,8 @@
     "node-fetch": "^3.3.0",
     "nodejs-web-scraper": "^6.1.3",
     "request-rate-limiter": "^2.0.3",
-    "smart-request-balancer": "^2.1.1"
+    "smart-request-balancer": "^2.1.1",
+    "use-debounce": "^9.0.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

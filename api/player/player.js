@@ -70,3 +70,28 @@ export async function deleteSquad(req, res) {
         return DB.deleteSquad(squadId)
     })
 }
+
+export async function getDatacronNames(req, res) {
+    let session = req.body.session
+    let allyCode = req.body.allyCode
+
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.getDatacronNames(allyCode)
+    })
+}
+
+export async function updateDatacronNames(req, res) {
+    let body = req.body.body
+    let allyCode = req.body.body.allyCode
+    let session = req.body.session
+    console.log(req.body)
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.updateDatacronNames(body)
+    })
+}
