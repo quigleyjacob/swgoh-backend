@@ -20,10 +20,6 @@ export async function refreshGuild(req, res) {
     processRequest(res, () => DB.refreshGuild(guildId, detailed))
 }
 
-export async function refreshImages(req, res) {
-    processRequest(res, () => DB.refreshImages())
-}
-
 export async function refreshSkills(req, res) {
     processRequest(res, () => DB.refreshSkills())
 }

@@ -22,14 +22,13 @@ export async function getAllGAC(req, res) {
 
 export async function addGAC(req, res) {
     let session = req.body.session
-    let id = req.body.id
     let gac = req.body.gac
     
     processRequest(res, async () => {
         if(session && !(await DB.sessionIsPlayer(session, gac.player.allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        return DB.addGAC(id, gac)
+        return DB.addGAC(gac)
     })
 }
 
@@ -87,7 +86,6 @@ export async function updateDatacronNames(req, res) {
     let body = req.body.body
     let allyCode = req.body.body.allyCode
     let session = req.body.session
-    console.log(req.body)
     processRequest(res, async () => {
         if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
