@@ -86,7 +86,8 @@ export async function getActiveBuilds(req, res) {
 }
 
 export async function getDiscordAuthURL(req, res) {
-    processRequest(res, () => OAuth.getDiscordAuthURL())
+    let redirectUri = req.body.redirectUri
+    processRequest(res, () => OAuth.getDiscordAuthURL(redirectUri))
 }
 
 export async function authenticateUser(req, res) {
