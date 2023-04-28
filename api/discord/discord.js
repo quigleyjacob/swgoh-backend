@@ -93,7 +93,8 @@ export async function getDiscordAuthURL(req, res) {
 export async function authenticateUser(req, res) {
     let code = req.body.code
     let state = req.body.state
+    let redirectUri = req.body.redirectUri
     if(code && state) {
-        processRequest(res, () => OAuth.authenticateUser(code, state))
+        processRequest(res, () => OAuth.authenticateUser(code, state, redirectUri))
     }
 }
