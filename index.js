@@ -3,6 +3,7 @@ const app = express()
 const PORT = process.env.PORT || 8080
 import cors from 'cors'
 import api from './api/index.js'
+import oauth from './lib/oauth.js'
 
 app.use(cors())
 app.use(express.json())
@@ -18,7 +19,9 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    res.send('testing route')
+//    res.send('test')
+    let members = await oauth.getServerMembers("Zem41vMHzMTuShVucfgr2oqb7qccte", "964016812792623134")
+    res.send(members)
 })
 
 app.listen(PORT, () => {

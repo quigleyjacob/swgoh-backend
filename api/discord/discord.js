@@ -69,7 +69,7 @@ export async function getServerRegistrations(req, res) {
 }
 
 export async function registerServer(req, res) {
-    let payload = req.payload
+    let payload = req.body.payload
     processRequest(res, () => DB.registerServer(payload))
 }
 
