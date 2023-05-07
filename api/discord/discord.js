@@ -69,9 +69,8 @@ export async function getServerRegistrations(req, res) {
 }
 
 export async function registerServer(req, res) {
-    let serverId = req.body.serverId
-    let build = req.body.build
-    processRequest(res, () => DB.registerServer(serverId, build))
+    let payload = req.payload
+    processRequest(res, () => DB.registerServer(payload))
 }
 
 export async function unregisterServer(req, res) {
