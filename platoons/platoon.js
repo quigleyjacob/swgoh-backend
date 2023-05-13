@@ -58,9 +58,9 @@ function getSubsetsMap(maxLength, skipMask) {
 function getAlreadyFilledMask(arrays) {
     let number = 0
     arrays.forEach(array => {
+        number <<= 6
         array.forEach(element => {
-            number <<= 1
-            number += element
+            number += (1 << (element-1))
         })
     })
     return number
@@ -105,7 +105,7 @@ function binarySearch(guild, phase, skipMask) {
 }
 
 export async function getIdealPlatoons(payload) {
-    let {guildId, tb, ds_phase, mix_phase, ls_phase, skipMask} = payload
+    let {guildId, tb, ds_phase, mix_phase, ls_phase, skipMask, excludedPlayers} = payload
     const zoneNumber = {
         "LS": ls_phase,
         "Mix": mix_phase,
@@ -124,12 +124,34 @@ export async function getIdealPlatoons(payload) {
             }
         }
     })
+    guildData.roster = guildData.roster.filter(playerData => !(excludedPlayers || []).includes(playerData.allyCode))
+
     let platoons = await DB.getPlatoons(tb, ls_phase, mix_phase, ds_phase)
     let phase = new Phase(zoneNumber, platoons)
     let guild = new Guild(guildData)
     let response = binarySearch(guild, phase, skipMask)
     response.operations = Object.fromEntries(response.operations)
+
+    // determine skipped platoons
+    response.skippedPlatoons = getPlatoonsFromMask(platoons, skipMask)
+
+    // determine unfillable platoons here
+    let optimalPlatoonMask = getAlreadyFilledMask([response.operations["LS"], response.operations["Mix"], response.operations["DS"]])
+    let cannotBeFilled = ~(optimalPlatoonMask | skipMask)
+
+    response.remainingPlatoons = getPlatoonsFromMask(platoons, cannotBeFilled)
+
+    let attemptStrategy = new Strategy(phase, undefined, requiredRelic, response.remainingPlatoons)
+    let guildWithPlacements = new Guild(guildData, response.optimalPlacement)
+    response.unableToFill = attemptStrategy.findUnfillable(guildWithPlacements)
     return response
+}
+
+function getPlatoonsFromMask(platoons, mask) {
+    let ds = numToArray(mask & 63)
+    let mix = numToArray((mask >> 6) & 63)
+    let ls = numToArray((mask >> 12) & 63)
+    return  [...platoons["DS"].filter(it => ds.includes(it.operation)), ...platoons["Mix"].filter(it => mix.includes(it.operation)), ...platoons["LS"].filter(it => ls.includes(it.operation))]
 }
 
 // each operations parameter is a length 6 array for each operation checking for fill (1 means want to fill, 0 means don't want to fill)

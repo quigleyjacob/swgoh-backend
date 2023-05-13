@@ -1,17 +1,18 @@
 export default class Player {
-    constructor(playerData) {
+    constructor(playerData, placement = undefined) {
         this.allyCode = playerData.allyCode
         this.roster = playerData.rosterMap
         this.name = playerData.name
-        this.placements = this._initializePlacements()
+        this.placements = placement || this._initializePlacements()
+        this.attempted = this._initializePlacements()
     }
 
     _initializePlacements() {
-        let map = new Map()
-        map.set("LS", [])
-        map.set("Mix", [])
-        map.set("DS", [])
-        return map
+        return {
+            "LS": [],
+            "Mix": [],
+            "DS": []
+        }
     }
 
     totalPossiblePlacements(defIdList, phase) {
@@ -52,27 +53,37 @@ export default class Player {
     }
 
     maxPlacement(zone) {
-        return this.placements.get(zone).length === 10
+        return this.placements[zone].length === 10
     }
 
     numAlreadyPlacedInZone(zone) {
-        return this.placements.get(zone).length
+        return this.placements[zone].length
+    }
+
+    numAlreadyAttemptedInZone(zone) {
+        return this.attempted[zone].length
     }
 
     numAlreadyPlaced() {
-        return this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS")
+        return this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS") + 
+        this.numAlreadyAttemptedInZone("LS") + this.numAlreadyAttemptedInZone("Mix") + this.numAlreadyAttemptedInZone("DS")
     }
 
     toonAlreadyPlacedInZone(defId, zone) {
-        return this.placements.get(zone).map(platoon => platoon.defId).includes(defId)
+        return this.placements[zone].map(platoon => platoon.defId).includes(defId)
+    }
+
+    toonAlreadyAttemptedInZone(defId, zone) {
+        return this.attempted[zone].map(platoon => platoon.defId).includes(defId)
     }
 
     toonAlreadyPlacedAnywhere(defId) {
-        return this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS")
+        return this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS") ||
+        this.toonAlreadyAttemptedInZone(defId, "LS") || this.toonAlreadyAttemptedInZone(defId, "Mix") || this.toonAlreadyAttemptedInZone(defId, "DS")
     }
 
     assign(defId, zone) {
-        this.placements.get(zone).push(defId)
+        this.placements[zone].push(defId)
     }
 
     reset() {
@@ -82,7 +93,7 @@ export default class Player {
     placementScore(defIdList, placementMap, requiredRelic) {
         let score = 0
         defIdList.forEach(defId => {
-            placementMap.get(defId).forEach(platoon => {
+            placementMap[defId].forEach(platoon => {
                 if (this.meetsRelicRequirement(defId, requiredRelic[platoon.phase])) {
                     ++score
                 }
@@ -99,11 +110,7 @@ export default class Player {
         let bPlacementScore = other.placementScore(defIdList, placementMap, requiredRelic)
         // take the one with the lower number already placed
         // if numbers are equal, take the one with the least amount of toons that they could fill
-        if(aNumPlaced == bNumPlaced) {
-            return (aPlacementScore < bPlacementScore) ? -1 : (aPlacementScore > bPlacementScore) ? 1 : 0
-        } else {
-            return (aNumPlaced < bNumPlaced) ? -1 : 1
-        }
+        return aNumPlaced - bNumPlaced || aPlacementScore - bPlacementScore
     }
 
     toString() {

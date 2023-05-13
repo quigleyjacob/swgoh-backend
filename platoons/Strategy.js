@@ -1,9 +1,9 @@
 export default class Strategy {
-    constructor(phase, operations, requiredRelic) {
+    constructor(phase, operations, requiredRelic, operationsToFill = undefined) {
         this.phase = phase
         this.operations = operations
         this.requiredRelic = requiredRelic
-        this.operationsToFill = this._initalizeOperations()
+        this.operationsToFill = operationsToFill || this._initalizeOperations()
         this.placementMap = this._initializePlacementMap()
     }
 
@@ -20,10 +20,10 @@ export default class Strategy {
     // key is the id of the toon
     // value is an array of all platoons for this toon
     _initializePlacementMap() {
-        let map = new Map()
+        let map = {}
         let toonDefIds = [...new Set(this.operationsToFill.map(platoon => platoon.defId))]
         toonDefIds.forEach(defId => {
-            map.set(defId, this.operationsToFill.filter(platoon => platoon.defId === defId).sort((a,b) => b.phase - a.phase))
+            map[defId] = this.operationsToFill.filter(platoon => platoon.defId === defId).sort((a,b) => b.phase - a.phase)
         })
         return map
     }
@@ -33,12 +33,12 @@ export default class Strategy {
     }
 
     numRequired(defId) {
-        return this.placementMap.get(defId).length
+        return this.placementMap[defId].length
     }
 
     // looks at all platoons in this strategy and returns a map of number needed at each relic level
     numNeededPerRelic(defId) {
-        let platoonAssigments = this.placementMap.get(defId)
+        let platoonAssigments = this.placementMap[defId]
         let map = new Map()
         this.requiredRelic.forEach(relic => {
             map.set(relic, 0)
@@ -52,6 +52,7 @@ export default class Strategy {
     }
     // return -1 if guild cannot place this toon
     // else, return number leftover that is at least minimum relic required
+    // this method does not take into account already existing placements
     guildCanPlaceToon(guild, defId) {
         let placements = this.numNeededPerRelic(defId)
         let guildToonsPerRelic = guild.numToonPerRelic(defId, this.requiredRelic)
@@ -96,7 +97,7 @@ export default class Strategy {
         let guildMemberPriority = guild.roster.sort((a,b) => a.sort(b, toonsInPlatoon, this.placementMap, this.requiredRelic))
         
         platoonPriority.forEach(toon => {
-            let toBeAssigned = this.placementMap.get(toon.defId)
+            let toBeAssigned = this.placementMap[toon.defId]
             toBeAssigned.forEach(platoon => {
                 let placed = false
                 for(let i = 0; i < guildMemberPriority.length; ++i) {
@@ -117,5 +118,15 @@ export default class Strategy {
             })
         })
         return true
+    }
+
+    findUnfillable(guild) {
+        let list = []
+        this.operationsToFill.forEach(operation => {
+            if(this.guildCanPlaceToon(guild, operation.defId) < 0) {
+                list.push(operation)
+            }
+        })
+        return list
     }
 }
