@@ -81,7 +81,10 @@ export async function unregisterServer(req, res) {
 
 export async function getActiveBuilds(req, res) {
     let serverId = req.body.serverId
-    processRequest(res, () => DB.getActiveBuilds(serverId))
+    let payload = {
+        serverId: serverId
+    }
+    processRequest(res, async () => DB.getActiveBuilds(payload))
 }
 
 export async function getDiscordAuthURL(req, res) {
