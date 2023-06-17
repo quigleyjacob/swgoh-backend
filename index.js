@@ -6,6 +6,7 @@ import api from './api/index.js'
 import oauth from './lib/oauth.js'
 import DB from './lib/database.js'
 import { CronJob } from 'cron'
+import comlink from './lib/comlink.js'
 
 app.use(cors())
 app.use(express.json({limit: '1mb'}))
@@ -25,6 +26,9 @@ app.post('/test', async (req, res) => {
     // let members = await oauth.getServerMembers("Zem41vMHzMTuShVucfgr2oqb7qccte", "964016812792623134")
     // res.send(members)
     // await DB.refreshMetaData()
+    // res.send('done')
+    // res.send((await comlink.getGameData(1))["playerPortrait"])
+    await DB.refreshPlayerPortraits()
     res.send('done')
 })
 
@@ -45,6 +49,8 @@ async function startRefreshJob() {
                 await DB.refreshSkills(latestGamedataVersion)
                 console.log('Refreshing battle targeting rules')
                 await DB.refreshBattleTargetingRule(latestGamedataVersion)
+                console.log('Refreshing player portraits')
+                await DB.refreshPlayerPortraits(latestGamedataVersion)
                 console.log('Data refresh complete!')
             } catch(err) {
                 console.log(err)

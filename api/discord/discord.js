@@ -48,9 +48,18 @@ export async function registerUser(req, res) {
     let payload = req.body
     if(req.body.session !== undefined) {
         let discordUser = await DB.sessionToDiscord(req.body.session)
-        payload.discord_id = discordUser.id
+        payload.discordId = discordUser.id
     }
     processRequest(res, () => DB.registerUser(payload))
+}
+
+export async function verifyUser(req, res) {
+    let payload = req.body
+    if(req.body.session !== undefined) {
+        let discordUser = await DB.sessionToDiscord(req.body.session)
+        payload.discordId = discordUser.id
+    }
+    processRequest(res, () => DB.verifyUser(payload))
 }
 
 export async function unregisterUser(req, res) {

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAccounts, getGuilds, getDefaultAccount, getDefaultGuild, getRoles, addRole, removeRole, registerUser, unregisterUser, setDefaultAccount, getGuildMemberDiscordRegistrations, getServerRegistrations, registerServer, unregisterServer, getActiveBuilds, authenticateUser, getDiscordAuthURL } from './discord.js'
+import { getAccounts, getGuilds, getDefaultAccount, getDefaultGuild, getRoles, addRole, removeRole, registerUser, verifyUser, unregisterUser, setDefaultAccount, getGuildMemberDiscordRegistrations, getServerRegistrations, registerServer, unregisterServer, getActiveBuilds, authenticateUser, getDiscordAuthURL } from './discord.js'
 let router = express.Router()
 
 router.route('/')
@@ -34,6 +34,9 @@ router.route('/guild/role/remove')
 
 router.route('/register')
     .post(registerUser)
+
+    router.route('/verify')
+    .post(verifyUser)
 
 router.route('/unregister')
     .post(unregisterUser)

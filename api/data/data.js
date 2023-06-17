@@ -9,3 +9,12 @@ export async function getData(req, res) {
     let type = req.body.type
     processRequest(res, () => DB.getData(type))
 }
+
+export async function getPortraits(req, res) {
+    processRequest(res, () => DB.getPortraits())
+}
+
+export async function getPortrait(req, res) {
+    let id = req.body.id
+    processRequest(res, () => DB.getPortrait(id))
+}
