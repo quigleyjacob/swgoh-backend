@@ -10,7 +10,8 @@ export default class Strategy {
     // return list of all platoons needed for this strategy
     _initalizeOperations() {
         let platoons = this.phase.platoons.filter(platoon => {
-            return (platoon.alignment == "LS" && this.operations.get("LS").includes(platoon.operation)) 
+            return (platoon.alignment == "Bonus" && this.operations.get("Bonus").includes(platoon.operation))
+                || (platoon.alignment == "LS" && this.operations.get("LS").includes(platoon.operation)) 
                 || (platoon.alignment == "Mix" && this.operations.get("Mix").includes(platoon.operation))
                 || (platoon.alignment == "DS" && this.operations.get("DS").includes(platoon.operation))
         })
@@ -39,13 +40,10 @@ export default class Strategy {
     // looks at all platoons in this strategy and returns a map of number needed at each relic level
     numNeededPerRelic(defId) {
         let platoonAssigments = this.placementMap[defId]
-        let map = new Map()
-        this.requiredRelic.forEach(relic => {
-            map.set(relic, 0)
-        })
+        let map = new Map().set(7, 0).set(8, 0).set(9, 0).set(10, 0).set(11, 0)
         platoonAssigments.forEach(platoon => {
             let phase = platoon.phase
-            let minRelic = this.requiredRelic[phase]
+            let minRelic = this.requiredRelic[platoon.alignment][phase]
             map.set(minRelic, map.get(minRelic) + 1)
         })
         return map
@@ -55,9 +53,9 @@ export default class Strategy {
     // this method does not take into account already existing placements
     guildCanPlaceToon(guild, defId) {
         let placements = this.numNeededPerRelic(defId)
-        let guildToonsPerRelic = guild.numToonPerRelic(defId, this.requiredRelic)
+        let guildToonsPerRelic = guild.numToonPerRelic(defId)
 
-        let requiredRelicsReversed = this.requiredRelic.slice().reverse()
+        let requiredRelicsReversed = [11, 10, 9, 8, 7]
 
         for(let i = 0; i < requiredRelicsReversed.length; ++i) {
             let relic = requiredRelicsReversed[i]
@@ -78,7 +76,7 @@ export default class Strategy {
     }
 
     getScore() {
-        return this.operations.get("LS").length + this.operations.get("Mix").length + this.operations.get("DS").length
+        return this.operations.get("Bonus").length + this.operations.get("LS").length + this.operations.get("Mix").length + this.operations.get("DS").length
     }
 
     isValid(guild) {
@@ -102,7 +100,7 @@ export default class Strategy {
                 let placed = false
                 for(let i = 0; i < guildMemberPriority.length; ++i) {
                     let member = guildMemberPriority[i]
-                    let relic = this.requiredRelic[platoon.phase]
+                    let relic = this.requiredRelic[platoon.alignment][platoon.phase]
                     let zone = platoon.alignment
                     if(member.canPlace(platoon.defId, relic, zone)) {
                         member.assign(platoon, zone)

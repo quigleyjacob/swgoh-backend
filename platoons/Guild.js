@@ -26,9 +26,10 @@ export default class Guild {
         return placements
     }
 
-    numToonPerRelic(defId, requiredRelic) {
+    numToonPerRelic(defId) {
         let map = new Map()
-        requiredRelic.forEach(relic => {
+        let relics = [7, 8, 9, 10, 11]
+        relics.forEach(relic => {
             map.set(relic, this.roster.filter(player => player.canPlaceAnywhere(defId,relic)).length)
         })
         return map

@@ -9,11 +9,12 @@ export default class Phase {
     }
 
     _initializePlatoons(platoons) {
-        return [...platoons["LS"], ...platoons["Mix"], ...platoons["DS"]]
+        return [...platoons["Bonus"], ...platoons["LS"], ...platoons["Mix"], ...platoons["DS"]]
     }
 
     _zones(platoons) {
         let map = new Map()
+        map.set("Bonus", new Zone("Bonus", this.zoneNumber["Bonus"], platoons["Bonus"]))
         map.set("LS", new Zone("LS", this.zoneNumber["LS"], platoons["LS"]))
         map.set("Mix", new Zone("Mix", this.zoneNumber["Mix"], platoons["Mix"]))
         map.set("DS", new Zone("DS", this.zoneNumber["DS"], platoons["DS"]))
@@ -22,6 +23,7 @@ export default class Phase {
 
     _platoonUnits(platoons) {
         let map = new Map()
+        map.set("Bonus", [...new Set(platoons["Bonus"].map(platoon => platoon.defId))])
         map.set("LS", [...new Set(platoons["LS"].map(platoon => platoon.defId))])
         map.set("Mix", [...new Set(platoons["LS"].map(platoon => platoon.defId))])
         map.set("DS", [...new Set(platoons["LS"].map(platoon => platoon.defId))])

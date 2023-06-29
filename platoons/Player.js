@@ -9,6 +9,7 @@ export default class Player {
 
     _initializePlacements() {
         return {
+            "Bonus": [],
             "LS": [],
             "Mix": [],
             "DS": []
@@ -65,8 +66,8 @@ export default class Player {
     }
 
     numAlreadyPlaced() {
-        return this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS") + 
-        this.numAlreadyAttemptedInZone("LS") + this.numAlreadyAttemptedInZone("Mix") + this.numAlreadyAttemptedInZone("DS")
+        return this.numAlreadyPlacedInZone("Bonus") + this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS") + 
+        this.numAlreadyAttemptedInZone("Bonus") + this.numAlreadyAttemptedInZone("LS") + this.numAlreadyAttemptedInZone("Mix") + this.numAlreadyAttemptedInZone("DS")
     }
 
     toonAlreadyPlacedInZone(defId, zone) {
@@ -78,8 +79,8 @@ export default class Player {
     }
 
     toonAlreadyPlacedAnywhere(defId) {
-        return this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS") ||
-        this.toonAlreadyAttemptedInZone(defId, "LS") || this.toonAlreadyAttemptedInZone(defId, "Mix") || this.toonAlreadyAttemptedInZone(defId, "DS")
+        return this.toonAlreadyPlacedInZone(defId, "Bonus") || this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS") ||
+        this.toonAlreadyAttemptedInZone(defId, "Bonus") || this.toonAlreadyAttemptedInZone(defId, "LS") || this.toonAlreadyAttemptedInZone(defId, "Mix") || this.toonAlreadyAttemptedInZone(defId, "DS")
     }
 
     assign(defId, zone) {
@@ -94,7 +95,7 @@ export default class Player {
         let score = 0
         defIdList.forEach(defId => {
             placementMap[defId].forEach(platoon => {
-                if (this.meetsRelicRequirement(defId, requiredRelic[platoon.phase])) {
+                if (this.meetsRelicRequirement(defId, requiredRelic[platoon.alignment][platoon.phase])) {
                     ++score
                 }
             })

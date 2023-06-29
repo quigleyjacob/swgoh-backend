@@ -4,13 +4,13 @@ import Phase from "./Phase.js"
 import Strategy from "./Strategy.js"
 import DB from '../lib/database.js'
 // index 0 is a burner value as phase 0 does not exist
-const requiredRelic = [0, 7, 8, 9, 10, 11, 11] // relic tier + 2 to handle the way the backend data is structured
+const requiredRelic = {
+    "Bonus": [0, 9],
+    "LS": [0, 7, 8, 9, 10, 11, 11],
+    "Mix": [0, 7, 8, 9, 10, 11, 11],
+    "DS": [0, 7, 8, 9, 10, 11, 11]
+} // relic tier + 2 to handle the way the backend data is structured
 
-const alreadyFilled = [
-    [0,0,0,0,0,0], //DS (6,5,4,3,2,1)
-    [0,0,0,0,0,0], //Mix (6,5,4,3,2,1)
-    [0,0,0,0,0,0]  //LS (6,5,4,3,2,1)
-] // in reverse to maintain that DS are highest 6 bits, mix are middle 6 bits, and LS are lowest six bits in same order as already implemented
 
 function numToArray(number) {
     let array = []
@@ -43,7 +43,6 @@ function getSubsetsMap(maxLength, skipMask) {
     }
     let map = new Map()
     array.forEach((value, index) => {
-        // let alreadyFilledMask = getAlreadyFilledMask(alreadyFilled)
         if((index & skipMask) === 0) {
             if(map.get(value)) {
                 map.get(value).push(index)
@@ -67,14 +66,15 @@ function getAlreadyFilledMask(arrays) {
 }
 
 function binarySearch(guild, phase, skipMask) {
-    let length = 18
-    let shift = length / 3
+    let numZones = 4
+    let length = 6 * numZones
+    let shift = length / numZones
     let mask = (2 ** shift) - 1
     let combinationsMap = getSubsetsMap(length, skipMask)
     let ref = {
         score: 0,
         optimalPlacement: [],
-        operations: new Map().set('LS', []).set('Mix', []).set('DS', [])
+        operations: new Map().set('Bonus', []).set('LS', []).set('Mix', []).set('DS', [])
     }
     let start = 0
     let end = length
@@ -89,7 +89,9 @@ function binarySearch(guild, phase, skipMask) {
             let mix = number & mask
             number >>= shift
             let ls = number & mask
-            let strat = new Strategy(phase, new Map().set("LS", numToArray(ls)).set("Mix", numToArray(mix)).set("DS", numToArray(ds)), requiredRelic)
+            number >>= shift
+            let bonus = number & mask
+            let strat = new Strategy(phase, new Map().set("Bonus", numToArray(bonus)).set("LS", numToArray(ls)).set("Mix", numToArray(mix)).set("DS", numToArray(ds)), requiredRelic)
             if(test(guild, strat, ref)) {
                 foundValueHere = true
                 break
@@ -105,8 +107,9 @@ function binarySearch(guild, phase, skipMask) {
 }
 
 export async function getIdealPlatoons(payload) {
-    let {guildId, tb, ds_phase, mix_phase, ls_phase, skipMask, excludedPlayers} = payload
+    let {guildId, tb, ds_phase, mix_phase, ls_phase, bonus_phase, skipMask, excludedPlayers} = payload
     const zoneNumber = {
+        "Bonus": bonus_phase,
         "LS": ls_phase,
         "Mix": mix_phase,
         "DS": ds_phase
@@ -126,7 +129,7 @@ export async function getIdealPlatoons(payload) {
     })
     guildData.roster = guildData.roster.filter(playerData => !(excludedPlayers || []).includes(playerData.allyCode))
 
-    let platoons = await DB.getPlatoons(tb, ls_phase, mix_phase, ds_phase)
+    let platoons = await DB.getPlatoons(tb, bonus_phase, ls_phase, mix_phase, ds_phase)
     let phase = new Phase(zoneNumber, platoons)
     let guild = new Guild(guildData)
     let response = binarySearch(guild, phase, skipMask)
@@ -136,7 +139,7 @@ export async function getIdealPlatoons(payload) {
     response.skippedPlatoons = getPlatoonsFromMask(platoons, skipMask)
 
     // determine unfillable platoons here
-    let optimalPlatoonMask = getAlreadyFilledMask([response.operations["LS"], response.operations["Mix"], response.operations["DS"]])
+    let optimalPlatoonMask = getAlreadyFilledMask([response.operations["Bonus"], response.operations["LS"], response.operations["Mix"], response.operations["DS"]])
     let cannotBeFilled = ~(optimalPlatoonMask | skipMask)
 
     response.remainingPlatoons = getPlatoonsFromMask(platoons, cannotBeFilled)
@@ -151,7 +154,8 @@ function getPlatoonsFromMask(platoons, mask) {
     let ds = numToArray(mask & 63)
     let mix = numToArray((mask >> 6) & 63)
     let ls = numToArray((mask >> 12) & 63)
-    return  [...platoons["DS"].filter(it => ds.includes(it.operation)), ...platoons["Mix"].filter(it => mix.includes(it.operation)), ...platoons["LS"].filter(it => ls.includes(it.operation))]
+    let bonus = numToArray((mask >> 18) & 63)
+    return  [...platoons["DS"].filter(it => ds.includes(it.operation)), ...platoons["Mix"].filter(it => mix.includes(it.operation)), ...platoons["LS"].filter(it => ls.includes(it.operation)), ...platoons["Bonus"].filter(it => bonus.includes(it.operation))]
 }
 
 // each operations parameter is a length 6 array for each operation checking for fill (1 means want to fill, 0 means don't want to fill)
