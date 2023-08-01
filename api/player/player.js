@@ -115,3 +115,14 @@ export async function getGameConnectionCount(req, res) {
         return DB.getGameConnectionCount(session, allyCode)
     })
 }
+
+export async function getLatestBracketResults(req, res) {
+    let session = req.body.session
+    let allyCode = req.body.allyCode
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.getLatestBracketResults(allyCode)
+    })
+}
