@@ -155,6 +155,9 @@ export async function getDatacronTest(req, res) {
         if(session && !(await DB.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not in guild')
         }
+        if(!DB.isGuildBuild(guildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
+        }
         return DB.getGuildDatacronTest(guildId)
     })
 }
@@ -166,6 +169,9 @@ export async function updateDatacronTest(req, res) {
     processRequest(res, async () => {
         if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not in guild')
+        }
+        if(!DB.isGuildBuild(guildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return DB.updateGuildDatacronTest(tests)
     })
