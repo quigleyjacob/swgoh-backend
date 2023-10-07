@@ -143,7 +143,30 @@ export async function isGuildBuild(req, res) {
     processRequest(res, async () => {
         if(session && !(await DB.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
-        } 
+        }
         return DB.isGuildBuild(guildId)
+    })
+}
+
+export async function getDatacronTest(req, res) {
+    let guildId = req.body.guildId
+    let session = req.body.session
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionInGuild(session, guildId))) {
+            throw new MyError(401, 'Session Id is not in guild')
+        }
+        return DB.getGuildDatacronTest(guildId)
+    })
+}
+
+export async function updateDatacronTest(req, res) {
+    let session = req.body.session
+    let tests = req.body.tests
+    let guildId = tests.guildId
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
+            throw new MyError(401, 'Session Id is not in guild')
+        }
+        return DB.updateGuildDatacronTest(tests)
     })
 }

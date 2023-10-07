@@ -1,5 +1,5 @@
 import express from 'express'
-import { getGuildData, getCommands, getCommand, addCommand, deleteCommand, getOperations, getOperation, addOperation, deleteOperation, isGuildBuild } from './guild.js'
+import { getGuildData, getCommands, getCommand, addCommand, deleteCommand, getOperations, getOperation, addOperation, deleteOperation, isGuildBuild, getDatacronTest, updateDatacronTest } from './guild.js'
 
 let router = express.Router()
 
@@ -32,5 +32,9 @@ router.route('/operation/delete')
 
 router.route('/build')
     .post(isGuildBuild)
+
+router.route('/datacronTest')
+    .post(getDatacronTest)
+    .put(updateDatacronTest)
 
 export default router
