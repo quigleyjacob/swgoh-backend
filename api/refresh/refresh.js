@@ -31,3 +31,7 @@ export async function refreshBattleTargetingRule(req, res) {
 export async function refreshDatacron(req, res) {
     processRequest(res, () => DB.refreshDatacron())
 }
+
+export async function refreshAbility(req, res) {
+    processRequest(res, () => DB.refreshAbility())
+}

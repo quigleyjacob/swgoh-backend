@@ -28,7 +28,6 @@ app.post('/test', async (req, res) => {
     // await DB.refreshMetaData()
     // res.send('done')
     // res.send((await comlink.getGameData(1))["playerPortrait"])
-    await DB.refreshPlayerPortraits()
     res.send('done')
 })
 
@@ -51,6 +50,10 @@ async function startRefreshJob() {
                 await DB.refreshBattleTargetingRule(latestGamedataVersion)
                 console.log('Refreshing player portraits')
                 await DB.refreshPlayerPortraits(latestGamedataVersion)
+                console.log('Refreshing Territory Battle Definition')
+                await DB.refreshTerritoryBattleDefinition(latestGamedataVersion)
+                console.log('Refreshing Ability')
+                await DB.refreshAbility(latestGamedataVersion)
                 console.log('Data refresh complete!')
             } catch(err) {
                 console.log(err)

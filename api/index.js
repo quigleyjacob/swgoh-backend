@@ -11,6 +11,7 @@ import gac from './gac/index.js'
 import datacron from './datacron/index.js'
 import leaderboard from './leaderboard/index.js'
 import arena from './arena/index.js'
+import task from './task/index.js'
 import { validate } from '../middleware/index.js'
 
 let router = express.Router()
@@ -34,6 +35,6 @@ router.use('/gac', gac)
 router.use('/datacron', datacron)
 router.use('/leaderboard', leaderboard)
 router.use('/arena', arena)
-
+router.use('/task', task)
 
 export default router
