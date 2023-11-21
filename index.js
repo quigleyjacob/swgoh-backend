@@ -28,40 +28,45 @@ app.post('/test', async (req, res) => {
     // await DB.refreshMetaData()
     // res.send('done')
     // res.send((await comlink.getGameData(1))["playerPortrait"])
-    res.send('done')
+    // await refreshData()
+    // res.send(await comlink.getPlayerWithStats({allyCode: "487828531"}))
 })
 
-async function startRefreshJob() {
-    let job = new CronJob('0 0 0 * * *', async () => { //occurs at midnight
-        console.log('Checking for new game data version')
-        let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion } = await DB.newGameVersionAvailable()
-        if(newVersion) {
-            try {
-                console.log(`New game version found [latestGamedataVersion = ${latestGamedataVersion}, latestLocalizationBundleVersion = ${latestLocalizationBundleVersion}]`)
-                console.log('Retrieving new game data.')
-                await DB.refreshMetaData()
-                console.log("Refreshing localization data")
-                await DB.refreshLocalization(latestLocalizationBundleVersion)
-                console.log('Refreshing units data')
-                await DB.refreshUnits(latestGamedataVersion)
-                console.log('Refreshing unit skills and categories')
-                await DB.refreshSkills(latestGamedataVersion)
-                console.log('Refreshing battle targeting rules')
-                await DB.refreshBattleTargetingRule(latestGamedataVersion)
-                console.log('Refreshing player portraits')
-                await DB.refreshPlayerPortraits(latestGamedataVersion)
-                console.log('Refreshing Territory Battle Definition')
-                await DB.refreshTerritoryBattleDefinition(latestGamedataVersion)
-                console.log('Refreshing Ability')
-                await DB.refreshAbility(latestGamedataVersion)
-                console.log('Data refresh complete!')
-            } catch(err) {
-                console.log(err)
-            }
-        } else {
-            console.log('No new game data version, exiting')
+async function refreshData() {
+    console.log('Checking for new game data version')
+    let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion } = await DB.newGameVersionAvailable()
+    if(newVersion) {
+        try {
+            console.log(`New game version found [latestGamedataVersion = ${latestGamedataVersion}, latestLocalizationBundleVersion = ${latestLocalizationBundleVersion}]`)
+            console.log('Retrieving new game data.')
+            await DB.refreshMetaData()
+            console.log("Refreshing localization data")
+            await DB.refreshLocalization(latestLocalizationBundleVersion)
+            console.log('Refreshing units data')
+            await DB.refreshUnits(latestGamedataVersion)
+            console.log('Refreshing unit skills and categories')
+            await DB.refreshSkills(latestGamedataVersion)
+            console.log('Refreshing battle targeting rules')
+            await DB.refreshBattleTargetingRule(latestGamedataVersion)
+            console.log('Refreshing player portraits')
+            await DB.refreshPlayerPortraits(latestGamedataVersion)
+            console.log('Refreshing Territory Battle Definition')
+            await DB.refreshTerritoryBattleDefinition(latestGamedataVersion)
+            console.log('Refreshing Ability')
+            await DB.refreshAbility(latestGamedataVersion)
+            console.log('Refreshing Datacron Data')
+            await DB.refreshDatacron(latestGamedataVersion)
+            console.log('Data refresh complete!')
+        } catch(err) {
+            console.log(err)
         }
-    })
+    } else {
+        console.log('No new game data version, exiting')
+    }
+}
+
+async function startRefreshJob() {
+    let job = new CronJob('0 0 0 * * *', refreshData)
     job.start()
 }
 
