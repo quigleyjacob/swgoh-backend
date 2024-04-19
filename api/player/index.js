@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPlayerData, addGAC, getAllGAC, getAllSquads, addSquad, deleteSquad, updateDatacronNames, getCurrentGACBoard, getGameConnectionCount, getLatestBracketResults } from './player.js'
+import { getPlayerData, addGAC, getAllGAC, getAllSquads, addSquad, deleteSquad, updateDatacronNames, getCurrentGACBoard, getGameConnectionCount, getLatestBracketResults, getDefenses, getDefense, addDefense, updateDefense, deleteDefense } from './player.js'
 import { getDatacronNames } from './player.js'
 
 let router = express.Router()
@@ -24,6 +24,15 @@ router.route('/squad/add')
 
 router.route('/squad/delete')
     .post(deleteSquad)
+
+router.route('/defense')
+    .get(getDefenses)
+    .post(addDefense)
+    
+router.route('/defense/:defenseId')
+    .get(getDefense)
+    .put(updateDefense)
+    .delete(deleteDefense)
 
 router.route('/datacron')
     .post(getDatacronNames)

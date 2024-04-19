@@ -22,7 +22,9 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-//    res.send('test')
+    await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")
+// await refreshData()
+   res.send('test')
     // let members = await oauth.getServerMembers("Zem41vMHzMTuShVucfgr2oqb7qccte", "964016812792623134")
     // res.send(members)
     // await DB.refreshMetaData()
