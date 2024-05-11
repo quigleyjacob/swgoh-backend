@@ -7,6 +7,7 @@ import oauth from './lib/oauth.js'
 import DB from './lib/database.js'
 import { CronJob } from 'cron'
 import comlink from './lib/comlink.js'
+import { getGacHistoryForGauntlet, } from './lib/gacHistory.js'
 
 app.use(cors())
 app.use(express.json({limit: '1mb'}))
@@ -22,9 +23,12 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")
+    // await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")
 // await refreshData()
-   res.send('test')
+    // let results = await getGacHistoryForGuild('nNv53ssBQhaKue5zstelFQ')
+    // let results = await getGacHistoryForGauntlet()
+    // await getGacHistoryForPlayer('wotzB4TRR7WbgBz2LJpCyg', "Boomer", "MAW CH")
+//    res.send(results)
     // let members = await oauth.getServerMembers("Zem41vMHzMTuShVucfgr2oqb7qccte", "964016812792623134")
     // res.send(members)
     // await DB.refreshMetaData()
