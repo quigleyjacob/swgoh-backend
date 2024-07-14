@@ -5,7 +5,7 @@ import Strategy from "./Strategy.js"
 import DB from '../lib/database.js'
 // index 0 is a burner value as phase 0 does not exist
 const requiredRelic = {
-    "Bonus": [0, 9],
+    "Bonus": [0, 9, 10],
     "LS": [0, 7, 8, 9, 10, 11, 11],
     "Mix": [0, 7, 8, 9, 10, 11, 11],
     "DS": [0, 7, 8, 9, 10, 11, 11]
