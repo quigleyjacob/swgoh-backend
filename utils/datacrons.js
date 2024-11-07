@@ -11,6 +11,10 @@ export function handleGreatMothersTemplate(activeTemplates) {
     handleCharacterTemplate(activeTemplates, 'datacron_set_17_greatmothers', 'datacron_set_17_base')
 }
 
+export function handleBaylanSkollTemplate(activeTemplates) {
+    handleCharacterTemplate(activeTemplates, 'datacron_set_18_baylanskoll', 'datacron_set_18_base')
+}
+
 export function getTags(affix) {
     switch(affix.abilityId) {
         case 'datacron_character_padawanobiwan_001':
@@ -25,6 +29,10 @@ export function getTags(affix) {
         case 'datacron_character_greatmothers_002':
         case 'datacron_character_greatmothers_003':
             return ['darkside', 'nightsister']
+        case 'datacron_character_baylanskoll_001':
+        case 'datacron_character_baylanskoll_002':
+        case 'datacron_character_baylanskoll_003':
+            return ['darkside', 'mercenary']
         default:
             return affix.tag
     }
