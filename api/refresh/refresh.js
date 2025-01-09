@@ -35,3 +35,11 @@ export async function refreshDatacron(req, res) {
 export async function refreshAbility(req, res) {
     processRequest(res, () => DB.refreshAbility())
 }
+
+export async function refreshMaterial(req, res) {
+    processRequest(res, () => DB.refreshMaterial())
+}
+
+export async function refreshEquipment(req, res) {
+    processRequest(res, () => DB.refreshEquipment())
+}

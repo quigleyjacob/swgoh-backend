@@ -62,6 +62,10 @@ async function refreshData() {
             await DB.refreshAbility(latestGamedataVersion)
             console.log('Refreshing Datacron Data')
             await DB.refreshDatacron(latestGamedataVersion)
+            console.log('Refreshing materials')
+            await DB.refreshMaterial(latestGamedataVersion)
+            console.log("Refreshing Equipment")
+            await DB.refreshEquipment(latestGamedataVersion)
             console.log('Data refresh complete!')
         } catch(err) {
             console.log(err)

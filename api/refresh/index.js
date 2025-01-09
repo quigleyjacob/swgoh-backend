@@ -1,5 +1,5 @@
 import express from 'express'
-import { refreshGuild, refreshLocalization, refreshPlayer, refreshUnits, refreshSkills, refreshBattleTargetingRule, refreshDatacron, refreshAbility } from './refresh.js'
+import { refreshGuild, refreshLocalization, refreshPlayer, refreshUnits, refreshSkills, refreshBattleTargetingRule, refreshDatacron, refreshAbility, refreshMaterial, refreshEquipment } from './refresh.js'
 
 let router = express.Router()
 
@@ -26,5 +26,11 @@ router.route('/datacron')
 
 router.route('/ability')
     .post(refreshAbility)
+
+router.route('/material')
+    .post(refreshMaterial)
+
+router.route('/equipment')
+    .post(refreshEquipment)
 
 export default router

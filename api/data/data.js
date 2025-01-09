@@ -18,3 +18,15 @@ export async function getPortrait(req, res) {
     let id = req.body.id
     processRequest(res, () => DB.getPortrait(id))
 }
+
+export async function getCurrency(req, res) {
+    processRequest(res, () => DB.getCurrency())
+}
+
+export async function getMaterial(req, res) {
+    processRequest(res, () => DB.getMaterial())
+}
+
+export async function getEquipment(req, res) {
+    processRequest(res, () => DB.getEquipment())
+}

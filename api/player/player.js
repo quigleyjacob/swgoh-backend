@@ -191,3 +191,25 @@ export async function getLatestBracketResults(req, res) {
         return DB.getLatestBracketResults(allyCode)
     })
 }
+
+export async function getInventory(req, res) {
+    let session = req.headers.session
+    let allyCode = req.headers.allycode
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.getInventory(allyCode)
+    })
+}
+
+export async function refreshInventory(req, res) {
+    let session = req.headers.session
+    let allyCode = req.headers.allycode
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return DB.refreshInventory(allyCode)
+    })
+}
