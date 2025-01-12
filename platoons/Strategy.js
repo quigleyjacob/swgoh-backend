@@ -12,10 +12,6 @@ export default class Strategy {
         let platoons = this.phase.platoons.filter(platoon => {
             let platoonOperationId = `${platoon.alignment}:${platoon.phase}:${platoon.operation}`
             return this.operations.includes(platoonOperationId)
-            // return (platoon.alignment == "Bonus" && this.operations.get("Bonus").includes(platoon.operation))
-            //     || (platoon.alignment == "LS" && this.operations.get("LS").includes(platoon.operation)) 
-            //     || (platoon.alignment == "Mix" && this.operations.get("Mix").includes(platoon.operation))
-            //     || (platoon.alignment == "DS" && this.operations.get("DS").includes(platoon.operation))
         })
         return platoons
     }
@@ -79,7 +75,6 @@ export default class Strategy {
 
     getScore() {
         return this.operations.length
-        // return this.operations.get("Bonus").length + this.operations.get("LS").length + this.operations.get("Mix").length + this.operations.get("DS").length
     }
 
     isValid(guild) {

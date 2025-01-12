@@ -132,8 +132,6 @@ function binarySearchV2(guild, phase, removedOperations, baselineOperationList) 
                 }
                 number >>= 1
             }
-            console.log(toAdd)
-
             let operationList = [...baselineOperationList, ...toAdd]
             let strat = new Strategy(phase, operationList, requiredRelic)
             if(test(guild, strat, ref)) {

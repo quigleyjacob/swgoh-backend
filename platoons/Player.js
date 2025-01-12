@@ -4,7 +4,6 @@ export default class Player {
         this.roster = playerData.rosterMap
         this.name = playerData.name
         this.placements = placement || this._initializePlacements(zones)
-        // this.attempted = this._initializePlacements(zones)
     }
 
     _initializePlacements(zones) {
@@ -65,30 +64,18 @@ export default class Player {
         return this.placements[zone].length
     }
 
-    // numAlreadyAttemptedInZone(zone) {
-    //     return this.attempted[zone].length
-    // }
-
     numAlreadyPlaced() {
         return Object.keys(this.placements).reduce((sum, zoneId) => {
             return sum + this.numAlreadyPlacedInZone(zoneId)
         })
-        // this.numAlreadyPlacedInZone("Bonus") + this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS") + 
-        // this.numAlreadyAttemptedInZone("Bonus") + this.numAlreadyAttemptedInZone("LS") + this.numAlreadyAttemptedInZone("Mix") + this.numAlreadyAttemptedInZone("DS")
     }
 
     toonAlreadyPlacedInZone(defId, zone) {
         return this.placements[zone].map(platoon => platoon.defId).includes(defId)
     }
 
-    // toonAlreadyAttemptedInZone(defId, zone) {
-    //     return this.attempted[zone].map(platoon => platoon.defId).includes(defId)
-    // }
-
     toonAlreadyPlacedAnywhere(defId) {
         return Object.keys(this.placements).some(zoneId => this.toonAlreadyPlacedInZone(defId, zoneId))
-        // return this.toonAlreadyPlacedInZone(defId, "Bonus") || this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS") ||
-        // this.toonAlreadyAttemptedInZone(defId, "Bonus") || this.toonAlreadyAttemptedInZone(defId, "LS") || this.toonAlreadyAttemptedInZone(defId, "Mix") || this.toonAlreadyAttemptedInZone(defId, "DS")
     }
 
     assign(defId, zone) {
