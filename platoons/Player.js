@@ -1,19 +1,17 @@
 export default class Player {
-    constructor(playerData, placement = undefined) {
+    constructor(playerData, zones, placement = undefined) {
         this.allyCode = playerData.allyCode
         this.roster = playerData.rosterMap
         this.name = playerData.name
-        this.placements = placement || this._initializePlacements()
-        this.attempted = this._initializePlacements()
+        this.placements = placement || this._initializePlacements(zones)
+        // this.attempted = this._initializePlacements(zones)
     }
 
-    _initializePlacements() {
-        return {
-            "Bonus": [],
-            "LS": [],
-            "Mix": [],
-            "DS": []
-        }
+    _initializePlacements(zones) {
+        return zones.reduce((map, zoneId) => {
+            map[zoneId] = []
+            return map
+        }, {})
     }
 
     totalPossiblePlacements(defIdList, phase) {
@@ -34,11 +32,17 @@ export default class Player {
         return this.meetsRelicRequirement(defId, relic)
     }
 
-    canPlaceAnywhere(defId, phase) {
+    canPlaceAnywhere(defId, relic, operation = undefined) {
         if(this.toonAlreadyPlacedAnywhere(defId)) { // cannot place again if already placed elsewhere
             return false
         }
-        return this.meetsRelicRequirement(defId, phase)
+        if(operation) {
+            let zoneId = `${operation.alignment}:${operation.phase}`
+            if(this.maxPlacement(zoneId)) {
+                return false
+            }
+        }
+        return this.meetsRelicRequirement(defId, relic)
     }
 
     meetsRelicRequirement(defId, relic) {
@@ -61,26 +65,30 @@ export default class Player {
         return this.placements[zone].length
     }
 
-    numAlreadyAttemptedInZone(zone) {
-        return this.attempted[zone].length
-    }
+    // numAlreadyAttemptedInZone(zone) {
+    //     return this.attempted[zone].length
+    // }
 
     numAlreadyPlaced() {
-        return this.numAlreadyPlacedInZone("Bonus") + this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS") + 
-        this.numAlreadyAttemptedInZone("Bonus") + this.numAlreadyAttemptedInZone("LS") + this.numAlreadyAttemptedInZone("Mix") + this.numAlreadyAttemptedInZone("DS")
+        return Object.keys(this.placements).reduce((sum, zoneId) => {
+            return sum + this.numAlreadyPlacedInZone(zoneId)
+        })
+        // this.numAlreadyPlacedInZone("Bonus") + this.numAlreadyPlacedInZone("LS") + this.numAlreadyPlacedInZone("Mix") + this.numAlreadyPlacedInZone("DS") + 
+        // this.numAlreadyAttemptedInZone("Bonus") + this.numAlreadyAttemptedInZone("LS") + this.numAlreadyAttemptedInZone("Mix") + this.numAlreadyAttemptedInZone("DS")
     }
 
     toonAlreadyPlacedInZone(defId, zone) {
         return this.placements[zone].map(platoon => platoon.defId).includes(defId)
     }
 
-    toonAlreadyAttemptedInZone(defId, zone) {
-        return this.attempted[zone].map(platoon => platoon.defId).includes(defId)
-    }
+    // toonAlreadyAttemptedInZone(defId, zone) {
+    //     return this.attempted[zone].map(platoon => platoon.defId).includes(defId)
+    // }
 
     toonAlreadyPlacedAnywhere(defId) {
-        return this.toonAlreadyPlacedInZone(defId, "Bonus") || this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS") ||
-        this.toonAlreadyAttemptedInZone(defId, "Bonus") || this.toonAlreadyAttemptedInZone(defId, "LS") || this.toonAlreadyAttemptedInZone(defId, "Mix") || this.toonAlreadyAttemptedInZone(defId, "DS")
+        return Object.keys(this.placements).some(zoneId => this.toonAlreadyPlacedInZone(defId, zoneId))
+        // return this.toonAlreadyPlacedInZone(defId, "Bonus") || this.toonAlreadyPlacedInZone(defId, "LS") || this.toonAlreadyPlacedInZone(defId, "Mix") || this.toonAlreadyPlacedInZone(defId, "DS") ||
+        // this.toonAlreadyAttemptedInZone(defId, "Bonus") || this.toonAlreadyAttemptedInZone(defId, "LS") || this.toonAlreadyAttemptedInZone(defId, "Mix") || this.toonAlreadyAttemptedInZone(defId, "DS")
     }
 
     assign(defId, zone) {
@@ -88,7 +96,7 @@ export default class Player {
     }
 
     reset() {
-        this.placements = this._initializePlacements()
+        this.placements = this._initializePlacements(Object.keys(this.placements))
     }
 
     placementScore(defIdList, placementMap, requiredRelic) {
