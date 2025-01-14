@@ -1,6 +1,7 @@
 import DB from '../../lib/database.js'
 import { MyError } from '../../lib/error.js'
 import { processRequest } from '../../lib/validation.js'
+import Mhann from '../../lib/mhann.js'
 
 export async function getPlayerData(req, res)  {
     let refresh = req.body.refresh ? true : false
@@ -211,5 +212,16 @@ export async function refreshInventory(req, res) {
             throw new MyError(401, 'Session Id is not player')
         }
         return DB.refreshInventory(allyCode)
+    })
+}
+
+export async function getAuthStatus(req, res) {
+    let session = req.headers.session
+    let allyCode = req.headers.allycode
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return Mhann.getUserAuthStatus(allyCode)
     })
 }
