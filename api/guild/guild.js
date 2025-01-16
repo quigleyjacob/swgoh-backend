@@ -142,7 +142,7 @@ export async function isGuildBuild(req, res) {
     let session = req.body.session
     processRequest(res, async () => {
         if(session && !(await DB.sessionInGuild(session, guildId))) {
-            throw new MyError(401, 'Session Id is not a guild officer')
+            throw new MyError(401, 'Session Id is not in guild.')
         }
         return DB.isGuildBuild(guildId)
     })
@@ -168,7 +168,7 @@ export async function updateDatacronTest(req, res) {
     let guildId = tests.guildId
     processRequest(res, async () => {
         if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
-            throw new MyError(401, 'Session Id is not in guild')
+            throw new MyError(401, 'Session Id is not a guild officer.')
         }
         if(!DB.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
