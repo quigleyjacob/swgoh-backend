@@ -6,7 +6,7 @@ export async function getGuildData(req, res) {
     let refresh = req.body.refresh ? true : false
     let detailed = req.body.detailed ? true : false
     let guildId = req.body.guildId
-    let projection = req.body.projection || {name: 1, allyCode: 1}
+    let projection = req.body.projection || {name: 1, allyCode: 1, playerId: 1}
     processRequest(res, () => DB.getGuildData(guildId, refresh, detailed, projection))
 }
 
