@@ -8,6 +8,8 @@ import DB from './lib/database.js'
 import { CronJob } from 'cron'
 import comlink from './lib/comlink.js'
 import { getGacHistoryForGauntlet, } from './lib/gacHistory.js'
+import Refresh from './lib/database/refresh.js'
+import Data from './lib/database/data.js'
 
 app.use(cors())
 app.use(express.json({limit: '1mb'}))
@@ -23,6 +25,8 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
+    await Refresh.refreshActiveDatacrons()
+    res.send('done')
     // await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")
 // await refreshData()
     // let results = await getGacHistoryForGuild('nNv53ssBQhaKue5zstelFQ')
@@ -43,30 +47,9 @@ async function refreshData() {
     let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion } = await DB.newGameVersionAvailable()
     if(newVersion) {
         try {
-            console.log(`New game version found [latestGamedataVersion = ${latestGamedataVersion}, latestLocalizationBundleVersion = ${latestLocalizationBundleVersion}]`)
-            console.log('Retrieving new game data.')
-            await DB.refreshMetaData()
-            console.log("Refreshing localization data")
-            await DB.refreshLocalization(latestLocalizationBundleVersion)
-            console.log('Refreshing units data')
-            await DB.refreshUnits(latestGamedataVersion)
-            console.log('Refreshing unit skills and categories')
-            await DB.refreshSkills(latestGamedataVersion)
-            console.log('Refreshing battle targeting rules')
-            await DB.refreshBattleTargetingRule(latestGamedataVersion)
-            console.log('Refreshing player portraits')
-            await DB.refreshPlayerPortraits(latestGamedataVersion)
-            console.log('Refreshing Territory Battle Definition')
-            await DB.refreshTerritoryBattleDefinition(latestGamedataVersion)
-            console.log('Refreshing Ability')
-            await DB.refreshAbility(latestGamedataVersion)
-            console.log('Refreshing Datacron Data')
-            await DB.refreshDatacron(latestGamedataVersion)
-            console.log('Refreshing materials')
-            await DB.refreshMaterial(latestGamedataVersion)
-            console.log("Refreshing Equipment")
-            await DB.refreshEquipment(latestGamedataVersion)
-            console.log('Data refresh complete!')
+            await Refresh.refreshGameData(latestGamedataVersion)
+            await Refresh.refreshLocalization(latestLocalizationBundleVersion)
+            await Refresh.refreshActiveDatacrons()
         } catch(err) {
             console.log(err)
         }

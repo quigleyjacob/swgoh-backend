@@ -1,18 +1,12 @@
 import express from 'express'
-import { getAccounts, getGuilds, getDefaultAccount, getDefaultGuild, getRoles, addRole, removeRole, registerUser, verifyUser, unregisterUser, setDefaultAccount, getGuildMemberDiscordRegistrations, getServerRegistrations, registerServer, unregisterServer, getActiveBuilds, authenticateUser, getDiscordAuthURL } from './discord.js'
+import { getAccounts, getGuilds, getDefaultAccount, getDefaultGuild, getRoles, addRole, removeRole, registerUser, verifyUser, getGuildMemberDiscordRegistrations, getServerRegistrations, registerServer, unregisterServer, getActiveBuilds, authenticateUser, getDiscordAuthURL } from './discord.js'
 let router = express.Router()
-
-router.route('/')
-    .post((req, res) => res.send("greeting from /api/discord/"))
 
 router.route('/user')
     .post(getAccounts)
 
 router.route('/user/default')
     .post(getDefaultAccount)
-
-router.route('/user/default/set')
-    .post(setDefaultAccount)
 
 router.route('/guild')
     .post(getGuilds)
@@ -37,9 +31,6 @@ router.route('/register')
 
     router.route('/verify')
     .post(verifyUser)
-
-router.route('/unregister')
-    .post(unregisterUser)
 
 router.route('/server/registration')
     .post(getServerRegistrations)

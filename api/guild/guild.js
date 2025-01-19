@@ -1,13 +1,13 @@
 import DB from '../../lib/database.js'
-import { MyError } from '../../lib/error.js'
+import { MyError } from '../../utils/error.js'
 import { processRequest } from '../../lib/validation.js'
 
-export async function getGuildData(req, res) {
+export async function getGuild(req, res) {
     let refresh = req.body.refresh ? true : false
     let detailed = req.body.detailed ? true : false
     let guildId = req.body.guildId
     let projection = req.body.projection || {name: 1, allyCode: 1, playerId: 1}
-    processRequest(res, () => DB.getGuildData(guildId, refresh, detailed, projection))
+    processRequest(res, () => DB.getGuild(guildId, refresh, detailed, projection))
 }
 
 export async function getCommands(req, res) {

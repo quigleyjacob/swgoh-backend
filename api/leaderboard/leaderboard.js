@@ -38,7 +38,7 @@ export async function removeAccountFromLeaderboard(req, res) {
 export async function getAccountsFromAllyCodeArray(req, res) {
     let allyCodes = req.body.allyCodes
     let projection = req.body.projection || {}
-    processRequest(res, () => DB.getAccountsFromAllyCodeArray(allyCodes, projection))
+    processRequest(res, () => DB.getPlayerArenas(allyCodes, projection))
 }
 
 export async function refreshAccountsInLeaderboard(req, res) {

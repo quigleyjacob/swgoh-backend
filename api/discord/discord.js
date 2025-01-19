@@ -18,12 +18,6 @@ export async function getDefaultAccount(req, res) {
     processRequest(res, () => DB.getDefaultAccount(discordId))
 }
 
-export async function setDefaultAccount(req, res) {
-    let discordId = req.body.discordId
-    let allyCode = req.body.allyCode
-    processRequest(res, () => DB.setDefaultAccount(discordId, allyCode))
-}
-
 export async function getDefaultGuild(req, res) {
     let discordId = req.body.discordId
     processRequest(res, () => DB.getDefaultGuild(discordId))
@@ -60,11 +54,6 @@ export async function verifyUser(req, res) {
         payload.discordId = discordUser.id
     }
     processRequest(res, () => DB.verifyUser(payload))
-}
-
-export async function unregisterUser(req, res) {
-    let payload = req.body
-    processRequest(res, () => DB.unregisterUser(payload))
 }
 
 export async function getGuildMemberDiscordRegistrations(req, res) {

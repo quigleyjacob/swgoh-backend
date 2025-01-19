@@ -1,10 +1,10 @@
 import express from 'express'
-import { getGuildData, getCommands, getCommand, addCommand, deleteCommand, getOperations, getOperation, addOperation, deleteOperation, isGuildBuild, getDatacronTest, updateDatacronTest } from './guild.js'
+import { getGuild, getCommands, getCommand, addCommand, deleteCommand, getOperations, getOperation, addOperation, deleteOperation, isGuildBuild, getDatacronTest, updateDatacronTest } from './guild.js'
 
 let router = express.Router()
 
 router.route('/')
-    .post(getGuildData)
+    .post(getGuild)
 
 router.route('/command')
     .post(getCommands)

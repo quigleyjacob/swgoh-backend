@@ -1,14 +1,14 @@
 import DB from '../../lib/database.js'
-import { MyError } from '../../lib/error.js'
+import { MyError } from '../../utils/error.js'
 import { processRequest } from '../../lib/validation.js'
 import Mhann from '../../lib/mhann.js'
 import { defaultPlayerProjection } from '../../utils/projections.js'
 
-export async function getPlayerData(req, res)  {
+export async function getPlayer(req, res)  {
     let refresh = req.body.refresh ? true : false
     let projection = req.body.projection || defaultPlayerProjection
     let payload = req.body.payload
-    processRequest(res, () => DB.getPlayerData(payload, refresh, projection))
+    processRequest(res, () => DB.getPlayer(payload, refresh, projection))
 }
 
 export async function getAllGAC(req, res) {
@@ -168,7 +168,7 @@ export async function getCurrentGACBoard(req, res) {
         if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        return DB.getCurrentGACBoard(session, allyCode)
+        return DB.getCurrentGACBoard(allyCode)
     })
 }
 
