@@ -1,5 +1,5 @@
 import express from 'express'
-import { getSkills, getData, getPortrait, getPortraits, getCurrency, getMaterial, getEquipment } from './data.js'
+import { getSkills, getData, getPortrait, getPortraits, getCurrency, getMaterial, getEquipment, getPlayerScores } from './data.js'
 
 let router = express.Router()
 
@@ -21,5 +21,8 @@ router.route('/material')
 
 router.route('/equipment')
     .get(getEquipment)
+
+router.route('/playerScores')
+    .post(getPlayerScores)
 
 export default router

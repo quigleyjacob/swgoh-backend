@@ -30,3 +30,9 @@ export async function getMaterial(req, res) {
 export async function getEquipment(req, res) {
     processRequest(res, () => DB.getEquipment())
 }
+
+export async function getPlayerScores(req, res) {
+    let allyCodeArray = req.body.allyCodeArray
+    let projection = {modScore: 1, gacPowerScore: 1, galacticPower: 1, allyCode: 1}
+    processRequest(res, () => DB.getAccountsData(allyCodeArray, projection, 'allyCode', 0, false))
+}

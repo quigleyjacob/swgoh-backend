@@ -2,10 +2,11 @@ import DB from '../../lib/database.js'
 import { MyError } from '../../lib/error.js'
 import { processRequest } from '../../lib/validation.js'
 import Mhann from '../../lib/mhann.js'
+import { defaultPlayerProjection } from '../../utils/projections.js'
 
 export async function getPlayerData(req, res)  {
     let refresh = req.body.refresh ? true : false
-    let projection = req.body.projection
+    let projection = req.body.projection || defaultPlayerProjection
     let payload = req.body.payload
     processRequest(res, () => DB.getPlayerData(payload, refresh, projection))
 }
