@@ -9,8 +9,8 @@ export async function validate(req, res, next) {
     try {
         if(url === '/api/discord/authURL' || url === '/api/discord/authenticate') { //session is created from this route
             next()
-        }
-         else if(url.startsWith('/api/data') || url === '/api/player' || url === '/api/guild' || url.startsWith('/api/category') || url.startsWith('/api/unit') || url === '/api/leaderboard' || url === '/api/leaderboard/accounts') { // public data
+        }//|| url === '/api/player' || url === '/api/guild'
+         else if(url.startsWith('/api/data') || url.startsWith('/api/category') || url.startsWith('/api/unit') || url === '/api/leaderboard' || url === '/api/leaderboard/accounts') { // public data
             next()
         }
         else if(discordKey && discordKey === process.env.DISCORD_API_KEY) {
