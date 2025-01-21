@@ -6,6 +6,7 @@ export async function validate(req, res, next) {
     let discordKey = req.body.discordKey
     let session = req.body.session || req.headers.session
     let url = req.originalUrl
+    console.log(url)
     try {
         if(url === '/api/discord/authURL' || url === '/api/discord/authenticate') { //session is created from this route
             next()
