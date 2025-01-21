@@ -1,7 +1,6 @@
 export default class Zone {
-    constructor(alignment, phase, platoons) {
-        this.alignment = alignment
-        this.phase = phase
+    constructor(zoneId, platoons) {
+        this.zoneId = zoneId
         this.platoons = platoons
         this.placementsMap = this._initPlacementMap()
     }
