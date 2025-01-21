@@ -1,7 +1,7 @@
 export default class Zone {
     constructor(zoneId, platoons) {
         this.zoneId = zoneId
-        this.platoons = platoons
+        this.platoons = platoons || []
         this.placementsMap = this._initPlacementMap()
     }
 

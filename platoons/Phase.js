@@ -32,7 +32,8 @@ export default class Phase {
     _platoonUnits() {
         let map = new Map()
         this.zonesList.forEach(zoneId => {
-            map.set(zoneId, [... new Set(this.platoonsPerZone[zoneId].map(platoon => platoon.defId))])
+            let platoonsPerZone = this.platoonsPerZone[zoneId] || []
+            map.set(zoneId, [... new Set(platoonsPerZone.map(platoon => platoon.defId))])
         })
         return map
     }
