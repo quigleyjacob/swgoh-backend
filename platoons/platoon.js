@@ -36,19 +36,20 @@ function test(guild, strat, ref) {
     return valid
 }
 
-function getSubsetsMap(maxLength, skipMask) {
+function getSubsetsMap(maxLength) {
+    if(maxLength > 24) {
+        throw Error('Number too big to generate subset maps')
+    }
     let array = [0]
     for(let i = 1; i < 2 ** maxLength; ++i) {
         array.push((i % 2 == 0 ? 0 : 1) + array[i >> 1])
     }
     let map = new Map()
     array.forEach((value, index) => {
-        if((index & skipMask) === 0) {
-            if(map.get(value)) {
-                map.get(value).push(index)
-            } else {
-                map.set(value, [index])
-            }
+        if(map.get(value)) {
+            map.get(value).push(index)
+        } else {
+            map.set(value, [index])
         }
     })
     return map
@@ -65,16 +66,17 @@ function getAlreadyFilledMask(arrays) {
     return number
 }
 
-function binarySearch(guild, phase, skipMask) {
-    let numZones = 4
+function binarySearch(guild, phase) {
+    let numZones = phase.zonesList.length
     let length = 6 * numZones
     let shift = length / numZones
     let mask = (2 ** shift) - 1
-    let combinationsMap = getSubsetsMap(length, skipMask)
+    let combinationsMap = getSubsetsMap(length)
+
     let ref = {
         score: 0,
         optimalPlacement: [],
-        operations: new Map().set('Bonus', []).set('LS', []).set('Mix', []).set('DS', [])
+        operations: []
     }
     let start = 0
     let end = length
@@ -84,14 +86,12 @@ function binarySearch(guild, phase, skipMask) {
         let foundValueHere = false
         for(let i = 0; i < combinations.length; ++i) {
             let number = combinations[i]
-            let ds = number & mask
-            number >>= shift
-            let mix = number & mask
-            number >>= shift
-            let ls = number & mask
-            number >>= shift
-            let bonus = number & mask
-            let strat = new Strategy(phase, new Map().set("Bonus", numToArray(bonus)).set("LS", numToArray(ls)).set("Mix", numToArray(mix)).set("DS", numToArray(ds)), requiredRelic)
+            let operationList = phase.zonesList.reduce((map, zoneId) => {
+                let platoonNumber = number & mask
+                number >>= shift
+                return [...map, ...numToArray(platoonNumber).map(operation => `${zoneId}:${operation}`)]
+            }, [])
+            let strat = new Strategy(phase, operationList, requiredRelic)
             if(test(guild, strat, ref)) {
                 foundValueHere = true
                 break
@@ -106,13 +106,54 @@ function binarySearch(guild, phase, skipMask) {
     return ref
 }
 
+function binarySearchV2(guild, phase, removedOperations, baselineOperationList) {
+    let length = removedOperations.length
+
+    let combinationsMap = getSubsetsMap(length)
+
+    let ref = {
+        score: 0,
+        optimalPlacement: [],
+        operations: []
+    }
+
+    let start = 0
+    let end = length
+    while(start <= end) {
+        let mid = (start + end)/2>>0
+        let combinations = combinationsMap.get(mid) || []
+        let foundValueHere = false
+        for(let i = 0; i < combinations.length; ++i) {
+            let number = combinations[i]
+            let toAdd = []
+            for(let i = 0; i < length; ++i) {
+                if(number & 1 === 1) {
+                    toAdd.push(removedOperations[i])
+                }
+                number >>= 1
+            }
+            let operationList = [...baselineOperationList, ...toAdd]
+            let strat = new Strategy(phase, operationList, requiredRelic)
+            if(test(guild, strat, ref)) {
+                foundValueHere = true
+                break
+            }
+
+        }
+        if(foundValueHere) {
+            start = mid + 1
+        } else {
+            end = mid - 1
+        }
+    }
+    return ref
+}
+
 export async function getIdealPlatoons(payload) {
-    let {guildId, tb, ds_phase, mix_phase, ls_phase, bonus_phase, skipMask, excludedPlayers} = payload
-    const zoneNumber = {
-        "Bonus": bonus_phase,
-        "LS": ls_phase,
-        "Mix": mix_phase,
-        "DS": ds_phase
+    let {guildId, tb, zones, excludedPlatoons, excludedPlayers, previousOperation} = payload
+
+    if(previousOperation !== '') {
+        excludedPlatoons = await mergeExcludedPlatoons(zones, excludedPlatoons, previousOperation)
     }
     let guildData = await DB.getGuildData(guildId, false, true, {
         name: 1,
@@ -128,26 +169,162 @@ export async function getIdealPlatoons(payload) {
         }
     })
     guildData.roster = guildData.roster.filter(playerData => !(excludedPlayers || []).includes(playerData.allyCode))
+    let excludedOperations = excludedPlatoons.filter(id => {
+        let arr = id.split(':')
+        return arr.length === 3
+    })
 
-    let platoons = await DB.getPlatoons(tb, bonus_phase, ls_phase, mix_phase, ds_phase)
-    let phase = new Phase(zoneNumber, platoons)
-    let guild = new Guild(guildData)
-    let response = binarySearch(guild, phase, skipMask)
-    response.operations = Object.fromEntries(response.operations)
+    let platoons = await DB.getPlatoons(tb, zones, excludedPlatoons)
+    let phase = new Phase(zones, platoons)
+    let guild = new Guild(guildData, zones)
+
+    let testing = new Strategy(phase, undefined, requiredRelic, platoons)
+    let filteredPlatoons = JSON.parse(JSON.stringify(platoons))
+    let unfillable = testing.findUnfillable(guild)
+    let removedOperations = []
+    while(unfillable.length > 0) {
+        let toRemove = unfillable[0]
+        let operationToRemoveId = `${toRemove.alignment}:${toRemove.phase}:${toRemove.operation}`
+        removedOperations.push(operationToRemoveId)
+        filteredPlatoons = filteredPlatoons.filter(platoon => {
+            return platoon.alignment !== toRemove.alignment
+                || platoon.phase !== toRemove.phase
+                || platoon.operation !== toRemove.operation
+        })
+
+        testing = new Strategy(phase, undefined, requiredRelic, filteredPlatoons)
+        unfillable = testing.findUnfillable(guild)
+    }
+
+    let baselineOperationList = getBaselineOperationList(zones, removedOperations, excludedOperations)
+
+    let response = binarySearchV2(guild, phase, removedOperations, baselineOperationList)
+
+    // let response = binarySearch(guild, phase)
 
     // determine skipped platoons
-    response.skippedPlatoons = getPlatoonsFromMask(platoons, skipMask)
+    response.skippedPlatoons = await getSkippedPlatoons(tb, excludedPlatoons)
 
-    // determine unfillable platoons here
-    let optimalPlatoonMask = getAlreadyFilledMask([response.operations["Bonus"], response.operations["LS"], response.operations["Mix"], response.operations["DS"]])
-    let cannotBeFilled = ~(optimalPlatoonMask | skipMask)
+    response.skippedOperations = excludedOperations
 
-    response.remainingPlatoons = getPlatoonsFromMask(platoons, cannotBeFilled)
+    response.remainingOperations = getRemainingOperations(zones, response.operations, response.skippedOperations)
+
+    response.remainingPlatoons = getRemainingPlatoons(platoons, response.remainingOperations)
+
 
     let attemptStrategy = new Strategy(phase, undefined, requiredRelic, response.remainingPlatoons)
-    let guildWithPlacements = new Guild(guildData, response.optimalPlacement)
+    let guildWithPlacements = new Guild(guildData, zones, response.optimalPlacement)
     response.unableToFill = attemptStrategy.findUnfillable(guildWithPlacements)
     return response
+}
+
+function getBaselineOperationList(zones, removedOperations, excludedOperations) {
+    let list = []
+    zones.forEach(zoneId => {
+        for(let i = 1; i <= 6; ++i) {
+            let operationId = `${zoneId}:${i}`
+            if(!removedOperations.includes(operationId) && !excludedOperations.includes(operationId)) {
+                list.push(operationId)
+            }
+        }
+    })
+    return list
+}
+
+async function getSkippedPlatoons(tb, excludedPlatoons) {
+    if(excludedPlatoons.length === 0) {
+        return []
+    }
+    return await DB.getPlatoons(tb, excludedPlatoons)
+}
+
+function getRemainingPlatoons(platoons, skippedOperations) {
+    // from the platoons list, get the platoons that are in the skipped operations list, but not in the excluded platoons list
+    return platoons.filter(platoon => {
+        let operationId = `${platoon.alignment}:${platoon.phase}:${platoon.operation}`
+        return skippedOperations.includes(operationId)
+    })
+}
+
+function getRemainingOperations(zones, operations, skippedOperations) {
+    let list = []
+    zones.forEach(zoneId => {
+        for(let operation = 1; operation <= 6; ++operation) {
+            let operationId = `${zoneId}:${operation}`
+            if(!operations.includes(operationId) && !skippedOperations.includes(operationId)) {
+                list.push(operationId)
+            }
+        }
+    })
+    return list
+}
+
+async function mergeExcludedPlatoons(zones, excludedPlatoons, previousOperationId) {
+    if(previousOperationId === undefined) {
+        return excludedPlatoons
+    }
+    let previousOperation = await DB.getOperation(previousOperationId, {})
+
+    if(!previousOperation) {
+        return excludedPlatoons
+    }
+
+    let previousOperationExcludedPlatoons = previousOperation.excludedPlatoons
+
+    let commonZones = zones.filter(value => previousOperation.zones.includes(value))
+    if(commonZones.length === 0) {
+        return excludedPlatoons
+    }
+    let operationList = commonZones.map(zoneId => {
+        return [1,2,3,4,5,6].reduce((arr, operation) => {
+            let operationId = `${zoneId}:${operation}`
+            if(previousOperationExcludedPlatoons.some(platoonId => platoonId.includes(operationId))) {
+                
+                if(!previousOperationExcludedPlatoons.includes(operationId)) {
+                    // add complement of platoons included
+                    let excludedPlatoonsInOperation = previousOperationExcludedPlatoons.filter(platoonId => platoonId.includes(operationId))
+                    let includedPlatoonsInOperation = [1,2,3].map(row => [1,2,3,4,5].map(slot => `${operationId}:${row}:${slot}`)).flat().filter(id => !excludedPlatoonsInOperation.includes(id))
+                    return [...arr, ...includedPlatoonsInOperation]
+                } else {
+                    // entire platoon was excluded last phase, included this phase
+                    return arr
+                }
+            } else {
+                // no mention of this operation in exclusion, so was completely filled last phase
+                return [...arr, operationId]
+            }
+        }, [])
+    }).flat()
+
+    let newOperationList = [...operationList, ...excludedPlatoons]
+
+    //if operation id is present, remove all platoon id contained under it
+    let operationIdInList = newOperationList.filter(id => id.split(':').length === 3)
+    operationIdInList.forEach(operationId => {
+        newOperationList = newOperationList.filter(id => !id.includes(operationId) || id === operationId)
+    })
+
+    //if all 15 platoon id are present, substitute with operation id
+    let map = newOperationList.reduce((map, id) => {
+        if(id.split(':').length === 5) {
+            let operationId = id.split(':').slice(0,3).join(':')
+            if(map[operationId]) {
+                map[operationId].push(id)
+            } else {
+                map[operationId] = [id]
+            }
+        }
+        return map
+    }, {})
+    Object.keys(map).forEach(operationId => {
+        if(map[operationId].length === 15) {
+            newOperationList = newOperationList.filter(id => !map[operationId].includes(id))
+            newOperationList.push(operationId)
+        }
+    })
+
+    return newOperationList
+
 }
 
 function getPlatoonsFromMask(platoons, mask) {

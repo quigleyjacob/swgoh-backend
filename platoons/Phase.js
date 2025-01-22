@@ -1,32 +1,40 @@
 import Zone from './Zone.js'
 
 export default class Phase {
-    constructor(zoneNumber, platoons) {
-        this.zoneNumber = zoneNumber
-        this.platoons = this._initializePlatoons(platoons)
-        this.zones = this._zones(platoons)
-        this.platoonUnits = this._platoonUnits(platoons)
+    constructor(zonesList, platoons) {
+        this.zonesList = zonesList
+        this.platoons = platoons
+        this.platoonsPerZone = this._initializePlatoonsPerZone()
+        this.zones = this._zones()
+        this.platoonUnits = this._platoonUnits()
     }
 
-    _initializePlatoons(platoons) {
-        return [...platoons["Bonus"], ...platoons["LS"], ...platoons["Mix"], ...platoons["DS"]]
+    _initializePlatoonsPerZone() {
+        return this.platoons.reduce((map, platoon) => {
+            let zoneId = `${platoon.alignment}:${platoon.phase}`
+            if(map[zoneId]) {
+                map[zoneId].push(platoon)
+            } else {
+                map[zoneId] = [platoon]
+            }
+            return map
+        }, {})
     }
 
-    _zones(platoons) {
+    _zones() {
         let map = new Map()
-        map.set("Bonus", new Zone("Bonus", this.zoneNumber["Bonus"], platoons["Bonus"]))
-        map.set("LS", new Zone("LS", this.zoneNumber["LS"], platoons["LS"]))
-        map.set("Mix", new Zone("Mix", this.zoneNumber["Mix"], platoons["Mix"]))
-        map.set("DS", new Zone("DS", this.zoneNumber["DS"], platoons["DS"]))
+        this.zonesList.forEach(zoneId => {
+            map.set(zoneId, new Zone(zoneId, this.platoonsPerZone[zoneId]))
+        })
         return map
     }
 
-    _platoonUnits(platoons) {
+    _platoonUnits() {
         let map = new Map()
-        map.set("Bonus", [...new Set(platoons["Bonus"].map(platoon => platoon.defId))])
-        map.set("LS", [...new Set(platoons["LS"].map(platoon => platoon.defId))])
-        map.set("Mix", [...new Set(platoons["LS"].map(platoon => platoon.defId))])
-        map.set("DS", [...new Set(platoons["LS"].map(platoon => platoon.defId))])
+        this.zonesList.forEach(zoneId => {
+            let platoonsPerZone = this.platoonsPerZone[zoneId] || []
+            map.set(zoneId, [... new Set(platoonsPerZone.map(platoon => platoon.defId))])
+        })
         return map
     }
 }

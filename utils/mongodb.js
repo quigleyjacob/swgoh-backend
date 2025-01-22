@@ -2,8 +2,11 @@ import { MongoClient } from 'mongodb'
 import { config } from 'dotenv'
 config()
 
-const MONGODB_URI = `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@${process.env.ATLAS_CLUSTER}.mongodb.net/${process.env.ATLAS_DB}`
-const MONGODB_DB = process.env.ATLAS_DB
+const { ATLAS_USERNAME, ATLAS_PASSWORD, ATLAS_CLUSTER, ATLAS_DB, DEV } = process.env
+const MONGODB_DB = ATLAS_DB
+const MONGODB_URI = DEV ?
+  `mongodb://localhost:27017/${MONGODB_DB}` :
+  `mongodb+srv://${ATLAS_USERNAME}:${ATLAS_PASSWORD}@${ATLAS_CLUSTER}.mongodb.net/${MONGODB_DB}`
 
 if (!MONGODB_URI) {
   throw new Error(
