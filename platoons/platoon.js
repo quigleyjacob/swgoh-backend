@@ -155,7 +155,7 @@ export async function getIdealPlatoons(payload) {
     if(previousOperation !== '') {
         excludedPlatoons = await mergeExcludedPlatoons(zones, excludedPlatoons, previousOperation)
     }
-    let guildData = await DB.getGuildData(guildId, false, true, {
+    let guildData = await DB.getGuild(guildId, false, true, {
         name: 1,
         allyCode: 1,
         rosterUnit: {

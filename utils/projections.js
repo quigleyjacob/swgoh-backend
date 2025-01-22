@@ -42,7 +42,9 @@ export const defaultGuildProjection = {
         allyCode: 1,
         playerName: 1,
         memberLevel: 1,
-        galacticPower: 1
+        galacticPower: 1,
+        playerId: 1,
+        raidScore: 1
     },
     profile: {
         id: 1,

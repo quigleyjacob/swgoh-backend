@@ -25,8 +25,8 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    await Refresh.refreshActiveDatacrons()
-    res.send('done')
+    // await refreshData()
+    // res.send('done')
     // await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")
 // await refreshData()
     // let results = await getGacHistoryForGuild('nNv53ssBQhaKue5zstelFQ')

@@ -20,15 +20,15 @@ export function omicronCount(unit, skillMap) {
     }, 0)
 }
 
-function populateRoster(unitsMap, player) {
+export function populateRoster(unitsMap, player) {
     player.rosterUnit.forEach(unit => {
         let match = new RegExp("^([A-Z0-9_]+):[A-Z_]+$", "g").exec(unit.definitionId)
         if(match) {
             let defId = match[1]
             unit.defId = defId
             let unitDetails = unitsMap[defId]
-            unit.nameKey = unitDetails[nameKey]
-            unit.combatType = unitDetails[combatType]
+            unit.nameKey = unitDetails.nameKey
+            unit.combatType = unitDetails.combatType
         }
     })
 }
