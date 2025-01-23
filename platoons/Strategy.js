@@ -92,9 +92,9 @@ export default class Strategy {
 
         let guildMemberPriority = guild.roster.sort((a,b) => a.sort(b, toonsInPlatoon, this.placementMap, this.requiredRelic))
         
-        platoonPriority.forEach(toon => {
+        for(const toon of platoonPriority) {
             let toBeAssigned = this.placementMap[toon.defId]
-            toBeAssigned.forEach(platoon => {
+            for(const platoon of toBeAssigned) {
                 let placed = false
                 for(let i = 0; i < guildMemberPriority.length; ++i) {
                     let member = guildMemberPriority[i]
@@ -111,8 +111,8 @@ export default class Strategy {
                     console.log(platoon.defId, "guild cannot place this toon")
                     return false
                 }
-            })
-        })
+            }
+        }
         return true
     }
 
