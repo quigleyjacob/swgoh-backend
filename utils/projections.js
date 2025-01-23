@@ -57,6 +57,8 @@ export const defaultGuildProjection = {
     }
 }
 
+export const defaultPlayerArenaProjection = {_id: 0, allyCode: 1, pvpProfile: 1}
+
 export const defaultUnitProjection = {_id: 0, baseId: 1, combatType: 1, forceAlignment: 1, nameKey: 1, categoryId: 1, thumbnailName: 1, crew: 1}
 
 export const defaultCategoryProjection = {_id: 0, id: 1, descKey: 1, uiFilter: 1, visible: 1}

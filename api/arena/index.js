@@ -1,21 +1,14 @@
 import express from 'express'
-import { addArena, removeArena, getArena, checkArena, getArenas } from './arena.js'
+import { addArena, removeArena, getArena, checkArenas } from './arena.js'
 
 let router = express.Router()
 
 router.route('/')
-    .post(getArenas)
-
-router.route('/add')
+    .get(checkArenas)
     .post(addArena)
 
-router.route('/remove')
-    .post(removeArena)
-
-router.route('/get')
-    .post(getArena)
-
-router.route('/check')
-    .post(checkArena)
+router.route('/:allyCode')
+    .get(getArena)
+    .delete(removeArena)
 
 export default router

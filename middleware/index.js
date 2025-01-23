@@ -3,7 +3,7 @@ dotenv.config()
 import DB from '../lib/database.js'
 
 export async function validate(req, res, next) {
-    let discordKey = req.body.discordKey
+    let discordKey = req.headers['discord-api-key']
     let session = req.body.session || req.headers.session
     let url = req.originalUrl
     try {
