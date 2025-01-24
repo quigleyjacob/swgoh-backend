@@ -200,6 +200,10 @@ export async function getIdealPlatoons(payload) {
 
     let response = binarySearchV2(guild, phase, removedOperations, baselineOperationList)
 
+    let originalStrategy = new Strategy(phase, undefined, requiredRelic, platoons)
+
+    response.deltaList = originalStrategy.getDeltas(guild)
+
     // let response = binarySearch(guild, phase)
 
     // determine skipped platoons
