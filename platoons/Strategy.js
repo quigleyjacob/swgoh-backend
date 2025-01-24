@@ -53,6 +53,16 @@ export default class Strategy {
         let placements = this.numNeededPerRelic(defId)
         let guildToonsPerRelic = guild.numToonPerRelic(defId, operation)
 
+        let numNeeded = 0
+        let numHave = 0
+        Array.from(placements.keys()).forEach(key => {
+            let numNeededAtRelic = placements.get(key)
+            numNeeded += numNeededAtRelic
+            if(numNeededAtRelic > 0) {
+                numHave += guildToonsPerRelic.get(key)
+            }
+        })
+
         let requiredRelicsReversed = [11, 10, 9, 8, 7]
 
         for(let i = 0; i < requiredRelicsReversed.length; ++i) {
@@ -60,7 +70,7 @@ export default class Strategy {
             let guildToonsAtRelic = guildToonsPerRelic.get(relic)
             let placementsAtRelic = placements.get(relic)
             if(placementsAtRelic > guildToonsAtRelic) {
-                return -1
+                return {delta: guildToonsAtRelic - placementsAtRelic, numNeeded, numHave}
             } else {
                 // need to subtract from other relic levels the amount needed at this relic level
                 for(let j = i; j < requiredRelicsReversed.length; ++j) {
@@ -70,7 +80,7 @@ export default class Strategy {
             }
         }
         let minRelic = Math.min(...Array.from(placements.keys()).filter(key => placements.get(key) > 0))
-        return guildToonsPerRelic.get(minRelic)
+        return {delta: guildToonsPerRelic.get(minRelic), numNeeded, numHave}
     }
 
     getScore() {
@@ -82,11 +92,11 @@ export default class Strategy {
         let platoonPriority = []
         for(let i = 0; i < toonsInPlatoon.length; ++i) {
             let defId = toonsInPlatoon[i]
-            let delta = this.guildCanPlaceToon(guild, defId)
-            if(delta < 0) {
+            let response = this.guildCanPlaceToon(guild, defId)
+            if(response.delta < 0) {
                 return false
             }
-            platoonPriority.push({"defId": defId, "delta": delta})
+            platoonPriority.push({"defId": defId, ...response})
         }
         platoonPriority = platoonPriority.sort((a,b) => a.delta - b.delta)
 
@@ -116,10 +126,19 @@ export default class Strategy {
         return true
     }
 
+    getDeltas(guild) {
+        let toonsInPlatoon = Object.keys(this.placementMap)
+        return toonsInPlatoon.map(defId => {
+            return {defId, ...this.guildCanPlaceToon(guild, defId)}
+        })
+        .sort((a,b) => a.delta - b.delta)
+    }
+
     findUnfillable(guild) {
         let list = []
         this.operationsToFill.forEach(operation => {
-            if(this.guildCanPlaceToon(guild, operation.defId, operation) < 0) {
+            let response = this.guildCanPlaceToon(guild, operation.defId, operation)
+            if(response.delta < 0) {
                 list.push(operation)
             }
         })
