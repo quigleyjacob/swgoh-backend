@@ -3,6 +3,8 @@ import Guild from './Guild.js'
 import Phase from "./Phase.js"
 import Strategy from "./Strategy.js"
 import DB from '../lib/database.js'
+import Operation from '../lib/database/guild/operation.js'
+import Data from '../lib/database/data.js'
 // index 0 is a burner value as phase 0 does not exist
 const requiredRelic = {
     "Bonus": [0, 9, 10],
@@ -174,7 +176,7 @@ export async function getIdealPlatoons(payload) {
         return arr.length === 3
     })
 
-    let platoons = await DB.getPlatoons(tb, zones, excludedPlatoons)
+    let platoons = await Data.getPlatoons(tb, zones, excludedPlatoons)
     let phase = new Phase(zones, platoons)
     let guild = new Guild(guildData, zones)
 
@@ -235,7 +237,7 @@ async function getSkippedPlatoons(tb, excludedPlatoons) {
     if(excludedPlatoons.length === 0) {
         return []
     }
-    return await DB.getPlatoons(tb, excludedPlatoons)
+    return await Data.getPlatoons(tb, excludedPlatoons)
 }
 
 function getRemainingPlatoons(platoons, skippedOperations) {
@@ -263,7 +265,7 @@ async function mergeExcludedPlatoons(zones, excludedPlatoons, previousOperationI
     if(previousOperationId === undefined) {
         return excludedPlatoons
     }
-    let previousOperation = await DB.getOperation(previousOperationId, {})
+    let previousOperation = await Operation.getOperation(previousOperationId, {})
 
     if(!previousOperation) {
         return excludedPlatoons

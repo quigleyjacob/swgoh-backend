@@ -36,6 +36,10 @@ export async function getCategory(req, res) {
     processRequest(res, () => Data.getCategoryList())
 }
 
+export async function getPlatoons(req, res) {
+    processRequest(res, () => Data.getPlatoons('ROTE'))
+}
+
 export async function getPlayerScores(req, res) {
     let allyCodeArray = req.body.allyCodeArray
     let projection = {modScore: 1, gacPowerScore: 1, galacticPower: 1, allyCode: 1}

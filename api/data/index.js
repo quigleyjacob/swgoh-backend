@@ -1,5 +1,5 @@
 import express from 'express'
-import { getSkills, getData, getPortrait, getCurrency, getMaterial, getEquipment, getPlayerScores, getUnits, getCategory } from './data.js'
+import { getSkills, getData, getPortrait, getCurrency, getMaterial, getEquipment, getPlayerScores, getUnits, getCategory, getPlatoons } from './data.js'
 
 let router = express.Router()
 
@@ -26,6 +26,9 @@ router.route('/category')
 
 router.route('/playerScores')
     .post(getPlayerScores)
+
+router.route('/platoon')
+    .get(getPlatoons)
 
 router.route('/:type')
     .get(getData)

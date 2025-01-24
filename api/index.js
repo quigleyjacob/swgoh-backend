@@ -2,7 +2,6 @@ import express from 'express'
 import player from './player/index.js'
 import guild from './guild/index.js'
 import refresh from './refresh/index.js'
-import platoon from './platoon/index.js'
 import discord from './discord/index.js'
 import data from './data/index.js'
 import gac from './gac/index.js'
@@ -25,7 +24,6 @@ router.use('/discord', discord)
 router.use('/gac', gac)
 router.use('/guild', guild)
 router.use('/leaderboard', leaderboard)
-router.use('/platoon', platoon)
 router.use('/player', player)
 router.use('/refresh', refresh)
 
