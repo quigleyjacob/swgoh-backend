@@ -1,5 +1,6 @@
 import DB from '../../lib/database.js'
 import { MyError } from '../../lib/error.js'
+import Mhann from '../../lib/mhann.js'
 import { processRequest } from '../../lib/validation.js'
 
 export async function getGuildData(req, res) {
@@ -174,5 +175,17 @@ export async function updateDatacronTest(req, res) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return DB.updateGuildDatacronTest(tests)
+    })
+}
+
+export async function getActiveRaid(req, res) {
+    let session = req.body.session
+    let guildId = req.body.guildId
+    let allyCode = req.body.allyCode
+    processRequest(res, async () => {
+        if(session && !(await DB.sessionInGuild(session, guildId))) {
+            throw new MyError(401, 'Session Id is not in guild.')
+        }
+        return Mhann.getActiveRaid(allyCode)
     })
 }
