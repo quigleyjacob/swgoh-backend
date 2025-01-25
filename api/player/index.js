@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPlayer, addGAC, getAllGAC, updateDatacronNames, getCurrentGACBoard, getGameConnectionCount, getLatestBracketResults, getInventory, refreshInventory, getAuthStatus } from './player.js'
+import { getPlayer, addGAC, getAllGAC, updateDatacronNames, getCurrentGACBoard, getLatestBracketResults, getInventory, refreshInventory, getAuthStatus } from './player.js'
 import { getDatacronNames } from './player.js'
 import squad from './squad/index.js'
 import defense from './defense/index.js'
@@ -24,11 +24,8 @@ router.route('/datacron')
 router.route('/datacron/update')
     .post(updateDatacronNames)
 
-router.route('/gac/board')
-    .post(getCurrentGACBoard)
-
-router.route('/gameConnection')
-    .post(getGameConnectionCount)
+router.route('/:allyCode/gac/board')
+    .get(getCurrentGACBoard)
 
 router.route('/inventory')
     .get(getInventory)

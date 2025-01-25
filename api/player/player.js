@@ -59,24 +59,13 @@ export async function updateDatacronNames(req, res) {
 }
 
 export async function getCurrentGACBoard(req, res) {
-    let session = req.body.session
-    let allyCode = req.body.allyCode
+    let session = req.headers.session
+    let allyCode = req.params.allyCode
     processRequest(res, async () => {
         if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        return DB.getCurrentGACBoard(allyCode)
-    })
-}
-
-export async function getGameConnectionCount(req, res) {
-    let session = req.body.session
-    let allyCode = req.body.allyCode
-    processRequest(res, async () => {
-        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.getGameConnectionCount(session, allyCode)
+        return DB.getCurrentGACBoard(session, allyCode)
     })
 }
 
