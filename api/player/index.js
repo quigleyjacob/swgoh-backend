@@ -1,6 +1,7 @@
 import express from 'express'
-import { getPlayer, addGAC, getAllGAC, getAllSquads, addSquad, deleteSquad, updateDatacronNames, getCurrentGACBoard, getGameConnectionCount, getLatestBracketResults, getDefenses, getDefense, addDefense, updateDefense, deleteDefense, getInventory, refreshInventory, getAuthStatus } from './player.js'
+import { getPlayer, addGAC, getAllGAC, updateDatacronNames, getCurrentGACBoard, getGameConnectionCount, getLatestBracketResults, getDefenses, getDefense, addDefense, updateDefense, deleteDefense, getInventory, refreshInventory, getAuthStatus } from './player.js'
 import { getDatacronNames } from './player.js'
+import squad from './squad/index.js'
 
 let router = express.Router()
 
@@ -15,15 +16,6 @@ router.route('/gac/add')
 
 router.route('/gac/review')
     .post(getLatestBracketResults)
-
-router.route('/squad')
-    .post(getAllSquads)
-
-router.route('/squad/add')
-    .post(addSquad)
-
-router.route('/squad/delete')
-    .post(deleteSquad)
 
 router.route('/defense')
     .get(getDefenses)
@@ -52,5 +44,7 @@ router.route('/inventory')
 
 router.route('/authStatus')
     .get(getAuthStatus)
+
+router.use('/:allyCode/squad', squad)
 
 export default router
