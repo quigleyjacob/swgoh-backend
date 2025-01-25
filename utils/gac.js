@@ -21,7 +21,7 @@ function getBoardStatusForPlayer(playerStatus) {
     }, {})
 }
 
-export async function formatMhannGacBoard(gacBoard) {
+export async function formatMhannGacBoard(gacBoard, allyCode) {
     if(!gacBoard.activeMatch) {
         throw new MyError(400, 'There is no current GAC data.')
     }
@@ -41,6 +41,9 @@ export async function formatMhannGacBoard(gacBoard) {
         league,
         opponent: {
             allyCode: opponentAllyCode
+        },
+        player: {
+            allyCode
         },
         zones,
         homeStatus,
@@ -69,11 +72,16 @@ function getSquads(board) {
     return map
 }
 
-export async function formatHotUtilsGacBoard(gacBoard) {
+export async function formatHotUtilsGacBoard(gacBoard, allyCode) {
     return {
         league: gacBoard.gac.groupId.split(':')[2],
         mode: gacBoard.gac.tournamentMapId.includes('5v5') ? 5 : 3,
-        opponent: {allyCode: String(gacBoard.gac.away.player.allyCode)},
+        opponent: {
+            allyCode: String(gacBoard.gac.away.player.allyCode)
+        },
+        player: {
+            allyCode
+        },
         zones: gacBoard.gac.home.zones.map(zone => zone.zoneId),
         homeStatus: getSquads(gacBoard.gac.home),
         awayStatus: getSquads(gacBoard.gac.away),

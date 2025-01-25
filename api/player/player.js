@@ -11,29 +11,6 @@ export async function getPlayer(req, res)  {
     processRequest(res, () => DB.getPlayer(payload, refresh, projection))
 }
 
-export async function getAllGAC(req, res) {
-    let session = req.body.session
-    let allyCode = req.body.allyCode
-    processRequest(res, async() => {
-        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.getAllGAC(allyCode)
-    })
-}
-
-export async function addGAC(req, res) {
-    let session = req.body.session
-    let gac = req.body.gac
-    
-    processRequest(res, async () => {
-        if(session && !(await DB.sessionIsPlayer(session, gac.player.allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.addGAC(gac)
-    })
-}
-
 export async function getDatacronNames(req, res) {
     let session = req.body.session
     let allyCode = req.body.allyCode
@@ -55,28 +32,6 @@ export async function updateDatacronNames(req, res) {
             throw new MyError(401, 'Session Id is not player')
         }
         return DB.updateDatacronNames(body)
-    })
-}
-
-export async function getCurrentGACBoard(req, res) {
-    let session = req.headers.session
-    let allyCode = req.params.allyCode
-    processRequest(res, async () => {
-        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.getCurrentGACBoard(session, allyCode)
-    })
-}
-
-export async function getLatestBracketResults(req, res) {
-    let session = req.body.session
-    let allyCode = req.body.allyCode
-    processRequest(res, async () => {
-        if(session && !(await DB.sessionIsPlayer(session, allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.getLatestBracketResults(allyCode)
     })
 }
 
