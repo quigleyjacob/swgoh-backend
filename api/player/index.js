@@ -1,6 +1,5 @@
 import express from 'express'
-import { getPlayer, updateDatacronNames, getInventory, refreshInventory, getAuthStatus } from './player.js'
-import { getDatacronNames } from './player.js'
+import { getPlayer, updateDatacronNames, getAuthStatus, getDatacronNames } from './player.js'
 import squad from './squad/index.js'
 import defense from './defense/index.js'
 import gac from './gac/index.js'
@@ -16,10 +15,6 @@ router.route('/datacron')
 
 router.route('/datacron/update')
     .post(updateDatacronNames)
-
-router.route('/inventory')
-    .get(getInventory)
-    .post(refreshInventory)
 
 router.route('/authStatus')
     .get(getAuthStatus)

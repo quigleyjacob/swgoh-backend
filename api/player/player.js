@@ -36,28 +36,6 @@ export async function updateDatacronNames(req, res) {
     })
 }
 
-export async function getInventory(req, res) {
-    let session = req.headers.session
-    let allyCode = req.headers.allycode
-    processRequest(res, async () => {
-        if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.getInventory(allyCode)
-    })
-}
-
-export async function refreshInventory(req, res) {
-    let session = req.headers.session
-    let allyCode = req.headers.allycode
-    processRequest(res, async () => {
-        if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
-            throw new MyError(401, 'Session Id is not player')
-        }
-        return DB.refreshInventory(allyCode)
-    })
-}
-
 export async function getAuthStatus(req, res) {
     let session = req.headers.session
     let allyCode = req.headers.allycode
