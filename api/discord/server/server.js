@@ -3,7 +3,7 @@ import { processRequest } from '../../../lib/validation.js'
 
 export async function getActiveBuilds(req, res) {
     let serverId = req.params.serverId
-    processRequest(res, async () => Server.getActiveBuilds(serverId))
+    processRequest(res, async () => Server.getActiveBuilds({serverId}))
 }
 
 export async function registerServer(req, res) {
