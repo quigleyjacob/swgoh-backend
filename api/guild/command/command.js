@@ -1,5 +1,6 @@
 import Command from '../../../lib/database/guild/command.js'
-import DB from '../../../lib/database.js'
+import DB from '../../../lib/database/database.js'
+import Guild from '../../../lib/database/guild/guild.js'
 import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
@@ -13,7 +14,7 @@ export async function getCommands(req, res) {
         if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Command.getCommands(guildId, type, projection)
@@ -29,7 +30,7 @@ export async function getCommand(req, res) {
         if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Command.getCommand(commandId, guildId, projection)
@@ -44,7 +45,7 @@ export async function addCommand(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Command.addCommand(payload)
@@ -60,7 +61,7 @@ export async function deleteCommand(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Command.deleteCommand(id, guildId)
@@ -76,7 +77,7 @@ export async function updateCommand(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Command.updateCommand(id, guildId, payload)

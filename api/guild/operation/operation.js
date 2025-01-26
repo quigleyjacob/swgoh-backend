@@ -1,5 +1,5 @@
 import Operation from '../../../lib/database/guild/operation.js'
-import DB from '../../../lib/database.js'
+import Guild from '../../../lib/database/guild/guild.js'
 import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
@@ -13,7 +13,7 @@ export async function getOperations(req, res) {
         if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Operation.getOperations(guildId, projection)
@@ -28,7 +28,7 @@ export async function getOperation(req, res) {
         if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Operation.getOperation(id, guildId)
@@ -43,7 +43,7 @@ export async function addOperation(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Operation.addOperation(payload)
@@ -59,7 +59,7 @@ export async function updateOperation(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Operation.updateOperation(id, guildId, payload)
@@ -74,7 +74,7 @@ export async function deleteOperation(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Operation.deleteOperation(id, guildId)
@@ -89,7 +89,7 @@ export async function computeIdealPlatoons(req, res) {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        if(!DB.isGuildBuild(guildId)) {
+        if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return getIdealPlatoons(payload)

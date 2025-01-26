@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 8080
 import cors from 'cors'
 import api from './api/index.js'
 import oauth from './lib/oauth.js'
-import DB from './lib/database.js'
+import DB from './lib/database/database.js'
 import { CronJob } from 'cron'
 import comlink from './lib/comlink.js'
 import { getGacHistoryForGauntlet, } from './lib/gacHistory.js'

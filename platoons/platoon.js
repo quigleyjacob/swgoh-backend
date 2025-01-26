@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import Guild from './Guild.js'
 import Phase from "./Phase.js"
 import Strategy from "./Strategy.js"
-import DB from '../lib/database.js'
+import GuildData from '../lib/database/guild/guild.js'
 import Operation from '../lib/database/guild/operation.js'
 import Data from '../lib/database/data.js'
 // index 0 is a burner value as phase 0 does not exist
@@ -157,7 +157,7 @@ export async function getIdealPlatoons(payload) {
     if(previousOperation !== '') {
         excludedPlatoons = await mergeExcludedPlatoons(zones, excludedPlatoons, previousOperation)
     }
-    let guildData = await DB.getGuild(guildId, false, true, {
+    let guildData = await GuildData.getGuild(guildId, false, true, {
         name: 1,
         allyCode: 1,
         rosterUnit: {
