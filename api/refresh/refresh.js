@@ -7,6 +7,11 @@ export async function refreshPlayer(req, res) {
     processRequest(res, () => Refresh.refreshPlayer(payload, projection))
 }
 
+export async function refreshPlayerArenas(req, res) {
+    let allyCodeArray = req.body.allyCodeArray
+    processRequest(res, () => Refresh.refreshPlayerArenas(allyCodeArray))
+}
+
 export async function refreshGuild(req, res) {
     let guildId = req.body.guildId
     let projection = {'profile.id': 1}

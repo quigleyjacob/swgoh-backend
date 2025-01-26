@@ -3,13 +3,19 @@ import Session from '../../lib/database/session.js'
 import { MyError } from '../../utils/error.js'
 import { processRequest } from '../../lib/validation.js'
 import Mhann from '../../lib/mhann.js'
-import { defaultPlayerProjection } from '../../utils/projections.js'
+import { defaultPlayerArenaProjection, defaultPlayerProjection } from '../../utils/projections.js'
 
 export async function getPlayer(req, res)  {
     let refresh = req.body.refresh ? true : false
     let projection = req.body.projection || defaultPlayerProjection
     let payload = req.body.payload
     processRequest(res, () => DB.getPlayer(payload, refresh, projection))
+}
+
+export async function getPlayerArena(req, res) {
+    let allyCodeArray = req.body.allyCodeArray
+    let projection = req.body.projection || defaultPlayerArenaProjection
+    processRequest(res, () => DB.getPlayerArenas(allyCodeArray, projection))
 }
 
 export async function getDatacronNames(req, res) {

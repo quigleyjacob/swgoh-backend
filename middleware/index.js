@@ -10,7 +10,7 @@ export async function validate(req, res, next) {
         if(url === '/api/discord/authURL' || url === '/api/discord/authenticate') { //session is created from this route
             next()
         }
-         else if(url.startsWith('/api/data') || url === '/api/player' || url === '/api/guild' || url === '/api/leaderboard' || url === '/api/leaderboard/accounts') { // public data
+         else if(url.startsWith('/api/data') || url === '/api/player' || url === '/api/player/arena' || url === '/api/guild' || (url.startsWith('/api/leaderboard') && req.method === 'GET')) { // public data
             next()
         }
         else if(discordKey && discordKey === process.env.DISCORD_API_KEY) {
