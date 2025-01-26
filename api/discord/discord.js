@@ -1,10 +1,11 @@
 import DB from '../../lib/database.js'
+import Session from '../../lib/database/session.js'
 import OAuth from '../../lib/oauth.js'
 import { processRequest } from '../../lib/validation.js'
 
 export async function getAccounts(req, res) {
     let session = req.body.session
-    let discordId = session === undefined ? req.body.discordId : (await DB.sessionToDiscord(session)).id
+    let discordId = session === undefined ? req.body.discordId : (await Session.sessionToDiscord(session)).id
     processRequest(res, () => DB.getAccountsByDiscordId(discordId))
 }
 
@@ -41,7 +42,7 @@ export async function removeRole(req, res) {
 export async function registerUser(req, res) {
     let payload = req.body
     if(req.body.session !== undefined) {
-        let discordUser = await DB.sessionToDiscord(req.body.session)
+        let discordUser = await Session.sessionToDiscord(req.body.session)
         payload.discordId = discordUser.id
     }
     processRequest(res, () => DB.registerUser(payload))
@@ -50,7 +51,7 @@ export async function registerUser(req, res) {
 export async function verifyUser(req, res) {
     let payload = req.body
     if(req.body.session !== undefined) {
-        let discordUser = await DB.sessionToDiscord(req.body.session)
+        let discordUser = await Session.sessionToDiscord(req.body.session)
         payload.discordId = discordUser.id
     }
     processRequest(res, () => DB.verifyUser(payload))

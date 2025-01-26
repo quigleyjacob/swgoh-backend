@@ -1,4 +1,5 @@
 import DB from '../../lib/database.js'
+import Session from '../../lib/database/session.js'
 import { MyError } from '../../utils/error.js'
 import { processRequest } from '../../lib/validation.js'
 
@@ -14,7 +15,7 @@ export async function isGuildBuild(req, res) {
     let guildId = req.body.guildId
     let session = req.body.session
     processRequest(res, async () => {
-        if(session && !(await DB.sessionInGuild(session, guildId))) {
+        if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not in guild.')
         }
         return DB.isGuildBuild(guildId)
@@ -25,7 +26,7 @@ export async function getDatacronTest(req, res) {
     let guildId = req.body.guildId
     let session = req.body.session
     processRequest(res, async () => {
-        if(session && !(await DB.sessionInGuild(session, guildId))) {
+        if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not in guild')
         }
         if(!DB.isGuildBuild(guildId)) {
@@ -40,7 +41,7 @@ export async function updateDatacronTest(req, res) {
     let tests = req.body.tests
     let guildId = tests.guildId
     processRequest(res, async () => {
-        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer.')
         }
         if(!DB.isGuildBuild(guildId)) {

@@ -1,5 +1,6 @@
 import Command from '../../../lib/database/guild/command.js'
 import DB from '../../../lib/database.js'
+import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
 
@@ -9,7 +10,7 @@ export async function getCommands(req, res) {
     let type = req.query.type
     let projection = {_id: 1, title: 1}
     processRequest(res, async () => {
-        if(session && !(await DB.sessionInGuild(session, guildId))) {
+        if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
         if(!DB.isGuildBuild(guildId)) {
@@ -25,7 +26,7 @@ export async function getCommand(req, res) {
     let session = req.headers.session
     let guildId = req.params.guildId
     processRequest(res, async () => {
-        if(session && !(await DB.sessionInGuild(session, guildId))) {
+        if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
         }
         if(!DB.isGuildBuild(guildId)) {
@@ -40,7 +41,7 @@ export async function addCommand(req, res) {
     let session = req.headers.session
     let payload = {...req.body, guildId}
     processRequest(res, async () => {
-        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
         if(!DB.isGuildBuild(guildId)) {
@@ -56,7 +57,7 @@ export async function deleteCommand(req, res) {
     let session = req.headers.session
     
     processRequest(res, async () => {
-        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
         if(!DB.isGuildBuild(guildId)) {
@@ -72,7 +73,7 @@ export async function updateCommand(req, res) {
     let session = req.headers.session
     let payload = {...req.body, guildId}
     processRequest(res, async () => {
-        if(session && !(await DB.sessionIsGuildOfficer(session, guildId))) {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
         if(!DB.isGuildBuild(guildId)) {
