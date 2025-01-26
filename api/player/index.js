@@ -4,6 +4,7 @@ import { getDatacronNames } from './player.js'
 import squad from './squad/index.js'
 import defense from './defense/index.js'
 import gac from './gac/index.js'
+import inventory from './inventory/index.js'
 
 let router = express.Router()
 
@@ -26,5 +27,6 @@ router.route('/authStatus')
 router.use('/:allyCode/squad', squad)
 router.use('/:allyCode/defense', defense)
 router.use('/:allyCode/gac', gac)
+router.use('/:allyCode/inventory', inventory)
 
 export default router
