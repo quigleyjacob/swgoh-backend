@@ -5,11 +5,17 @@ import { processRequest } from '../../lib/validation.js'
 import Mhann from '../../lib/mhann.js'
 import { defaultPlayerArenaProjection, defaultPlayerProjection } from '../../utils/projections.js'
 
-export async function getPlayer(req, res)  {
+export async function getPlayer(req, res) {
     let refresh = req.body.refresh ? true : false
     let projection = req.body.projection || defaultPlayerProjection
     let payload = req.body.payload
     processRequest(res, () => DB.getPlayer(payload, refresh, projection))
+}
+
+export async function getAccounts(req, res) {
+    let session = req.headers.session
+    let discordId = (await Session.sessionToDiscord(session)).id
+    processRequest(res, () => DB.getAccountsByDiscordId(discordId))
 }
 
 export async function getPlayerArena(req, res) {

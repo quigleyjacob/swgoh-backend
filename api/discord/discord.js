@@ -1,43 +1,7 @@
-import DB from '../../lib/database.js'
+import Registry from '../../lib/registry.js'
 import Session from '../../lib/database/session.js'
 import OAuth from '../../lib/oauth.js'
 import { processRequest } from '../../lib/validation.js'
-
-export async function getAccounts(req, res) {
-    let session = req.body.session
-    let discordId = session === undefined ? req.body.discordId : (await Session.sessionToDiscord(session)).id
-    processRequest(res, () => DB.getAccountsByDiscordId(discordId))
-}
-
-export async function getGuilds(req, res) {
-    let discordId = req.body.discordId
-    processRequest(res, () => DB.getGuildsByDiscordId(discordId))
-}
-
-export async function getDefaultAccount(req, res) {
-    let discordId = req.body.discordId
-    processRequest(res, () => DB.getDefaultAccount(discordId))
-}
-
-export async function getDefaultGuild(req, res) {
-    let discordId = req.body.discordId
-    processRequest(res, () => DB.getDefaultGuild(discordId))
-}
-
-export async function getRoles(req, res) {
-    let filter = req.body.filter
-    processRequest(res, () => DB.getRoles(filter))
-}
-
-export async function addRole(req, res) {
-    let role = req.body.role
-    processRequest(res, () => DB.addRole(role))
-}
-
-export async function removeRole(req, res) {
-    let role = req.body.role
-    processRequest(res, () => DB.removeRole(role))
-}
 
 export async function registerUser(req, res) {
     let payload = req.body
@@ -45,7 +9,8 @@ export async function registerUser(req, res) {
         let discordUser = await Session.sessionToDiscord(req.body.session)
         payload.discordId = discordUser.id
     }
-    processRequest(res, () => DB.registerUser(payload))
+    let { discordId, allyCode } = payload
+    processRequest(res, () => Registry.registerDiscordUser(discordId, allyCode))
 }
 
 export async function verifyUser(req, res) {
@@ -54,36 +19,8 @@ export async function verifyUser(req, res) {
         let discordUser = await Session.sessionToDiscord(req.body.session)
         payload.discordId = discordUser.id
     }
-    processRequest(res, () => DB.verifyUser(payload))
-}
-
-export async function getGuildMemberDiscordRegistrations(req, res) {
-    let guildId = req.body.guildId
-    processRequest(res, () => DB.getGuildMemberDiscordRegistrations(guildId))
-}
-
-export async function getServerRegistrations(req, res) {
-    let filter = req.body.filter
-    processRequest(res, () => DB.getServerRegistrations(filter))
-}
-
-export async function registerServer(req, res) {
-    let payload = req.body.payload
-    processRequest(res, () => DB.registerServer(payload))
-}
-
-export async function unregisterServer(req, res) {
-    let serverId = req.body.serverId
-    let build = req.body.build
-    processRequest(res, () => DB.unregisterServer(serverId, build))
-}
-
-export async function getActiveBuilds(req, res) {
-    let serverId = req.body.serverId
-    let payload = {
-        serverId: serverId
-    }
-    processRequest(res, async () => DB.getActiveBuilds(payload))
+    let { discordId, allyCode } = payload
+    processRequest(res, () => Registry.registerDiscordUser(discordId, allyCode))
 }
 
 export async function getDiscordAuthURL(req, res) {
