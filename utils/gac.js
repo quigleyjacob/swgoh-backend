@@ -1,4 +1,4 @@
-import DB from '../lib/database.js'
+import PlayerArena from '../lib/database/player/playerArena.js'
 import { MyError } from './error.js'
 
 function getBoardStatusForPlayer(playerStatus) {
@@ -25,7 +25,7 @@ export async function formatMhannGacBoard(gacBoard, allyCode) {
     if(!gacBoard.activeMatch) {
         throw new MyError(400, 'There is no current GAC data.')
     }
-    let opponentAllyCode = await DB.getAllyCodeFromPlayerId(gacBoard.activeMatch.opponent.id)
+    let opponentAllyCode = await PlayerArena.getAllyCodeFromPlayerId(gacBoard.activeMatch.opponent.id)
     // return opponentAllyCode
     let mode = gacBoard.activeMatch.tournamentMapId.includes('5v5') ? 5 : 3
     // return {mode}

@@ -1,4 +1,4 @@
-import DB from '../../lib/database.js'
+import Player from '../../lib/database/player/player.js'
 import Data from '../../lib/database/data.js'
 import { processRequest } from '../../lib/validation.js'
 
@@ -43,5 +43,5 @@ export async function getPlatoons(req, res) {
 export async function getPlayerScores(req, res) {
     let allyCodeArray = req.body.allyCodeArray
     let projection = {modScore: 1, gacPowerScore: 1, galacticPower: 1, allyCode: 1}
-    processRequest(res, () => DB.getPlayers(allyCodeArray, projection, 'allyCode', false, true))
+    processRequest(res, () => Player.getPlayers(allyCodeArray, projection, 'allyCode', false, true))
 }
