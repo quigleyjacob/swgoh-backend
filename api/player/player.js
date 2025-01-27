@@ -34,6 +34,6 @@ export async function getAuthStatus(req, res) {
         if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        return Player.getAuthStatus(allyCode)
+        return Player.getAuthStatus(session, allyCode)
     })
 }

@@ -5,8 +5,9 @@ import { processRequest } from '../../lib/validation.js'
 
 export async function registerUser(req, res) {
     let payload = req.body
-    if(req.body.session !== undefined) {
-        let discordUser = await Session.sessionToDiscord(req.body.session)
+    let session = req.headers.session
+    if(session !== undefined) {
+        let discordUser = await Session.sessionToDiscord(session)
         payload.discordId = discordUser.id
     }
     let { discordId, allyCode } = payload
@@ -15,8 +16,9 @@ export async function registerUser(req, res) {
 
 export async function verifyUser(req, res) {
     let payload = req.body
-    if(req.body.session !== undefined) {
-        let discordUser = await Session.sessionToDiscord(req.body.session)
+    let session = req.headers.session
+    if(session !== undefined) {
+        let discordUser = await Session.sessionToDiscord(session)
         payload.discordId = discordUser.id
     }
     let { discordId, allyCode } = payload

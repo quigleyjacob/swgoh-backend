@@ -10,6 +10,7 @@ import comlink from './lib/comlink.js'
 import { getGacHistoryForGauntlet, } from './lib/gacHistory.js'
 import Refresh from './lib/database/refresh.js'
 import Data from './lib/database/data.js'
+import { connectToDatabase } from './utils/mongodb.js'
 
 app.use(cors())
 app.use(express.json({limit: '1mb'}))
@@ -25,6 +26,40 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
+    const { db } = await connectToDatabase()
+    let aggregate = 
+    [
+        {
+            $match: {
+                "mode": 3,
+                "battleLog.attackTeam.squad.baseId": {$in: ["CAPITALPROFUNDITY"]},
+                "battleLog.defenseTeam.squad.baseId": {$in: ["CAPITALEXECUTOR"]},
+                // "battleLog.result": true
+            }
+        },
+        {
+            $unwind: {
+                path: "$battleLog"
+            }
+        },
+        {
+            $project: {
+                battleLog: 1,
+                time: 1
+            }
+        },
+        {
+            $match: {
+                "battleLog.attackTeam.squad.baseId": {$in: ["CAPITALPROFUNDITY"]},
+            }
+        },
+        {
+            $match: {
+                "battleLog.defenseTeam.squad.baseId": {$in: ["CAPITALEXECUTOR"]}
+            }
+        }
+     ]
+    res.send(await db.collection('gac').aggregate(aggregate).toArray())
     // await refreshData()
     // res.send('done')
     // await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")

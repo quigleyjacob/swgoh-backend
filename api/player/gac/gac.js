@@ -86,3 +86,14 @@ export async function getLatestBracketResults(req, res) {
         return Gac.getLatestBracketResults(allyCode)
     })
 }
+
+export async function getGacHistory(req, res) {
+    let session = req.headers.session
+    let allyCode = req.params.allyCode
+    processRequest(res, async () => {
+        if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        return Gac.getGacHistoryResults(allyCode, req.body)
+    })
+}
