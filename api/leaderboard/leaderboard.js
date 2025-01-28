@@ -1,47 +1,36 @@
-import DB from '../../lib/database.js'
+import Leaderboard from '../../lib/database/leaderboard.js'
 import { processRequest } from '../../lib/validation.js'
 
 export async function getLeaderboards(req, res) {
     let projection = req.body.projection || {}
-    processRequest(res, () => DB.getLeaderboards(projection))
+    processRequest(res, () => Leaderboard.getLeaderboards(projection))
 }
 
 export async function getLeaderboard(req, res) {
-    let serverId = req.body.serverId
-    processRequest(res, () => DB.getLeaderboard(serverId))
+    let serverId = req.params.id
+    processRequest(res, () => Leaderboard.getLeaderboard(serverId))
 }
 
 export async function setLeaderboard(req, res) {
-    let serverId = req.body.serverId
+    let serverId = req.params.id
     let channelId = req.body.channelId
     let messageId = req.body.messageId
-    processRequest(res, () => DB.setLeaderboardChannel(serverId, channelId, messageId))
+    processRequest(res, () => Leaderboard.setLeaderboardChannel(serverId, channelId, messageId))
 }
 
 export async function unsetLeaderboard(req, res) {
-    let serverId = req.body.serverId
-    processRequest(res, () => DB.unsetLeaderboardChannel(serverId))
+    let serverId = req.params.id
+    processRequest(res, () => Leaderboard.unsetLeaderboardChannel(serverId))
 }
 
 export async function addAccountToLeaderboard(req, res) {
-    let allyCode = req.body.allyCode
-    let serverId = req.body.serverId
-    processRequest(res, () => DB.addAccountToLeaderboard(allyCode, serverId))
+    let allyCode = req.params.allyCode
+    let serverId = req.params.id
+    processRequest(res, () => Leaderboard.addAccountToLeaderboard(allyCode, serverId))
 }
 
 export async function removeAccountFromLeaderboard(req, res) {
-    let allyCode = req.body.allyCode
-    let serverId = req.body.serverId
-    processRequest(res, () => DB.removeAccountFromLeaderboard(allyCode, serverId))
-}
-
-export async function getAccountsFromAllyCodeArray(req, res) {
-    let allyCodes = req.body.allyCodes
-    let projection = req.body.projection || {}
-    processRequest(res, () => DB.getAccountsFromAllyCodeArray(allyCodes, projection))
-}
-
-export async function refreshAccountsInLeaderboard(req, res) {
-    let serverId = req.body.serverId
-    processRequest(res, () => DB.refreshAccountsInLeaderboard(serverId))
+    let allyCode = req.params.allyCode
+    let serverId = req.params.id
+    processRequest(res, () => Leaderboard.removeAccountFromLeaderboard(allyCode, serverId))
 }

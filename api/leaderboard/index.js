@@ -1,30 +1,18 @@
 import express from 'express'
-import { setLeaderboard, addAccountToLeaderboard, removeAccountFromLeaderboard, getLeaderboard, getAccountsFromAllyCodeArray, refreshAccountsInLeaderboard, getLeaderboards, unsetLeaderboard } from './leaderboard.js'
+import { setLeaderboard, addAccountToLeaderboard, removeAccountFromLeaderboard, getLeaderboard, getLeaderboards, unsetLeaderboard } from './leaderboard.js'
 
 let router = express.Router()
 
-router.route('/all')
-    .post(getLeaderboards)
-
 router.route('/')
-    .post(getLeaderboard)
+    .get(getLeaderboards)
 
-router.route('/set')
+router.route('/:id')
+    .get(getLeaderboard)
     .post(setLeaderboard)
+    .delete(unsetLeaderboard)
 
-router.route('/unset')
-    .post(unsetLeaderboard)
-
-router.route('/add')
+router.route('/:id/:allyCode')
     .post(addAccountToLeaderboard)
-
-router.route('/remove')
-    .post(removeAccountFromLeaderboard)
-
-router.route('/accounts')
-    .post(getAccountsFromAllyCodeArray)
-
-router.route('/refresh')
-    .post(refreshAccountsInLeaderboard)
+    .delete(removeAccountFromLeaderboard)
 
 export default router

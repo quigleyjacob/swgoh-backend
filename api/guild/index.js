@@ -1,40 +1,19 @@
 import express from 'express'
-import { getGuildData, getCommands, getCommand, addCommand, deleteCommand, getOperations, getOperation, addOperation, deleteOperation, isGuildBuild, getDatacronTest, updateDatacronTest } from './guild.js'
+import { getGuild, isGuildBuild } from './guild.js'
+import command from './command/index.js'
+import operation from './operation/index.js'
+import datacron from './datacron/index.js'
 
 let router = express.Router()
 
 router.route('/')
-    .post(getGuildData)
+    .post(getGuild)
 
-router.route('/command')
-    .post(getCommands)
+router.route('/:guildId/build')
+    .get(isGuildBuild)
 
-router.route('/command/one')
-    .post(getCommand)
-
-router.route('/command/add')
-    .post(addCommand)
-
-router.route('/command/delete')
-    .post(deleteCommand)
-
-router.route('/operation')
-    .post(getOperations)
-
-router.route('/operation/one')
-    .post(getOperation)
-
-router.route('/operation/add')
-    .post(addOperation)
-
-router.route('/operation/delete')
-    .post(deleteOperation)
-
-router.route('/build')
-    .post(isGuildBuild)
-
-router.route('/datacronTest')
-    .post(getDatacronTest)
-    .put(updateDatacronTest)
+router.use('/:guildId/command', command)
+router.use('/:guildId/operation', operation)
+router.use('/:guildId/datacron', datacron)
 
 export default router

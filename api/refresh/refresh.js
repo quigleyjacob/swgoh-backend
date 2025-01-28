@@ -1,45 +1,19 @@
-import DB from '../../lib/database.js'
+import Refresh from '../../lib/database/refresh.js'
 import { processRequest } from '../../lib/validation.js'
-
-export async function refreshLocalization(req, res) {
-    processRequest(res, () => DB.refreshLocalization())
-}
-
-export async function refreshUnits(req, res) {
-    processRequest(res, () => DB.refreshUnits())
-}
 
 export async function refreshPlayer(req, res) {
     let payload  = req.body.payload
-    processRequest(res, () => DB.refreshPlayer(payload))
+    let projection = {allyCode: 1}
+    processRequest(res, () => Refresh.refreshPlayer(payload, projection))
+}
+
+export async function refreshPlayerArenas(req, res) {
+    let allyCodeArray = req.body.allyCodeArray
+    processRequest(res, () => Refresh.refreshPlayerArenas(allyCodeArray))
 }
 
 export async function refreshGuild(req, res) {
     let guildId = req.body.guildId
-    let detailed = req.body.detailed ? true : false
-    processRequest(res, () => DB.refreshGuild(guildId, detailed))
-}
-
-export async function refreshSkills(req, res) {
-    processRequest(res, () => DB.refreshSkills())
-}
-
-export async function refreshBattleTargetingRule(req, res) {
-    processRequest(res, () => DB.refreshBattleTargetingRule())
-}
-
-export async function refreshDatacron(req, res) {
-    processRequest(res, () => DB.refreshDatacron())
-}
-
-export async function refreshAbility(req, res) {
-    processRequest(res, () => DB.refreshAbility())
-}
-
-export async function refreshMaterial(req, res) {
-    processRequest(res, () => DB.refreshMaterial())
-}
-
-export async function refreshEquipment(req, res) {
-    processRequest(res, () => DB.refreshEquipment())
+    let projection = {'profile.id': 1}
+    processRequest(res, () => Refresh.refreshGuild(guildId, projection))
 }
