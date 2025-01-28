@@ -164,14 +164,14 @@ async function upgradeGAC() {
     let idArray = await db.collection('gac').find({}, {projection: {_id: 1}}).toArray()
 
     for(const {_id} of idArray) {
-        console.log(_id)
+        // console.log(_id)
         let data = await db.collection('gac').findOne({_id})
         if(data.homeStatus) {
-            console.log('\talready upgraded, just removing old data')
+            // console.log('\talready upgraded, just removing old data')
             await db.collection('gac').updateOne({_id}, {$unset: {playerMap: 1, opponentMap: 1, killMap: 1, playerDatacronMap: 1, opponentDatacronMap: 1, planMap: 1, planDatacronMap: 1, squadsPerZone: 1}})
             continue
         }
-        console.log('\tNeed to upgrade')
+        // console.log('\tNeed to upgrade')
         // console.log(data)
         let upgraded = upgradeGacData(data)
         // console.log('\n')
@@ -179,7 +179,7 @@ async function upgradeGAC() {
         await db.collection('gac').updateOne({_id}, {$set: upgraded})
         await db.collection('gac').updateOne({_id}, {$unset: {playerMap: 1, opponentMap: 1, killMap: 1, playerDatacronMap: 1, opponentDatacronMap: 1, planMap: 1, planDatacronMap: 1, squadsPerZone: 1}})
     }
-    console.log('done')
+    console.log('gac done')
 }
 upgradeGAC()
 
@@ -217,14 +217,14 @@ async function upgradeSquad() {
   let idArray = await db.collection('squad').find({}, {projection: {_id: 1}}).toArray()
 
   for(const {_id} of idArray) {
-      console.log(_id)
+      // console.log(_id)
       let data = await db.collection('squad').findOne({_id})
       if(data.tags) {
-          console.log('\talready upgraded, just removing old data')
+          // console.log('\talready upgraded, just removing old data')
           await db.collection('squad').updateOne({_id}, {$unset: {isFor3: 1, isFor5: 1}})
           continue
       }
-      console.log('\tNeed to upgrade')
+      // console.log('\tNeed to upgrade')
       // console.log(data)
       let upgraded = upgradeSquadData(data)
       // console.log('\n')
@@ -232,7 +232,7 @@ async function upgradeSquad() {
       await db.collection('squad').updateOne({_id}, {$set: upgraded})
       await db.collection('squad').updateOne({_id}, {$unset: {isFor3: 1, isFor5: 1}})
   }
-  console.log('done')
+  console.log('squad done')
 }
 upgradeSquad()
 
@@ -261,14 +261,14 @@ async function upgradeRole() {
   let idArray = await db.collection('discord_role').find({}, {projection: {_id: 1}}).toArray()
 
   for(const {_id} of idArray) {
-      console.log(_id)
+      // console.log(_id)
       let data = await db.collection('discord_role').findOne({_id})
       if(data.roleId) {
-          console.log('\talready upgraded, just removing old data')
+          // console.log('\talready upgraded, just removing old data')
           await db.collection('discord_role').updateOne({_id}, {$unset: {guild_id: 1, role_id: 1, char_id: 1, server_id: 1}})
           continue
       }
-      console.log('\tNeed to upgrade')
+      // console.log('\tNeed to upgrade')
       // console.log(data)
       let upgraded = upgradeRoleData(data)
       // console.log('\n')
@@ -276,6 +276,6 @@ async function upgradeRole() {
       await db.collection('discord_role').updateOne({_id}, {$set: upgraded})
       await db.collection('discord_role').updateOne({_id}, {$unset: {guild_id: 1, role_id: 1, char_id: 1, server_id: 1}})
   }
-  console.log('done')
+  console.log('role done')
 }
-// upgradeRole()
+upgradeRole()
