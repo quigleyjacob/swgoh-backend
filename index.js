@@ -26,55 +26,8 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    const { db } = await connectToDatabase()
-    let aggregate = 
-    [
-        {
-            $match: {
-                "mode": 3,
-                "battleLog.attackTeam.squad.baseId": {$in: ["CAPITALPROFUNDITY"]},
-                "battleLog.defenseTeam.squad.baseId": {$in: ["CAPITALEXECUTOR"]},
-                // "battleLog.result": true
-            }
-        },
-        {
-            $unwind: {
-                path: "$battleLog"
-            }
-        },
-        {
-            $project: {
-                battleLog: 1,
-                time: 1
-            }
-        },
-        {
-            $match: {
-                "battleLog.attackTeam.squad.baseId": {$in: ["CAPITALPROFUNDITY"]},
-            }
-        },
-        {
-            $match: {
-                "battleLog.defenseTeam.squad.baseId": {$in: ["CAPITALEXECUTOR"]}
-            }
-        }
-     ]
-    res.send(await db.collection('gac').aggregate(aggregate).toArray())
     // await refreshData()
     // res.send('done')
-    // await DB.refreshLocalization("jreuzGOKRPiRuBIhsqtu7Q")
-// await refreshData()
-    // let results = await getGacHistoryForGuild('nNv53ssBQhaKue5zstelFQ')
-    // let results = await getGacHistoryForGauntlet()
-    // await getGacHistoryForPlayer('wotzB4TRR7WbgBz2LJpCyg', "Boomer", "MAW CH")
-//    res.send(results)
-    // let members = await oauth.getServerMembers("Zem41vMHzMTuShVucfgr2oqb7qccte", "964016812792623134")
-    // res.send(members)
-    // await DB.refreshMetaData()
-    // res.send('done')
-    // res.send((await comlink.getGameData(1))["playerPortrait"])
-    // await refreshData()
-    // res.send(await comlink.getPlayerWithStats({allyCode: "487828531"}))
 })
 
 async function refreshData() {
