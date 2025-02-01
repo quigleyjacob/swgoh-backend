@@ -40,6 +40,11 @@ export async function getPlatoons(req, res) {
     processRequest(res, () => Data.getPlatoons('ROTE'))
 }
 
+export async function getAbilities(req, res) {
+    let abilityIdList = req.query?.ability?.split(',') || []
+    processRequest(res, () => Data.getAbilityList(abilityIdList, 'nameKey'))
+}
+
 export async function getPlayerScores(req, res) {
     let allyCodeArray = req.body.allyCodeArray
     let projection = {modScore: 1, gacPowerScore: 1, galacticPower: 1, allyCode: 1}

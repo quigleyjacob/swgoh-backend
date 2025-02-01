@@ -1,15 +1,25 @@
 import PlayerArena from '../lib/database/player/playerArena.js'
 import { MyError } from './error.js'
 
-function getBoardStatusForPlayer(playerStatus) {
+function getBoardStatusForPlayer(playerStatus, away = false) {
     return playerStatus.duelStatus.reduce((obj, duel) => {
         let squadsInZone = duel?.warSquad || [] //could be empty, like if zone is not open
 
         squadsInZone.forEach(warSquad => {
+            let hasPreloadData = warSquad.successfulDefends > 0
             let squadId = warSquad.squadId
             let squad = warSquad.squad.cell
             .sort((a,b) => a.cellIndex - b.cellIndex)
-            .map(cell => {return {baseId: cell.unitDefId.split(':')[0]}})
+            .map(cell => {
+                let unit = { baseId: cell.unitDefId.split(':')[0]}
+                if(hasPreloadData) {
+                    unit.unitState = cell.unitState
+                }
+                if(away) {
+                    unit.isAlive = true
+                }
+                return unit
+            })
             let datacron = warSquad?.squad?.datacron?.id || undefined
             obj[squadId] = {
                 squad,
@@ -35,12 +45,13 @@ export async function formatMhannGacBoard(gacBoard, allyCode) {
     // return zones
     let homeStatus = getBoardStatusForPlayer(gacBoard.activeMatch.homeStatus)
     // return homeStatus
-    let awayStatus = getBoardStatusForPlayer(gacBoard.activeMatch.awayStatus)
+    let awayStatus = getBoardStatusForPlayer(gacBoard.activeMatch.awayStatus, true)
     return {
         mode,
         league,
         opponent: {
-            allyCode: opponentAllyCode
+            allyCode: opponentAllyCode,
+            name: gacBoard.activeMatch.opponent.name
         },
         player: {
             allyCode
@@ -49,6 +60,30 @@ export async function formatMhannGacBoard(gacBoard, allyCode) {
         homeStatus,
         awayStatus
     }
+}
+
+export function mergeGACPlans(oldGacPlan, newGacPlan) {
+    for(const owner of ['homeStatus', 'awayStatus']) {
+        for (const squadId of Object.keys(newGacPlan.homeStatus)) {
+            let newSquadData = newGacPlan[owner][squadId]
+            if(newSquadData === undefined && oldGacPlan[owner][squadId] === undefined) {
+                continue
+            }
+            if(oldGacPlan[owner][squadId] === undefined) {
+                oldGacPlan[owner][squadId] = newSquadData
+                if(owner === 'awayStatus') {
+                    oldGacPlan[owner][squadId].squad.forEach(unit => {
+                        unit.isAlive = true
+                    })
+                }
+            } else {
+                oldGacPlan[owner][squadId].squad = oldGacPlan[owner][squadId].squad.map((unit, index) => {
+                    return {...newSquadData.squad[index], ...unit}
+                })
+            }
+        }
+    }
+    return oldGacPlan
 }
 
 function getSquads(board) {

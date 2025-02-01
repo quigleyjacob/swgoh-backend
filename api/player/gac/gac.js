@@ -97,3 +97,11 @@ export async function getGacHistory(req, res) {
         return Gac.getGacHistoryResults(allyCode, req.body)
     })
 }
+
+export async function loadGACPlanFromGameData(req, res) {
+    let allyCode = req.params.allyCode
+    let body = req.body
+    processRequest(res, async () => {
+        return Gac.loadGACPlanFromGameData(allyCode, body)
+    })
+}

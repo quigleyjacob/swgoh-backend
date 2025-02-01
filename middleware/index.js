@@ -4,6 +4,7 @@ import Session from '../lib/database/session.js'
 
 export async function validate(req, res, next) {
     let discordKey = req.headers['discord-api-key']
+    let apiKey = req.headers['api-key']
     let session = req.headers.session
     let url = req.originalUrl
     try {
@@ -14,6 +15,9 @@ export async function validate(req, res, next) {
             next()
         }
         else if(discordKey && discordKey === process.env.DISCORD_API_KEY) {
+            next()
+        }
+        else if(isScubaCall(url, req.method, apiKey)) {
             next()
         }
         else if(session && await Session.verifySessionComplete(session)) {
@@ -30,4 +34,10 @@ export async function validate(req, res, next) {
         res.status(401).end('You do not have permission to perform this action.')
     }
 
+}
+
+function isScubaCall(url, method, apiKey) {
+    return /^\/api\/player\/\d{9}\/gac\/board/g.test(url)
+    && method === 'POST'
+    && apiKey === process.env.SCUBA_API_KEY
 }

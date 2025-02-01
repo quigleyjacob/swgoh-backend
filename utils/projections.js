@@ -115,4 +115,4 @@ export const defaultDatacronAffixTemplateSetProjection = {_id: 0, id: 1, affix: 
 
 export const defaultBattleTargetingRuleProjection = {_id: 0, id: 1, category: {category: 1}}
 
-export const defaultAbilityProjection = {_id: 0, id: 1, descKey: 1}
+export const defaultAbilityProjection = {_id: 0, id: 1, descKey: 1, nameKey: 1, icon: 1}
