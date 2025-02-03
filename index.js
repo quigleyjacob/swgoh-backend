@@ -26,8 +26,8 @@ app.get('/token', (req, res) => {
 })
 
 app.post('/test', async (req, res) => {
-    await refreshData()
-    res.send('done')
+    // await refreshData()
+    // res.send('done')
 })
 
 async function refreshData() {
