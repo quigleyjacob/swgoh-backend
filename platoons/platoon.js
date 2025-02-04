@@ -153,9 +153,8 @@ function binarySearchV2(guild, phase, removedOperations, baselineOperationList) 
 
 export async function getIdealPlatoons(payload) {
     let {guildId, tb, zones, excludedPlatoons, excludedPlayers, previousOperation} = payload
-
     if(previousOperation !== '') {
-        excludedPlatoons = await mergeExcludedPlatoons(zones, excludedPlatoons, previousOperation)
+        excludedPlatoons = await mergeExcludedPlatoons(zones, excludedPlatoons, previousOperation, guildId)
     }
     let guildData = await GuildData.getGuild(guildId, false, true, {
         name: 1,
@@ -265,12 +264,11 @@ function getRemainingOperations(zones, operations, skippedOperations) {
     return list
 }
 
-async function mergeExcludedPlatoons(zones, excludedPlatoons, previousOperationId) {
+async function mergeExcludedPlatoons(zones, excludedPlatoons, previousOperationId, guildId) {
     if(previousOperationId === undefined) {
         return excludedPlatoons
     }
-    let previousOperation = await Operation.getOperation(previousOperationId, {})
-
+    let previousOperation = await Operation.getOperation(previousOperationId, guildId)
     if(!previousOperation) {
         return excludedPlatoons
     }
