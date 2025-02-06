@@ -2,6 +2,9 @@ import PlayerArena from '../lib/database/player/playerArena.js'
 import { MyError } from './error.js'
 
 function getBoardStatusForPlayer(playerStatus, away = false) {
+    if(playerStatus === null) {
+        return {}
+    }
     return playerStatus.duelStatus.reduce((obj, duel) => {
         let squadsInZone = duel?.warSquad || [] //could be empty, like if zone is not open
 
