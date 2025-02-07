@@ -15,6 +15,10 @@ export function handleBaylanSkollTemplate(activeTemplates) {
     handleCharacterTemplate(activeTemplates, 'datacron_set_18_baylanskoll', 'datacron_set_18_base')
 }
 
+export function handleHunterMercTemplate(activeTemplates) {
+    handleCharacterTemplate(activeTemplates, 'datacron_set_20_hunters3', 'datacron_set_20_base')
+}
+
 export function getTags(affix) {
     switch(affix.abilityId) {
         case 'datacron_character_padawanobiwan_001':
@@ -33,6 +37,10 @@ export function getTags(affix) {
         case 'datacron_character_baylanskoll_002':
         case 'datacron_character_baylanskoll_003':
             return ['darkside', 'mercenary']
+        case 'datacron_character_hunters3_001':
+        case 'datacron_character_hunters3_002':
+        case 'datacron_character_hunters3_003':
+            return ['lightside', 'mercenary']
         default:
             return affix.tag
     }
