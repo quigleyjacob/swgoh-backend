@@ -82,7 +82,8 @@ export function mergeGACPlans(oldGacPlan, newGacPlan) {
             } else {
                 oldGacPlan[owner][squadId].squad = newSquadData.squad.map((unit, index) => {
                     let oldUnit = oldGacPlan[owner][squadId].squad[index]
-                    return {...oldUnit, ...unit}
+                    console.log(oldUnit, unit)
+                    return {...unit, isAlive: oldUnit.isAlive}
                 })
                 oldGacPlan[owner][squadId].datacron = newSquadData.datacron
             }
