@@ -80,9 +80,11 @@ export function mergeGACPlans(oldGacPlan, newGacPlan) {
                     })
                 }
             } else {
-                oldGacPlan[owner][squadId].squad = oldGacPlan[owner][squadId].squad.map((unit, index) => {
-                    return {...newSquadData.squad[index], ...unit}
+                oldGacPlan[owner][squadId].squad = newSquadData.squad.map((unit, index) => {
+                    let oldUnit = oldGacPlan[owner][squadId].squad[index]
+                    return {...oldUnit, ...unit}
                 })
+                oldGacPlan[owner][squadId].datacron = newSquadData.datacron
             }
         }
     }
