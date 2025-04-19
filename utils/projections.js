@@ -74,15 +74,12 @@ export const defaultPlayerPortraitProjection = {_id: 0, id: 1, icon: 1}
 export const defaultSkillProjection = {
     _id: 0,
     id: 1,
-    isZeta: 1,
     omicronMode: 1,
     zetaTier: {
-        $cond: {
-            if: {
-                $eq: ['$isZeta', false]
-            },
-            then: 0,
-            else: '$tier.isZetaTier'
+        $map: {
+            input: '$tier',
+            as: 'elt',
+            in: '$$elt.isZetaTier'
         }
     },
     omicronTier: {

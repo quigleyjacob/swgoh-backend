@@ -4,11 +4,14 @@ export function zetaCount(unit, skillMap) {
         if(skill === undefined) {
             return 0
         }
-        if(skill?.isZeta) {
-            return num + (skill.zetaTier[tier] ? 1 : 0)
-        } else {
-            return num + 0
+        let zetaTier = skill.zetaTier.indexOf(true)
+        // not a zeta, not going to add
+        if(zetaTier === -1) {
+            return num
         }
+        // only add if unit has at least the zeta tier
+        let hasZeta = tier >= zetaTier
+        return num + (hasZeta ? 1 : 0)
     }, 0)
 }
 
