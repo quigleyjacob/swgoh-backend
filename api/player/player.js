@@ -34,7 +34,6 @@ export async function getAuthStatus(req, res) {
         if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        let user = Session.sessionToDiscord(session)
-        return Player.getAuthStatus(session, user.id, allyCode)
+        return Player.getAuthStatus(session, allyCode)
     })
 }
