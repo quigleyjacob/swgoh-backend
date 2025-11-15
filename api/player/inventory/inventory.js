@@ -11,7 +11,7 @@ export async function getInventory(req, res) {
         if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        let user = Session.sessionToDiscord(session)
+        let user = await Session.sessionToDiscord(session)
         return Inventory.getInventory(allyCode, user.id, refresh)
     })
 }
