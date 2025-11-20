@@ -34,6 +34,7 @@ export const defaultPlayerProjection = {
     },
     selectedPlayerPortrait: 1,
     selectedPlayerTitle: 1,
+    eraUnitStatus: 1
 }
 
 export const defaultGuildProjection = {

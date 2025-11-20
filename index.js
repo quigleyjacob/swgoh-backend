@@ -35,6 +35,7 @@ async function refreshData() {
     let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion } = await DB.newGameVersionAvailable()
     if(newVersion) {
         try {
+            await Refresh.refreshMetaData()
             await Refresh.refreshGameData(latestGamedataVersion)
             await Refresh.refreshLocalization(latestLocalizationBundleVersion)
             await Refresh.refreshActiveDatacrons()
