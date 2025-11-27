@@ -107,9 +107,9 @@ export const defaultSkillProjection = {
 
 export const defaultDatacronSetProjection = {_id: 0, id: 1, displayName: 1, expirationTimeMs: 1, icon: 1}
 
-export const defaultDatacronTemplateProjection = {_id: 0, id: 1, setId: 1, referenceTemplateId: 1, tier: {affixTemplateSetId: 1}}
+export const defaultDatacronTemplateProjection = {_id: 0, id: 1, setId: 1, referenceTemplateId: 1, focused: 1, focusedIcon: 1, tier: {affixTemplateSetId: 1}}
 
-export const defaultDatacronAffixTemplateSetProjection = {_id: 0, id: 1, affix: {tag: 1, abilityId: 1, targetRule: 1, statType: 1}}
+export const defaultDatacronAffixTemplateSetProjection = {_id: 0, id: 1, affix: {tag: 1, abilityId: 1, targetRule: 1, statType: 1, scopeIcon: 1}}
 
 export const defaultBattleTargetingRuleProjection = {_id: 0, id: 1, category: {category: 1}}
 
