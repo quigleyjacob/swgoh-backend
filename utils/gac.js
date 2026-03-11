@@ -34,27 +34,52 @@ function getBoardStatusForPlayer(playerStatus, away = false) {
     }, {})
 }
 
+function getDefensePhaseForPlayer(zoneDefense, zones) {
+    let obj = {}
+    for (let [i, zone] of zoneDefense.entries()) {
+        for(let [j, defensiveSquad] of zone.defensiveSquad.entries()) {
+            let key = `Auto-${zones[i]}_squad${j}`
+            let datacron = defensiveSquad.datacronId
+            let squad = defensiveSquad.defensiveSquadUnit.map(unit => {
+                return {baseId: unit.unitBaseId}
+            })
+            obj[key] = {datacron, squad}
+        }
+    }
+    return obj
+}
+
 export async function formatMhannGacBoard(gacBoard, allyCode) {
-    if(!gacBoard.activeMatch) {
+    if(!gacBoard?.matchStatus?.length === 0) {
         throw new MyError(400, 'There is no current GAC data.')
     }
-    let opponentAllyCode = await PlayerArena.getAllyCodeFromPlayerId(gacBoard.activeMatch.opponent.id)
+    let currentGacBoard = gacBoard.matchStatus.at(-1)
+    let opponentAllyCode = await PlayerArena.getAllyCodeFromPlayerId(currentGacBoard.opponent.id)
     // return opponentAllyCode
-    let mode = gacBoard.activeMatch.tournamentMapId.includes('5v5') ? 5 : 3
+    let mode = currentGacBoard.tournamentMapId.includes('5v5') ? 5 : 3
     // return {mode}
-    let league = gacBoard.activeMatch.opponent.leagueId
+    let league = currentGacBoard.opponent.leagueId
     // return league
-    let zones = gacBoard.activeMatch.homeStatus.duelStatus.map(zone => zone.zoneStatus.zoneId)
+    let zones = currentGacBoard.homeStatus.duelStatus.map(zone => zone.zoneStatus.zoneId)
     // return zones
-    let homeStatus = getBoardStatusForPlayer(gacBoard.activeMatch.homeStatus)
-    // return homeStatus
-    let awayStatus = getBoardStatusForPlayer(gacBoard.activeMatch.awayStatus, true)
+    let homeStatus, awayStatus
+    if(currentGacBoard.awayStatus === null) {
+        // defense phase, get home status from territory defense. opponent is empty
+        let zoneDefense = gacBoard.territoryDefense.find(elt => elt.savedSquadConfigId.includes(mode)).zoneDefense
+        homeStatus = getDefensePhaseForPlayer(zoneDefense, zones)
+        awayStatus = {}
+    } else {
+        //offense phase, get both from status in current match
+        homeStatus = getBoardStatusForPlayer(currentGacBoard.homeStatus)
+        awayStatus = getBoardStatusForPlayer(currentGacBoard.awayStatus, true)
+    }
+
     return {
         mode,
         league,
         opponent: {
             allyCode: opponentAllyCode,
-            name: gacBoard.activeMatch.opponent.name
+            name: currentGacBoard.opponent.name
         },
         player: {
             allyCode
