@@ -25,14 +25,15 @@ app.get('/token', (req, res) => {
     res.send('hello from token')
 })
 
-app.post('/test', async (req, res) => {
-    // await refreshData()
-    // res.send('done')
-})
+// app.post('/test', async (req, res) => {
+//     await refreshData()
+//     res.send('done')
+// })
 
 async function refreshData() {
     console.log('Checking for new game data version')
     let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion } = await DB.newGameVersionAvailable()
+    // let [newVersion, latestGamedataVersion, latestLocalizationBundleVersion] = [true, undefined, undefined]
     if(newVersion) {
         try {
             await Refresh.refreshMetaData()

@@ -32,6 +32,19 @@ export const defaultPlayerProjection = {
         stats: 1,
         purchasedAbilityId: 1
     },
+    eraRosterUnit: {
+        baseId: 1,
+        definitionId: 1,
+        currentRarity: 1,
+        currentLevel: 1,
+        currentTier: 1,
+        zetaCount: 1,
+        omicronCount: 1,
+        relic: 1,
+        gp: 1,
+        stats: 1,
+        purchasedAbilityId: 1
+    },
     selectedPlayerPortrait: 1,
     selectedPlayerTitle: 1,
     eraUnitStatus: 1
@@ -114,3 +127,5 @@ export const defaultDatacronAffixTemplateSetProjection = {_id: 0, id: 1, affix: 
 export const defaultBattleTargetingRuleProjection = {_id: 0, id: 1, category: {category: 1}}
 
 export const defaultAbilityProjection = {_id: 0, id: 1, descKey: 1, nameKey: 1, icon: 1}
+
+export const defaultEraDefinitionProjection = {_id: 0, id: 1, startTimeMs: 1, endTimeMs: 1, eraUnitId: 1}
