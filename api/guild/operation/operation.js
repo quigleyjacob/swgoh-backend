@@ -4,6 +4,8 @@ import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
 import { getIdealPlatoons } from '../../../platoons/platoon.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export async function getOperations(req, res) {
     let guildId = req.params.guildId
@@ -85,6 +87,8 @@ export async function computeIdealPlatoons(req, res) {
     let guildId = req.params.guildId
     let session = req.headers.session
     let payload = {...req.body, guildId}
+    let discordKey = req.headers['discord-api-key']
+    let DISCORD_API_KEY = process.env.DISCORD_API_KEY
     processRequest(res, async () => {
         if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
             throw new MyError(401, 'Session Id is not a guild officer')
@@ -92,6 +96,46 @@ export async function computeIdealPlatoons(req, res) {
         if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
-        return getIdealPlatoons(payload)
-})
+        let platoons = await getIdealPlatoons(payload)
+        if(discordKey && discordKey === DISCORD_API_KEY) {
+            let id = await Operation.addComputedOperation(payload, platoons)
+            return { id, ...platoons}
+        } else {
+            return platoons
+        }
+    })
+}
+
+export async function getOperationComputedByMessage(req, res) {
+    let body = req.body
+    let gameGuildId = req.params.guildId
+    let session = req.headers.session
+    processRequest(res, async () => {
+        if(!body || !body.guildId || !body.channelId || !body.messageId) {
+            throw new MyError(400, 'Payload requires guildId, channelId and messageId')
+        }
+        let discordGuildId = body.guildId
+        if(session && !(await Session.sessionInGuild(session, gameGuildId))) {
+            throw new MyError(401, 'Session Id is not present in guild')
+        }
+        if(!Guild.isGuildBuild(gameGuildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
+        }
+        return Operation.getOperationComputedByMessage(gameGuildId, discordGuildId, body.channelId, body.messageId)
+    })
+}
+
+export async function updateOperationComputeWithMessages(req, res) {
+    let guildId = req.params.guildId
+    let session = req.headers.session
+    let body = req.body
+    processRequest(res, async() => {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        }
+        if(!Guild.isGuildBuild(guildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
+        }
+        return Operation.patchOperationComputed(body.id, guildId, body.messages)
+    })
 }
