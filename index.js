@@ -40,6 +40,7 @@ async function refreshData() {
             await Refresh.refreshGameData(latestGamedataVersion)
             await Refresh.refreshLocalization(latestLocalizationBundleVersion)
             await Refresh.refreshActiveDatacrons()
+            await Refresh.refreshActiveEra()
         } catch(err) {
             console.log(err)
         }
