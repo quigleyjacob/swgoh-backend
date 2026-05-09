@@ -22,7 +22,7 @@ export async function verifyUser(req, res) {
         payload.discordId = discordUser.id
     }
     let { discordId, allyCode } = payload
-    processRequest(res, () => Registry.registerDiscordUser(discordId, allyCode))
+    processRequest(res, () => Registry.verifyDiscordUser(discordId, allyCode))
 }
 
 export async function getDiscordAuthURL(req, res) {
