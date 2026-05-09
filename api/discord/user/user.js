@@ -3,5 +3,6 @@ import { processRequest } from '../../../lib/validation.js'
 
 export async function getAccounts(req, res) {
     let discordId = req.params.id
-    processRequest(res, () => DiscordUser.getAccountsByDiscordId(discordId))
+    let ignoreCache = req.query.ignoreCache === 'true'
+    processRequest(res, () => DiscordUser.getAccountsByDiscordId(discordId, ignoreCache))
 }
