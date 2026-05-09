@@ -21,8 +21,8 @@ export async function verifyUser(req, res) {
         let discordUser = await Session.sessionToDiscord(session)
         payload.discordId = discordUser.id
     }
-    let { discordId, allyCode } = payload
-    processRequest(res, () => Registry.verifyDiscordUser(discordId, allyCode))
+    let { discordId, allyCode, isPrimary } = payload
+    processRequest(res, () => Registry.verifyDiscordUser(discordId, allyCode, isPrimary))
 }
 
 export async function getDiscordAuthURL(req, res) {
