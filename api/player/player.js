@@ -16,7 +16,8 @@ export async function getPlayer(req, res) {
 export async function getAccounts(req, res) {
     let session = req.headers.session
     let discordId = (await Session.sessionToDiscord(session)).id
-    processRequest(res, () => DiscordUser.getAccountsByDiscordId(discordId))
+    let ignoreCache = req.query.ignoreCache === 'true'
+    processRequest(res, () => DiscordUser.getAccountsByDiscordId(discordId, ignoreCache))
 }
 
 export async function getPlayerArena(req, res) {
