@@ -50,3 +50,19 @@ export async function getPlayerScores(req, res) {
     let projection = {modScore: 1, gacPowerScore: 1, galacticPower: 1, allyCode: 1}
     processRequest(res, () => Player.getPlayers(allyCodeArray, projection, 'allyCode', false, true))
 }
+
+export async function getRaid(req, res) {
+    let raidId = req.params.raidId
+    processRequest(res, () => Data.getRaid(raidId))
+}
+
+export async function getCampaign(req, res) {
+    let campaignId = req.query.campaignId
+    let campaignMapId = req.query.campaignMapId
+    let campaignNodeId = req.query.campaignNodeId
+    if(!campaignId || !campaignMapId || !campaignNodeId) {
+        res.status(400).json({error: 'Missing required query parameters: campaignId, campaignMapId, campaignNodeId'})
+        return
+    }
+    processRequest(res, () => Data.getCampaign(campaignId, campaignMapId, campaignNodeId))
+}

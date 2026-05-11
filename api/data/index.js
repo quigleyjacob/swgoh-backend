@@ -1,5 +1,5 @@
 import express from 'express'
-import { getSkills, getData, getPortrait, getCurrency, getMaterial, getEquipment, getPlayerScores, getUnits, getCategory, getPlatoons, getAbilities } from './data.js'
+import { getSkills, getData, getPortrait, getCurrency, getMaterial, getEquipment, getPlayerScores, getUnits, getCategory, getPlatoons, getAbilities, getCampaign, getRaid } from './data.js'
 
 let router = express.Router()
 
@@ -32,6 +32,12 @@ router.route('/platoon')
 
 router.route('/ability')
     .get(getAbilities)
+
+router.route('/raid/:raidId')
+    .get(getRaid)
+
+router.route('/campaign')
+    .get(getCampaign)
 
 router.route('/:type')
     .get(getData)
