@@ -11,6 +11,7 @@ import { getGacHistoryForGauntlet, } from './lib/gacHistory.js'
 import Refresh from './lib/database/refresh.js'
 import Data from './lib/database/data.js'
 import { connectToDatabase } from './utils/mongodb.js'
+import mhann from './lib/mhann.js'
 
 app.use(cors())
 app.use(express.json({limit: '5mb'}))
@@ -25,10 +26,10 @@ app.get('/token', (req, res) => {
     res.send('hello from token')
 })
 
-app.post('/test', async (req, res) => {
-    await refreshData()
-    res.send('done')
-})
+// app.post('/test', async (req, res) => {
+//     await refreshData()
+//     res.send('done')
+// })
 
 async function refreshData() {
     console.log('Checking for new game data version')
