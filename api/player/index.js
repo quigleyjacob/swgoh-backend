@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPlayer, getAuthStatus, getPlayerArena, getAccounts } from './player.js'
+import { getPlayer, getAuthStatus, getPlayerArena, getAccounts, getLeaderboard } from './player.js'
 import squad from './squad/index.js'
 import defense from './defense/index.js'
 import gac from './gac/index.js'
@@ -19,6 +19,9 @@ router.route('/arena')
 
 router.route('/authStatus')
     .get(getAuthStatus)
+
+router.route('/:allyCode/leaderboard')
+    .get(getLeaderboard)
 
 router.use('/:allyCode/squad', squad)
 router.use('/:allyCode/defense', defense)

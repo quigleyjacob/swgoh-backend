@@ -26,7 +26,17 @@ export async function getPlayerArena(req, res) {
     processRequest(res, () => PlayerArena.getPlayerArenas(allyCodeArray, projection))
 }
 
-
+export async function getLeaderboard(req, res) {
+    let session = req.headers.session
+    let allyCode = req.params.allyCode
+    processRequest(res, async () => {
+        if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
+            throw new MyError(401, 'Session Id is not player')
+        }
+        let discordId = (await Session.sessionToDiscord(session)).id
+        return Player.getLeaderboard(allyCode, discordId)
+    })
+}
 
 export async function getAuthStatus(req, res) {
     let session = req.headers.session

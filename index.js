@@ -12,6 +12,7 @@ import Refresh from './lib/database/refresh.js'
 import Data from './lib/database/data.js'
 import { connectToDatabase } from './utils/mongodb.js'
 import mhann from './lib/mhann.js'
+import { processRequest, validateMhannResponse } from './lib/validation.js'
 
 app.use(cors())
 app.use(express.json({limit: '5mb'}))
@@ -29,6 +30,16 @@ app.get('/token', (req, res) => {
 // app.post('/test', async (req, res) => {
 //     await refreshData()
 //     res.send('done')
+//     processRequest(res, async () => {
+//         let response = await mhann._fetch(`/api/${req.query.endpoint}`, {
+//             payload: {
+//                 allyCode: '516893914',
+//                 userDiscordId: '593451293352132625',
+//                 enums: false
+//             }
+//         })
+//         return validateMhannResponse(response, 'err message')
+//     })
 // })
 
 async function refreshData() {
