@@ -7,6 +7,7 @@ import data from './data/index.js'
 import gac from './gac/index.js'
 import leaderboard from './leaderboard/index.js'
 import arena from './arena/index.js'
+import jobs from './jobs/index.js'
 import { validate } from '../middleware/index.js'
 
 let router = express.Router()
@@ -23,6 +24,7 @@ router.use('/data', data)
 router.use('/discord', discord)
 router.use('/gac', gac)
 router.use('/guild', guild)
+router.use('/jobs', jobs)
 router.use('/leaderboard', leaderboard)
 router.use('/player', player)
 router.use('/refresh', refresh)

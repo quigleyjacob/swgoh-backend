@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "nodemon index.js --inspect"
+    "worker": "node worker.js",
+    "test": "nodemon index.js --inspect",
+    "workertest": "nodemon worker.js --inspect"
   },
   "type": "module",
   "author": "",
