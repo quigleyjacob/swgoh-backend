@@ -56,6 +56,11 @@ export async function getRaid(req, res) {
     processRequest(res, () => Data.getRaid(raidId))
 }
 
+export async function getGacInfo(req, res) {
+    let mode = req.query.mode
+    processRequest(res, () => Data.getGacInfo(mode))
+}
+
 export async function getCampaign(req, res) {
     let campaignId = req.query.campaignId
     let campaignMapId = req.query.campaignMapId
