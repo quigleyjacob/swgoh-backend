@@ -1,5 +1,5 @@
 import express from 'express'
-import { addOperation, deleteOperation, computeIdealPlatoons, getOperation, getOperations, getOperationComputedByMessage, updateOperation, updateOperationComputeWithMessages } from './operation.js'
+import { addOperation, deleteOperation, computeIdealPlatoons, getOperation, getOperations, getOperationComputedByMessage, updateOperation, updateOperationComputeWithMessages, updateOperationComputeWithDirectMessages } from './operation.js'
 
 
 let router = express.Router({mergeParams: true})
@@ -18,6 +18,9 @@ router.route('/ideal')
 
 router.route('/message')
     .patch(updateOperationComputeWithMessages)
+
+router.route('/message/direct')
+    .patch(updateOperationComputeWithDirectMessages)
 
 router.route('/message/find')
     .post(getOperationComputedByMessage)

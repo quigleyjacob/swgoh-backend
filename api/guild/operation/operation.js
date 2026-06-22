@@ -139,3 +139,18 @@ export async function updateOperationComputeWithMessages(req, res) {
         return Operation.patchOperationComputed(body.id, guildId, body.messages)
     })
 }
+
+export async function updateOperationComputeWithDirectMessages(req, res) {
+    let guildId = req.params.guildId
+    let session = req.headers.session
+    let body = req.body
+    processRequest(res, async() => {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        }
+        if(!Guild.isGuildBuild(guildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
+        }
+        return Operation.patchOperationComputedDirectMessages(body.id, guildId, body.directMessages)
+    })
+}
