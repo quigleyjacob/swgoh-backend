@@ -17,17 +17,14 @@ export async function deployOperations(req, res) {
     let DISCORD_API_KEY = process.env.DISCORD_API_KEY
 
     processRequest(res, async () => {
-        if(!body || !body.guildId || !body.messageId || !body.channelId) {
-            throw new MyError(400, 'Payload requires guildId, messageId, and channelId')
-        }
-        if(!Guild.isGuildBuild(body.guildId)) {
-            throw new MyError(401, 'Guild is not registered with the guild build.')
+        if(!body || !body.messageId || !body.channelId) {
+            throw new MyError(400, 'Payload requires messageId and channelId')
         }
         if(!discordKey || discordKey !== DISCORD_API_KEY) {
             throw new MyError(401, 'Invalid API key')
         }
 
-        const deploymentResult = await Operation.deployOperationsByDirectMessage(body.guildId, body.messageId, body.channelId, discordId)
+        const deploymentResult = await Operation.deployOperationsByDirectMessage(body.messageId, body.channelId, discordId)
 
         return {
             message: deploymentResult.message,
