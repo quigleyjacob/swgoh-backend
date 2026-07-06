@@ -44,8 +44,12 @@ export async function getSettings(req, res) {
             discordId = (await Session.sessionToDiscord(session)).id
         }
 
-        return DiscordUser.getSettings(discordId)
-    })
+        let settings = await DiscordUser.getSettings(discordId)
+        if(settings === null) {
+            throw new MyError(404, `No settings found for user [id=${discordId}]`)
+        }
+        return settings
+     })
 }
 
 export async function updateSettings(req, res) {
