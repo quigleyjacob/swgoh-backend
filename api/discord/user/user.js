@@ -1,6 +1,7 @@
 import DiscordUser from '../../../lib/database/discord/user.js'
 import Operation from '../../../lib/database/guild/operation.js'
 import Guild from '../../../lib/database/guild/guild.js'
+import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
 
@@ -31,5 +32,32 @@ export async function deployOperations(req, res) {
             allyCode: deploymentResult.allyCode,
             userDiscordId: deploymentResult.userDiscordId
         }
+    })
+}
+
+export async function getSettings(req, res) {
+    let discordId = req.params.id
+    let session = req.headers.session
+
+    processRequest(res, async () => {
+        if(session) {
+            discordId = (await Session.sessionToDiscord(session)).id
+        }
+
+        return DiscordUser.getSettings(discordId)
+    })
+}
+
+export async function updateSettings(req, res) {
+    let discordId = req.params.id
+    let session = req.headers.session
+    let settings = req.body
+
+    processRequest(res, async () => {
+        if(session) {
+            discordId = (await Session.sessionToDiscord(session)).id
+        }
+
+        return DiscordUser.updateSettings(discordId, settings)
     })
 }

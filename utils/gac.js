@@ -153,3 +153,44 @@ export async function formatHotUtilsGacBoard(gacBoard, allyCode) {
         awayStatus: getSquads(gacBoard.gac.away),
     }
 }
+
+export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
+    let endpoint
+    let options = {
+        method: gacEndpoint.method
+    }
+    switch(gacEndpoint.allyCodeLocation) {
+        case 'query':
+            endpoint = `${gacEndpoint.url}?${gacEndpoint.key}=${allyCode}`
+            break
+        case 'body':
+            endpoint = gacEndpoint.url
+            options.body = JSON.stringify({[gacEndpoint.key]: allyCode})
+            break
+        case 'path':
+            endpoint = gacEndpoint.url.replace(`:${gacEndpoint.key}`, allyCode)
+            break
+        case 'header':
+            endpoint = gacEndpoint.url
+            options.headers = {
+                [gacEndpoint.key]: allyCode
+            }
+            break
+        default:
+            throw new MyError(400, 'Invalid allyCodeLocation in GAC endpoint settings')
+    }
+    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: ${JSON.stringify(options)}`)
+
+    try {
+        let response = await fetch(endpoint, options)
+        if(!response.ok) {
+            throw new MyError(400, `Error fetching GAC data from custom endpoint: ${response.status} ${response.statusText}`)
+        }
+        return response.json()
+    } catch (error) {
+        if(error instanceof MyError) {
+            throw error
+        }
+        throw new MyError(500, `Failed to fetch GAC data from custom endpoint: ${error.message}`)
+    }
+}
