@@ -1,0 +1,3102 @@
+{
+    "mode": 3,
+    "league": "KYBER",
+    "opponent": {
+        "allyCode": "267889929",
+        "name": "MINI ReyHanSolo3187"
+    },
+    "player": {
+        "allyCode": "516893914"
+    },
+    "zones": [
+        "4zone_phase01_conflict01_duel01",
+        "4zone_phase01_conflict02_duel01",
+        "4zone_phase02_conflict01_duel01",
+        "4zone_phase02_conflict02_duel01"
+    ],
+    "homeStatus": {
+        "Auto-4zone_phase01_conflict01_duel01_squad3": {
+            "squad": [
+                {
+                    "baseId": "GLREY",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_galacticlegend01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_inspire_manager_handler",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_glrey",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_glrey01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_glrey02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_galacticlegends_standard_targeting",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_glrey01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_percent_health_resistant",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "ultimateability_glrey",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "T-aTmhHVSRmGjG7Ykoa4eQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "41.35093",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "BENSOLO",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_bensolo02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_bensolo02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_bensolo01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_bensolo01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_bensolo_S2_effects",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "zGxc1jwlRGOhyLGYiuYaDQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "100",
+                        "turnPercent": "32.21311",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "CALKESTIS",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_calkestis01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_calkestis01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_calkestis02",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "AMwcpn-wRS-SDVo8cLka7A",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "100",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ],
+            "datacron": "CJzO3AP6Rsu9yHz7xDy23w"
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad2": {
+            "squad": [
+                {
+                    "baseId": "LORDVADER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_lordvader01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_lordvader01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_lordvader01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "uniqueability_galacticlegend01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_lordvader02",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "hiddenability_galacticlegends_standard_targeting",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "ultimateability_lordvader",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_percent_health_resistant",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "lilusceLTYafOp9pKjZ5Nw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "APPO",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_appo02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_appo02",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "uniqueability_appo01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_appo01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hiddenability_appo",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "4KgUn2TkT9S8P2P1mT79Nw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "OPERATIVE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_operative02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_operative01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_operative",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_operative01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "FrENbPHxR1KKdor2u0H-hA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "2.953536",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad1": {
+            "squad": [
+                {
+                    "baseId": "THIRDSISTER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_thirdsister01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_thirdsister02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_thirdsister01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hiddenability_purge",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_thirdsister",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_inquisitorius01_thirdsister",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_percent_health_resistant",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "kYtaXu88S52KGOSqZEomdw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "47.08178",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "GRANDINQUISITOR",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_grandinquisitor01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_inquisitorius01_grandinquisitor",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_purge",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_grandinquisitor02",
+                                "cooldown": 5
+                            },
+                            {
+                                "abilityId": "hiddenability_grandinquisitor",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_grandinquisitor01",
+                                "cooldown": 1
+                            }
+                        ],
+                        "unitId": "v08yu0a-SUGcwSHDoVNgAw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "69.03428",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "SEVENTHSISTER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_seventhsister02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_seventhsister01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_purge",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_inquisitorius01_healer",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_seventhsister04",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "p4RBva5KSXOJLaA3SX1Iew",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "59.39282",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad0": {
+            "squad": [
+                {
+                    "baseId": "DARTHTRAYA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_darthtraya01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "handlerability_darthtraya",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_darthtraya01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_darthtraya02",
+                                "cooldown": 2
+                            }
+                        ],
+                        "unitId": "tkqR9eDEQZSh6w7ArOwgqw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "100",
+                        "turnPercent": "69.95734",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "SAVAGEOPRESS",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_savageopress01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_savageopress01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "handlerability_savageopress01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "C7dZhIvjSN-McIAed5aXQA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "100",
+                        "turnPercent": "100",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "DARTHNIHILUS",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_darthnihilus02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_darthnihilus01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_darthnihilus01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "handlerability_darthnihilus",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "yAumKfYPR3GrCVSo041Qfw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "100",
+                        "turnPercent": "84.82759",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad4": {
+            "squad": [
+                {
+                    "baseId": "GLAHSOKATANO",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_galacticlegend01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "ultimateability_glahsokatano01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_galacticlegends_standard_targeting",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_glahsokatano02",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "grantedability_glahsokatano01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_glahsokatano01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_glahsokatano01",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "hiddenability_percent_health_resistant",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "tKivr7piQIWdclkyqTcAKg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "99.78545",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "EZRAEXILE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "grantedability_glahsokatano01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_ezraexile02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_ezraexile01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_ezraexile01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_ezraexile02",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "fetsFwLmQ2yvYaPs4f_W3A",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "99.9995",
+                        "turnPercent": "23.69283",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "HUYANG",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_huyang02",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "grantedability_glahsokatano01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_huyang",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_huyang01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_huyang01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "16mCr3CtSAGGQkcGzp94fw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "100",
+                        "turnPercent": "34.61125",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ],
+            "datacron": "oGrek6TvQrCWH_Pd-VaLog"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad3": {
+            "squad": [
+                {
+                    "baseId": "MONMOTHMA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_monmothma02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "hiddenability_monmothma01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_monmothma01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "nutegunray_extortion_ability",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_monmothma02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_monmothma01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "generic_rally",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "Kyow4ADRQZqVz9P1xNKPXA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "94.58598",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "LUTHENRAEL",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_luthenrael01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "nutegunray_extortion_ability",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_luthenrael02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "generic_rally",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_luthenrael01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_luthenrael02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_luthenrael",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "p04s5tinRuSic-OQKEuNMw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "KLEYA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_kleya01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "uniqueability_kleya01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_kleya02",
+                                "cooldown": 3
+                            }
+                        ],
+                        "unitId": "Xgls9gE_TFSAtNnebifFcQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "23.40645",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad4": {
+            "squad": [
+                {
+                    "baseId": "SAWGERRERA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_sawgerrera01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "uniqueability_sawgerrera01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "sawgerrera_grantedability_explosive_trap",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_sawgerrera",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "NnWARtmxQoyJ03WCjgVw1w",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "2.67094",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "CHIRRUTIMWE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_chirrutimwe02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_chirrutimwe01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "uniqueability_chirrutimwe01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_chirrutimwe02",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "4AhKLdPpS3uA1ZuO5GXHaQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "57.5579",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "BAZEMALBUS",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_bazemalbus02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_bazemalbus02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "uniqueability_bazemalbus01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_bazemalbus01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "s-y-pXUYTQyC-g69Zr0IgQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "45.90093",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad1": {
+            "squad": [
+                {
+                    "baseId": "MAJORPARTAGAZ",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_majorpartagaz01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_majorpartagaz02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_character_generic_007",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_majorpartagaz",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_majorpartagaz01",
+                                "cooldown": 2
+                            }
+                        ],
+                        "unitId": "-XRe7VCRSaiiUNJeym56OQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "15.37512",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "DEDRAMEERO",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "hiddenability_dedrameero",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_dedrameero02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_dedrameero02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_dedrameero01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_dedrameero01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "fx7wZnz0RqO8xBLdeycUBw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "25.70731",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "KXSECURITYDROID",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_kxsecuritydroid01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hiddenability_kxsecuritydroid",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_kxsecuritydroid02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_character_generic_026",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_kxsecuritydroid01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "CvKFnz92TvadrFu6xrDYlw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "42.10928",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ],
+            "datacron": "oV97sgfZRx6ETHngVV47BA"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad2": {
+            "squad": [
+                {
+                    "baseId": "CASSIANUNDERCOVER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_cassianundercover01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_cassianundercover",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_cassianundercover02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_cassianundercover01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "nWce6CaWTFiv0fo7-x6wzA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "CINTA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_cinta01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_cinta01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_cinta02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_cinta",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "sXz-OB9sSTyqJnn3a7ZN7g",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "95.14285",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "VEL",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_vel02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_vel01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_vel01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_vel",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "xZiqr_JTT86vxLeM2R02Sw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "76",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad0": {
+            "squad": [
+                {
+                    "baseId": "GLHONDO",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_glhondo01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_galacticlegend01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_galacticlegends_standard_targeting",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "ultimateability_glhondo",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_glhondo02",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_glhondo01",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "hiddenability_glhondo",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_percent_health_resistant",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "48VMVthmSj6dRc_HQJxPpQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "90.21218",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "VANE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_vane01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_vane01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_vane02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_vane01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "oesDb-8zSAGfeptcYNS6DA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "3.108356",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "HONDO",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_hondo01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_hondo01",
+                                "cooldown": 4
+                            },
+                            {
+                                "abilityId": "uniqueability_hondo02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_hondo02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "hiddenability_hondo",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "lkEskeSjQoqZAM3Dz2o42w",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "40",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict01_duel01_squad0": {
+            "squad": [
+                {
+                    "baseId": "CAPITALMALEVOLENCE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_capital_ship_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_capitalmalevolence03",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "specialability_capitalmalevolence01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_capitalmalevolence02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "generic_reinforcement",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "uniqueability_capitalmalevolence01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_capitalmalevolence",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "wjFmzn3bT065wuhoOaVBDQ",
+                        "healthPercent": "100",
+                        "progressItem": false,
+                        "currentHealth": "148344",
+                        "shieldPercent": "0",
+                        "turnPercent": "100",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "HYENABOMBER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_hyenabomber01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hardwareability_hyenabomber01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_hyenabomber01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "e6mjZMWHR0u_87MWOVrYIA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "67.11692",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "VULTUREDROID",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_vulturedroid01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_vulturedroid01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "hardwareability_vulturedroid01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "lxJokHeUTzC5pcEyeqSmTw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "62.36283",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "GEONOSIANSTARFIGHTER1",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_geonosianstarfighter101",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_geonosianstarfighter101",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_geonosianstarfighter101",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "HbwjBZd3QlSlwdhmwlT5_w",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "38.95897",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "GEONOSIANSTARFIGHTER3",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_geonosianstarfighter301",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_geonosianstarfighter301",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_geonosianstarfighter301",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "PSGWReG-RXGNostL52VNqA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "60.15196",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "GEONOSIANSTARFIGHTER2",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "hardwareability_passive_geonosianstarfighter201",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_geonosianstarfighter201",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_geonosianstarfighter201",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "_ralgvOOTC2VSXQdge1lGA",
+                        "healthPercent": "100",
+                        "progressItem": false,
+                        "currentHealth": "112036",
+                        "shieldPercent": "100",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": false,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict01_duel01_squad1": {
+            "squad": [
+                {
+                    "baseId": "CAPITALMONCALAMARICRUISER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_capitalmoncalamaricruiser02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_capitalmoncalamaricruiser01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_capital_ship_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_capitalmoncalamaricruiser01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "generic_reinforcement",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_capitalmoncalamaricruiser03",
+                                "cooldown": 2
+                            }
+                        ],
+                        "unitId": "hcRqbRcGRV2fo3gYFnnnXA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "93.81442",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "RAVENSCLAW",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_ravensclaw01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_ravensclaw",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_ravensclaw02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_ravensclaw01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_ravensclaw",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "XzVDPkoAQ-yHhCMxVbqMLA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "90.20618",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "XWINGRED3",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_xwingred301",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_xwingred301",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_xwingred301",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "Wpjv4r76TAyrrZnzjA6XOg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "90.72164",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "UWINGROGUEONE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_uwingrogueone01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_uwingrogueone03",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_uwingrogueone02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_uwingrogueone01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_uwingrogueone01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "fA4FvdRHRlS-M8DHFDwkCQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "42.56773",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "BWINGREBEL",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_bwingrebel01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_bwingrebel",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_bwingrebel",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_bwingrebel01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_bwingrebel02",
+                                "cooldown": 4
+                            }
+                        ],
+                        "unitId": "ksyDCFmmTfCsgQ6g6D4yoA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "31.61333",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "XWINGRED2",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_xwingred201",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_xwingred201",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_xwingred201",
+                                "cooldown": 2
+                            }
+                        ],
+                        "unitId": "EHx0oSqaR-iZsHje2fesbQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "9.611843",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict01_duel01_squad2": {
+            "squad": [
+                {
+                    "baseId": "CAPITALSTARDESTROYER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_capitalstardestroyer01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_capital_ship_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_capitalstardestroyer03",
+                                "cooldown": 4
+                            },
+                            {
+                                "abilityId": "specialability_capitalstardestroyer02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_capitalstardestroyer01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "generic_reinforcement",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "qzvE4qURRFaimmXfgr5Y0w",
+                        "healthPercent": "100",
+                        "progressItem": false,
+                        "currentHealth": "149413",
+                        "shieldPercent": "0",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "TIEBOMBERIMPERIAL",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_tiebomberimperial01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_tiebomberimperial",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_tiebomberimperial01",
+                                "cooldown": 1
+                            }
+                        ],
+                        "unitId": "fVg3gHe2SqaOrFmv4XU3KQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "92.62234",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "GAUNTLETSTARFIGHTER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_gauntletstarfighter01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_gauntletstarfighter02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_gauntletstarfighter01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_gauntletstarfighter01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "9jF1m8zST--Hu1qvlOqp4Q",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "45.47318",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "EMPERORSSHUTTLE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_emperorsshuttle02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_emperorsshuttle01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_emperorsshuttle01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_emperorsshuttle01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_emperorsshuttle02",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "WQ5_u0LpQom80e_GxfElzg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "12.65924",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "TIEDEFENDER",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_tiedefender01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_tiedefender02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_tiedefender01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_tiedefender",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "ov2kODCcS6OCzHi5DX8JgQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "52.80851",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "SCYTHE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_scythe01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hardwareability_scythe",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "DO_NOT_UNATTACH_THIS_ABILITY_uniqueability_ship_portrait_properties",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_scythe02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_scythe01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "L0GAtHZqTNK7iG5xxu8ZJQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "100",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict02_duel01_squad4": {
+            "squad": [
+                {
+                    "baseId": "CEREJUNDA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_cerejunda02",
+                                "cooldown": 6
+                            },
+                            {
+                                "abilityId": "specialability_cerejunda01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_cerejunda01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "EmAvCKerSNyQbddSG4THIQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "34.19355",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "TARONMALICOS",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "hiddenability_taronmalicos",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_taronmalicos01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_taronmalicos01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_taronmalicos02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_taronmalicos02",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "mMFX7SR_RUOnMSiLr17YUg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "17.7111",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "MAULS7",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "hiddenability_mauls7",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_mauls701",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_mauls701",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_mauls702",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "X1dKLIh5TQG2pcL6dX2VVQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "52.58065",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict02_duel01_squad3": {
+            "squad": [
+                {
+                    "baseId": "EMPERORPALPATINE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_emperorpalpatine01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_emperorpalpatine",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_alignment_generic_030",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_emperorpalpatine02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_emperorpalpatine01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "datacron_character_palpatine_emperor_001",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_faction_generic_038",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "jXWphmVvStq8x36UNHwF3w",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "38.731",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "MARAJADE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "datacron_alignment_generic_030",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_marajade01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_marajade02",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_marajade01",
+                                "cooldown": 1
+                            }
+                        ],
+                        "unitId": "Asge5nSVQlO6rIdxBm9TgA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "5.216414",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "VADERDUELSEND",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_vaderduelsend01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_vaderduelsend02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_alignment_generic_030",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_vaderduelsend01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_vaderduelsend02",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hiddenability_vaderduelsend",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_faction_generic_038",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "uFiYRG4EQL6jLwD-TzsoPw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "15.727",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ],
+            "datacron": "BDYYQ9puS7mEQwZzthexyQ"
+        },
+        "Auto-4zone_phase02_conflict02_duel01_squad2": {
+            "squad": [
+                {
+                    "baseId": "JABBATHEHUTT",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "hiddenability_jabbathehutt",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_jabbathehutt02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_jabbathehutt01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_galacticlegend01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_largecharacter01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "ultimateability_jabbathehutt",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_galacticlegends_standard_targeting",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "contractability_jabbathehutt01",
+                                "cooldown": 1000
+                            },
+                            {
+                                "abilityId": "uniqueability_jabbathehutt01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_percent_health_resistant",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "bEG_KMn7SsysnaKiXcNTTw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "14.4737",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "BOUSHH",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "contractability_boushh",
+                                "cooldown": 1000
+                            },
+                            {
+                                "abilityId": "specialability_boushh01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_boushh",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_boushh02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_boushh01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "aKiIZwaxRwmdBoDrSRCfZw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "53.733",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "KRRSANTAN",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_krrsantan01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_krrsantan01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_krrsantan02",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "uniqueability_krrsantan01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "contractability_krrsantan01",
+                                "cooldown": 1000
+                            }
+                        ],
+                        "unitId": "3oKfSZt9Tmqk-OCriYRM9A",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "0",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict02_duel01_squad1": {
+            "squad": [
+                {
+                    "baseId": "BAYLANSKOLL",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "hiddenability_baylanskoll",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_baylanskoll02",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "uniqueability_baylanskoll02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_baylanskoll01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_baylanskoll01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "Nade53Y9Rze3nSLc_CuWpw",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "13.96491",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "SHINHATI",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_shinhati01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_shinhati01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_shinhati02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_shinhati02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "grantedability_shinhati_cleanescape",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hiddenability_shinhati",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "jiUo0zfETV60Hkkk2gQJbg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "10.974",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "MARROK",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_marrok02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_inquisitorius01_marrok",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_purge",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_marrok01",
+                                "cooldown": 3
+                            },
+                            {
+                                "abilityId": "hiddenability_marrok",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_marrok01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "KVJG21G1Sr6xP04VuxkU0Q",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "100",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        },
+        "Auto-4zone_phase02_conflict02_duel01_squad0": {
+            "squad": [
+                {
+                    "baseId": "KELLERANBEQ",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_kelleranbeq01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_kelleranbeq02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_kelleranbeq01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "2zOAUAgHTg6dSOcqD6aHDg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "81.12421",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "JOCASTANU",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_jocastanu02",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_jocastanu01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_jocastanu02",
+                                "cooldown": 20
+                            },
+                            {
+                                "abilityId": "uniqueability_jocastanu01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_jocastanu",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "AFDBiPy3TsyJTr_W6p3ugg",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "100",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                },
+                {
+                    "baseId": "VANGUARDTEMPLEGUARD",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "specialability_vanguardtempleguard02",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "specialability_vanguardtempleguard01",
+                                "cooldown": 2
+                            },
+                            {
+                                "abilityId": "hiddenability_vanguardtempleguard",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "uniqueability_vanguardtempleguard01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "zKDdN2VUTM-QNxo0FsNZKQ",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "84.22311",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    }
+                }
+            ]
+        }
+    },
+    "awayStatus": {
+        "Auto-4zone_phase01_conflict01_duel01_squad3": {
+            "squad": [
+                {
+                    "baseId": "KELLERANBEQ",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "JOCASTANU",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "ANAKINKNIGHT",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "i143PsZVTDq2TY4kPYqBSA"
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad2": {
+            "squad": [
+                {
+                    "baseId": "EMPERORPALPATINE",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "VADERDUELSEND",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "MARAJADE",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "TsUaLY9oRDK-q7YuljXYrQ"
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad1": {
+            "squad": [
+                {
+                    "baseId": "BOBAFETTSCION",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "ZAMWESELL",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "ASAJJDARKDISCIPLE",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "RnBbd6RPSBiKcVpCz6YL1Q"
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad0": {
+            "squad": [
+                {
+                    "baseId": "JEDIMASTERMACEWINDU",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "DEPABILLABA",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "VANGUARDTEMPLEGUARD",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "YfaLyThwTie6DX3-Un7O5A"
+        },
+        "Auto-4zone_phase01_conflict01_duel01_squad4": {
+            "squad": [
+                {
+                    "baseId": "JABBATHEHUTT",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "KRRSANTAN",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "BOUSHH",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "JJY5UT9uT5uEhOqKjnbsNg"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad3": {
+            "squad": [
+                {
+                    "baseId": "TUSKENCHIEFTAIN",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "TUSKENHUNTRESS",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "TUSKENRAIDER",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "n4ShvWzoSlOuazJn3QAduA"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad4": {
+            "squad": [
+                {
+                    "baseId": "SAWGERRERA",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "LUTHENRAEL",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "KLEYA",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "gpKdSyFwT1SJ2A2xEyPRrA"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad1": {
+            "squad": [
+                {
+                    "baseId": "STORMTROOPERLUKE",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_stormtrooperluke01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "hiddenability_stormtrooperluke",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "generic_rally",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_stormtrooperluke01",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "specialability_stormtrooperluke02",
+                                "cooldown": 1
+                            },
+                            {
+                                "abilityId": "datacron_faction_generic_015",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "905IbFr5Qf2M7HSCqgVZqA",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "87.03434",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    },
+                    "isAlive": true
+                },
+                {
+                    "baseId": "PRINCESSLEIA",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_princessleia01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_princessleia01",
+                                "cooldown": 0
+                            }
+                        ],
+                        "unitId": "gbOFVz5nSQqOs4krGs9d1g",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "92.04444",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    },
+                    "isAlive": true
+                },
+                {
+                    "baseId": "STORMTROOPERHAN",
+                    "unitState": {
+                        "abilityState": [
+                            {
+                                "abilityId": "uniqueability_stormtrooperhan01",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "datacron_faction_generic_014",
+                                "cooldown": 0
+                            },
+                            {
+                                "abilityId": "specialability_stormtrooperhan01",
+                                "cooldown": 1
+                            }
+                        ],
+                        "unitId": "AHuq6OeDRWuG3_P4j9L91g",
+                        "healthPercent": "0",
+                        "progressItem": false,
+                        "currentHealth": "0",
+                        "shieldPercent": "0",
+                        "turnPercent": "36.7394",
+                        "maxHealth": "0",
+                        "hasFled": false,
+                        "maxShield": "0",
+                        "isCommander": false,
+                        "isDeployed": true,
+                        "currentShield": "0",
+                        "overkillItem": false,
+                        "overkillDamage": "0",
+                        "battleContextMaxShield": "0",
+                        "isUnscathed": false
+                    },
+                    "isAlive": true
+                }
+            ],
+            "datacron": "cCHihiTbTLG0X428ZUQH3w"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad2": {
+            "squad": [
+                {
+                    "baseId": "GLREY",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "BENSOLO",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "L3_37",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "nLTRd14vTLyRk3ngISWdcQ"
+        },
+        "Auto-4zone_phase01_conflict02_duel01_squad0": {
+            "squad": [
+                {
+                    "baseId": "GLHONDO",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "QUIGGOLD",
+                    "isAlive": true
+                },
+                {
+                    "baseId": "VANE",
+                    "isAlive": true
+                }
+            ],
+            "datacron": "eYBy3CXVSfK8d28qDRYV5w"
+        }
+    },
+    "tournamentEventId": "CHAMPIONSHIPS_GRAND_ARENA_GA2_EVENT_SEASON_81:O1784149200000",
+    "currentMatchId": 1
+}

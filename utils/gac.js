@@ -64,6 +64,9 @@ export async function formatMhannGacBoard(gacBoard, allyCode) {
     // return zones
     let homeStatus, awayStatus
     if(currentGacBoard.awayStatus === null) {
+        if(!gacBoard.territoryDefense) {
+            throw new MyError(400, 'Unable to format GAC board. You may have to wait until attack phase.')
+        }
         // defense phase, get home status from territory defense. opponent is empty
         let zoneDefense = gacBoard.territoryDefense.find(elt => elt.savedSquadConfigId.includes(mode)).zoneDefense
         homeStatus = getDefensePhaseForPlayer(zoneDefense, zones)
@@ -86,13 +89,15 @@ export async function formatMhannGacBoard(gacBoard, allyCode) {
         },
         zones,
         homeStatus,
-        awayStatus
+        awayStatus,
+        tournamentEventId: gacBoard.tournamentEventId,
+        currentMatchId: gacBoard.matchStatus.length
     }
 }
 
 export function mergeGACPlans(oldGacPlan, newGacPlan) {
     for(const owner of ['homeStatus', 'awayStatus']) {
-        for (const squadId of Object.keys(newGacPlan.homeStatus)) {
+        for (const squadId of Object.keys(newGacPlan[owner])) {
             let newSquadData = newGacPlan[owner][squadId]
             if(newSquadData === undefined && oldGacPlan[owner][squadId] === undefined) {
                 continue
@@ -114,6 +119,8 @@ export function mergeGACPlans(oldGacPlan, newGacPlan) {
             }
         }
     }
+    oldGacPlan.time = newGacPlan.time
+    oldGacPlan.updatedAt = newGacPlan.updatedAt
     return oldGacPlan
 }
 
@@ -154,31 +161,58 @@ export async function formatHotUtilsGacBoard(gacBoard, allyCode) {
     }
 }
 
-export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
-    let endpoint
-    let options = {
-        method: gacEndpoint.method
-    }
-    switch(gacEndpoint.allyCodeLocation) {
+function updateFetchParameters(parameters, location, key, value) {
+    switch(location) {
         case 'query':
-            endpoint = `${gacEndpoint.url}?${gacEndpoint.key}=${allyCode}`
+            parameters.endpoint += (parameters.endpoint.includes('?') ? '&' : '?') + `${key}=${value}`
             break
         case 'body':
-            endpoint = gacEndpoint.url
-            options.body = JSON.stringify({[gacEndpoint.key]: allyCode})
+            if(parameters.body) {
+                parameters.body[key] = value
+            } else {
+                parameters.body = {
+                    key: value
+                }
+            }
             break
         case 'path':
-            endpoint = gacEndpoint.url.replace(`:${gacEndpoint.key}`, allyCode)
+            parameters.endpoint = parameters.endpoint.replace(`:${key}`, value)
             break
         case 'header':
-            endpoint = gacEndpoint.url
-            options.headers = {
-                [gacEndpoint.key]: allyCode
+            if(parameters.headers) {
+                parameters.headers[key] = value
+            } else {
+                parameters.headers = {
+                    key: value
+                }
             }
             break
         default:
             throw new MyError(400, 'Invalid allyCodeLocation in GAC endpoint settings')
     }
+}
+
+export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
+    const parameters = {
+        endpoint: gacEndpoint.url,
+    }
+
+    updateFetchParameters(parameters, gacEndpoint.allyCodeLocation, gacEndpoint.key, allyCode)
+    ;(gacEndpoint.optionalSettings || []).forEach(row => {
+        updateFetchParameters(parameters, row.location, row.key, row.value)
+    })
+
+    const endpoint = parameters.endpoint
+    const options = {
+        method: gacEndpoint.method
+    }
+    if(parameters.headers) {
+        options.headers = parameters.headers
+    }
+    if(parameters.body) {
+        options.body = JSON.stringify(parameters.body)
+    }
+
     console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: ${JSON.stringify(options)}`)
 
     try {
