@@ -128,3 +128,30 @@ export function convertQuigToMhannDeployment(allyCode, userDiscordId, placements
         }
     }
 }
+
+export function convertQuigToMhannCommands(allyCode, userDiscordId, commands) {
+    if(!commands || Object.keys(commands).length === 0) return {}
+    const zoneManagementRequests = Object.keys(commands.metadata).map(zoneId => {
+        let data = commands.metadata[zoneId]
+        if(data.clear) {
+            return {
+                zoneId
+            }
+        }
+        let message = data.message
+        let commandState = data.commandState === 1 ? undefined : data.commandState
+        return {
+            zoneId,
+            message,
+            commandState
+        }
+    })
+    return {
+        payload: {
+            eventName: commands.event,
+            allyCode,
+            userDiscordId,
+            zoneManagementRequests
+        }
+    }
+}

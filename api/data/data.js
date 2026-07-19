@@ -71,3 +71,19 @@ export async function getCampaign(req, res) {
     }
     processRequest(res, () => Data.getCampaign(campaignId, campaignMapId, campaignNodeId))
 }
+
+export async function getTbInfo(req, res) {
+    let id = req.params.id
+    processRequest(res, () => Data.getTb(id))
+}
+
+export async function getLocalization(req, res) {
+    let regex = req.query.regex
+    processRequest(res, async () => {
+        const localizationList = await Data.getLocalization(regex)
+        return localizationList.reduce((obj, {key, value}) => {
+            obj[key] = value
+            return obj
+        }, {})
+    })
+}

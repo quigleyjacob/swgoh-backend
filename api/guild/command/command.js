@@ -4,12 +4,13 @@ import Guild from '../../../lib/database/guild/guild.js'
 import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
+import Mhann from '../../../lib/mhann.js'
 
 export async function getCommands(req, res) {
     let guildId = req.params.guildId
     let session = req.headers.session
     let type = req.query.type
-    let projection = {_id: 1, title: 1}
+    let projection = {_id: 1, title: 1, description: 1, count: 1, public: 1}
     processRequest(res, async () => {
         if(session && !(await Session.sessionInGuild(session, guildId))) {
             throw new MyError(401, 'Session Id is not present in guild')
@@ -23,7 +24,7 @@ export async function getCommands(req, res) {
 
 export async function getCommand(req, res) {
     let commandId = req.params.id
-    let projection = {title: 1, description: 1, type: 1}
+    let projection = {title: 1, description: 1, type: 1, metadata: 1}
     let session = req.headers.session
     let guildId = req.params.guildId
     processRequest(res, async () => {
@@ -81,5 +82,52 @@ export async function updateCommand(req, res) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
         return Command.updateCommand(id, guildId, payload)
+    })
+}
+
+export async function postCommandsInGameById(req, res) {
+    let id = req.params.id
+    let guildId = req.params.guildId
+    let session = req.headers.session
+    let discordId = req.headers['discord-id']
+    processRequest(res, async () => {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        }
+        if(!Guild.isGuildBuild(guildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
+        }
+        let command = await Command.getCommand(id, guildId)
+        if(session) {
+            discordId = (await Session.sessionToDiscord(session)).id
+        }
+        let officerAccount = await Session.getGuildOfficerAllyCode(discordId, guildId)
+        if(!officerAccount) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        }
+
+        let response = await Mhann.deployCommands(officerAccount.allyCode, officerAccount.discordId, command)
+        return response
+    })
+}
+
+export async function postCommandsInGame(req, res) {
+    let guildId = req.params.guildId
+    let session = req.headers.session
+    let command = req.body
+    processRequest(res, async () => {
+        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        }
+        if(!Guild.isGuildBuild(guildId)) {
+            throw new MyError(401, 'Guild is not registered with the guild build.')
+        }
+        let discordId = (await Session.sessionToDiscord(session)).id
+        let officerAccount = await Session.getGuildOfficerAllyCode(discordId, guildId)
+        if(!officerAccount) {
+            throw new MyError(401, 'Session Id is not a guild officer')
+        }
+        let response = await Mhann.deployCommands(officerAccount.allyCode, officerAccount.discordId, command)
+        return response
     })
 }

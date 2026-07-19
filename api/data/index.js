@@ -1,5 +1,5 @@
 import express from 'express'
-import { getSkills, getData, getPortrait, getCurrency, getMaterial, getEquipment, getPlayerScores, getUnits, getCategory, getPlatoons, getAbilities, getCampaign, getRaid, getGacInfo } from './data.js'
+import { getSkills, getData, getPortrait, getCurrency, getMaterial, getEquipment, getPlayerScores, getUnits, getCategory, getPlatoons, getAbilities, getCampaign, getRaid, getGacInfo, getTbInfo, getLocalization } from './data.js'
 
 let router = express.Router()
 
@@ -41,6 +41,12 @@ router.route('/campaign')
 
 router.route('/gacInfo')
     .get(getGacInfo)
+
+router.route('/tb/:id')
+    .get(getTbInfo)
+
+router.route('/localization')
+    .get(getLocalization)
 
 router.route('/:type')
     .get(getData)
