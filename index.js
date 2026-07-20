@@ -1,4 +1,5 @@
 import express from 'express'
+import expressOasGenerator from 'express-oas-generator'
 const app = express()
 const PORT = process.env.PORT || 8080
 import cors from 'cors'
@@ -13,6 +14,8 @@ import Data from './lib/database/data.js'
 import { connectToDatabase } from './utils/mongodb.js'
 import mhann from './lib/mhann.js'
 import { processRequest, validateMhannResponse } from './lib/validation.js'
+
+expressOasGenerator.init(app, {});
 
 app.use(cors())
 app.use(express.json({limit: '5mb'}))
@@ -42,6 +45,8 @@ app.get('/token', async (req, res) => {
 //         return validateMhannResponse(response, 'err message')
 //     })
 // })
+
+expressOasGenerator.handleResponses(app);
 
 async function refreshData() {
     console.log('Checking for new game data version')

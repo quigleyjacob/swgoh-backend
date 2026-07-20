@@ -4,6 +4,7 @@ import Guild from '../../../lib/database/guild/guild.js'
 import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
+import Command from '../../../lib/database/guild/command.js'
 
 export async function getAccounts(req, res) {
     let discordId = req.params.id
@@ -63,5 +64,38 @@ export async function updateSettings(req, res) {
         }
 
         return DiscordUser.updateSettings(discordId, settings)
+    })
+}
+
+export async function getCommandOptions(req, res) {
+    let discordId = req.params.id
+    let type = req.query.type
+    let guildId = req.query.guildId
+
+    processRequest(res, async () => {
+        if(!guildId) {
+            guildId = await DiscordUser.getDefaultGuildId(discordId)
+        }
+        if(!guildId) {
+            throw new MyError(400, 'Unable to determine default guild.')
+        }
+
+        return Command.getCommands(guildId, type, {_id: 1, title: 1})
+    })
+}
+
+export async function getOperationOptions(req, res) {
+    let discordId = req.params.id
+    let guildId = req.query.guildId
+
+    processRequest(res, async () => {
+        if(!guildId) {
+            guildId = await DiscordUser.getDefaultGuildId(discordId)
+        }
+        if(!guildId) {
+            throw new MyError(400, 'Unable to determine default guild.')
+        }
+        
+        return Operation.getOperations(guildId, {_id: 1, title: 1})
     })
 }
