@@ -106,8 +106,7 @@ export async function postCommandsInGameById(req, res) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
 
-        let response = await Mhann.deployCommands(officerAccount.allyCode, officerAccount.discordId, command)
-        return response
+        return Command.deployCommands(officerAccount.allyCode, officerAccount.discordId, command)
     })
 }
 
@@ -127,7 +126,7 @@ export async function postCommandsInGame(req, res) {
         if(!officerAccount) {
             throw new MyError(401, 'Session Id is not a guild officer')
         }
-        let response = await Mhann.deployCommands(officerAccount.allyCode, officerAccount.discordId, command)
-        return response
+
+        return Command.deployCommands(officerAccount.allyCode, officerAccount.discordId, command)
     })
 }
