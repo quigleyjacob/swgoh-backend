@@ -4,12 +4,3 @@ providers = ["node", "python"]
 # 2. Keep your system fonts intact for canvas layout
 [phases.setup]
 aptPkgs = ["fontconfig", "fonts-dejavu"]
-
-# 3. Bootstrap pip, upgrade it, and install OR-Tools
-[phases.install]
-cmds = [
-    "npm ci",
-    "python3 -m ensurepip --upgrade",
-    "python3 -m pip install --upgrade pip",
-    "python3 -m pip install ortools"
-]
