@@ -1,0 +1,10 @@
+# 1. Load both the Node and Python environments
+providers = ["node", "python"]
+
+# 2. Install system fonts and fontconfig for your canvas
+[phases.setup]
+aptPkgs = ["fontconfig", "fonts-dejavu"]
+
+# 3. Force pip to install OR-Tools right after environment setup
+[phases.install]
+cmds = ["npm ci", "pip install ortools"]
