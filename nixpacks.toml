@@ -5,6 +5,6 @@ providers = ["node", "python"]
 [phases.setup]
 aptPkgs = ["fontconfig", "fonts-dejavu"]
 
-# 3. Force pip to install OR-Tools right after environment setup
+# 3. Force the absolute python3 module to execute the install
 [phases.install]
-cmds = ["npm ci", "pip install ortools"]
+cmds = ["npm ci", "python3 -m pip install ortools"]
