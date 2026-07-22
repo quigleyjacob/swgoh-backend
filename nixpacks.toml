@@ -1,6 +1,14 @@
-# 1. Keep loading both runtime environments
-providers = ["node", "python"]
+# 1. Force Nixpacks to use both Node and Python environments
+providers = ["...", "python"]
 
 # 2. Keep your system fonts intact for canvas layout
 [phases.setup]
 aptPkgs = ["fontconfig", "fonts-dejavu"]
+
+# 3. Run pip install during the install phase
+[phases.install]
+dependsOn = ["setup"]
+cmds = [
+  "...",
+  "pip install ortools"
+]
