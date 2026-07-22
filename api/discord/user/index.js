@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAccounts, deployOperations, getSettings, updateSettings, getCommandOptions, getOperationOptions } from './user.js'
+import { getAccounts, deployOperations, getSettings, updateSettings, getCommandOptions, getOperationOptions, getGacBoard } from './user.js'
 
 let router = express.Router({mergeParams: true})
 
@@ -18,5 +18,8 @@ router.route('/command')
 
 router.route('/operation')
     .get(getOperationOptions)
+
+router.route('/gac')
+    .get(getGacBoard)
 
 export default router

@@ -1,7 +1,7 @@
 import PlayerArena from '../lib/database/player/playerArena.js'
 import { MyError } from './error.js'
 
-function getBoardStatusForPlayer(playerStatus, away = false) {
+function getBoardStatusForPlayer(playerStatus, away = false, setIsAliveFromInGame = false) {
     if(playerStatus === null) {
         return {}
     }
@@ -19,7 +19,7 @@ function getBoardStatusForPlayer(playerStatus, away = false) {
                     unit.unitState = cell.unitState
                 }
                 if(away) {
-                    unit.isAlive = true
+                    unit.isAlive = setIsAliveFromInGame ? Number(cell.unitState.healthPercent) > 0 : true
                 }
                 return unit
             })
@@ -49,7 +49,7 @@ function getDefensePhaseForPlayer(zoneDefense, zones) {
     return obj
 }
 
-export async function formatMhannGacBoard(gacBoard, allyCode) {
+export async function formatMhannGacBoard(gacBoard, allyCode, setIsAliveFromInGame=false) {
     if(!gacBoard?.matchStatus?.length === 0) {
         throw new MyError(400, 'There is no current GAC data.')
     }
@@ -74,7 +74,7 @@ export async function formatMhannGacBoard(gacBoard, allyCode) {
     } else {
         //offense phase, get both from status in current match
         homeStatus = getBoardStatusForPlayer(currentGacBoard.homeStatus)
-        awayStatus = getBoardStatusForPlayer(currentGacBoard.awayStatus, true)
+        awayStatus = getBoardStatusForPlayer(currentGacBoard.awayStatus, true, setIsAliveFromInGame)
     }
 
     return {

@@ -5,6 +5,7 @@ import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
 import Command from '../../../lib/database/guild/command.js'
+import Gac from '../../../lib/database/player/gac.js'
 
 export async function getAccounts(req, res) {
     let discordId = req.params.id
@@ -97,5 +98,20 @@ export async function getOperationOptions(req, res) {
         }
         
         return Operation.getOperations(guildId, {_id: 1, title: 1})
+    })
+}
+
+export async function getGacBoard(req, res) {
+    let discordId = req.params.id
+    let allyCode = req.query.allyCode
+    let renderMode = req.query.renderMode || 'both'
+    processRequest(res, async () => {
+        if(!allyCode) {
+            allyCode = await DiscordUser.getDefaultAllyCode(discordId)
+        }
+        if(!allyCode) {
+            throw new MyError(400, 'Unable to determine default account.')
+        }
+        return Gac.generateGacBoardImage(discordId, allyCode, renderMode)
     })
 }
