@@ -56,9 +56,6 @@ export async function getIdealPlatoonsV2(payload) {
 
     let { players, playerRoster, playerWillingness, playerName } = convertPlayers(accounts)
 
-    playerWillingness['516893914'] = 100
-    playerWillingness['488291151'] = 100
-
     const groups = [
         {
             name: "Jedi",
