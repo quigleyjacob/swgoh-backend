@@ -14,25 +14,18 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1091.0",
-    "async": "^3.2.4",
+    "@xhmikosr/decompress": "^11.1.3",
     "canvas": "^3.2.3",
-    "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
     "cron": "^2.3.0",
-    "decompress": "^4.2.1",
     "discord-oauth2": "^2.11.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-oas-generator": "^1.0.48",
     "mongodb": "^4.12.1",
-    "node-cron": "^3.0.2",
-    "node-fetch": "^3.3.0",
-    "nodejs-web-scraper": "^6.1.3",
-    "request-rate-limiter": "^2.0.3",
-    "smart-request-balancer": "^2.1.1",
-    "use-debounce": "^9.0.4"
+    "node-fetch": "^3.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.1.14"
   }
 }

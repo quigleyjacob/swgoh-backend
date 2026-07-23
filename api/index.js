@@ -4,7 +4,6 @@ import guild from './guild/index.js'
 import refresh from './refresh/index.js'
 import discord from './discord/index.js'
 import data from './data/index.js'
-import gac from './gac/index.js'
 import leaderboard from './leaderboard/index.js'
 import arena from './arena/index.js'
 import jobs from './jobs/index.js'
@@ -22,7 +21,6 @@ router.route('/')
 router.use('/arena', arena)
 router.use('/data', data)
 router.use('/discord', discord)
-router.use('/gac', gac)
 router.use('/guild', guild)
 router.use('/jobs', jobs)
 router.use('/leaderboard', leaderboard)

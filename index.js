@@ -27,7 +27,7 @@ app.get("/", async (req, res) => {
 })
 
 app.get('/token', async (req, res) => {
-    // await Refresh.refreshLocalization()
+    await Refresh.refreshLocalization()
     res.send('hello from token')
 })
 
