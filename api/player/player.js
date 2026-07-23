@@ -40,11 +40,21 @@ export async function getLeaderboard(req, res) {
 
 export async function getAuthStatus(req, res) {
     let session = req.headers.session
+    let discordId = req.headers['discord-id']
     let allyCode = req.headers.allycode
     processRequest(res, async () => {
         if(session && !(await Session.sessionIsPlayer(session, allyCode))) {
             throw new MyError(401, 'Session Id is not player')
         }
-        return Player.getAuthStatus(session, allyCode)
+        if(!discordId) {
+            discordId = (await Session.sessionToDiscord(session)).id
+        }
+        if(!allyCode) {
+            allyCode = await DiscordUser.getDefaultAllyCode(discordId)
+        }
+        if(!discordId || !allyCode) {
+            throw new MyError(400, 'Unable to determine auth status for user')
+        }
+        return Player.getAuthStatus(discordId, allyCode)
     })
 }
