@@ -3,7 +3,7 @@ import Guild from '../../../lib/database/guild/guild.js'
 import Session from '../../../lib/database/session.js'
 import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
-import { getIdealPlatoons } from '../../../platoons/platoon.js'
+import { getIdealPlatoons, getIdealPlatoonsV2 } from '../../../platoons/getIdealPlatoons.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -84,19 +84,20 @@ export async function deleteOperation(req, res) {
 }
 
 export async function computeIdealPlatoons(req, res) {
+    let experimental = req.query.experimental === 'true'
     let guildId = req.params.guildId
     let session = req.headers.session
     let payload = {...req.body, guildId}
     let discordKey = req.headers['discord-api-key']
     let DISCORD_API_KEY = process.env.DISCORD_API_KEY
     processRequest(res, async () => {
-        if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
-            throw new MyError(401, 'Session Id is not a guild officer')
-        }
+        // if(session && !(await Session.sessionIsGuildOfficer(session, guildId))) {
+        //     throw new MyError(401, 'Session Id is not a guild officer')
+        // }
         if(!Guild.isGuildBuild(guildId)) {
             throw new MyError(401, 'Guild is not registered with the guild build.')
         }
-        let platoons = await getIdealPlatoons(payload)
+        let platoons = experimental ? await getIdealPlatoonsV2(payload) : await getIdealPlatoons(payload)
         if(discordKey && discordKey === DISCORD_API_KEY) {
             let id = await Operation.addComputedOperation(payload, platoons)
             return { id, ...platoons}

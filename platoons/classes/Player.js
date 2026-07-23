@@ -57,7 +57,7 @@ export default class Player {
     }
 
     maxPlacement(zone) {
-        return this.placements[zone].length === 10
+        return this.placements[zone]?.length === 10
     }
 
     numAlreadyPlacedInZone(zone) {
