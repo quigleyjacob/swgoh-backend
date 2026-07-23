@@ -27,6 +27,7 @@ export const defaultPlayerProjection = {
         currentTier: 1,
         zetaCount: 1,
         omicronCount: 1,
+        omicron: 1,
         relic: 1,
         gp: 1,
         stats: 1,

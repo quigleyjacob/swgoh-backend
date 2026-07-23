@@ -29,6 +29,38 @@ export function omicronCount(unit, skillMap) {
     }, 0)
 }
 
+export function buildUnitOmicronSummary(unit, skillMap) {
+    const activated = {}
+    const missing = {}
+    let activatedCount = 0
+
+    for (const { id, tier } of unit.skill) {
+        const skill = skillMap[id]
+        if (!skill) continue
+
+        const mode = skill.omicronMode
+        if (mode <= 1) continue
+
+        const isActive = skill.omicronTier?.[tier] === true
+
+        if (isActive) {
+            activatedCount++
+            if (!activated[mode]) activated[mode] = []
+            activated[mode].push(id)
+        } else {
+            if (!missing[mode]) missing[mode] = []
+            missing[mode].push(id)
+        }
+    }
+
+    return {
+        omicronCount: activatedCount,
+        activatedByMode: activated,
+        missingByMode: missing
+    }
+}
+
+
 export function populateRoster(unitsMap, player) {
     player.rosterUnit.forEach(unit => {
         let match = new RegExp("^([A-Z0-9_]+):[A-Z_]+$", "g").exec(unit.definitionId)
