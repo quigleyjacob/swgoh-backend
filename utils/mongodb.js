@@ -5,7 +5,7 @@ config()
 const { ATLAS_USERNAME, ATLAS_PASSWORD, ATLAS_CLUSTER, ATLAS_DB, DEV } = process.env
 const MONGODB_DB = ATLAS_DB
 const MONGODB_URI = DEV === 'true' ?
-  `mongodb://localhost:27017/${MONGODB_DB}` :
+  `mongodb://mongodb:27017/${MONGODB_DB}` :
   `mongodb+srv://${ATLAS_USERNAME}:${ATLAS_PASSWORD}@${ATLAS_CLUSTER}.mongodb.net/${MONGODB_DB}`
 
 if (!MONGODB_URI) {

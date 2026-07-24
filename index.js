@@ -14,6 +14,7 @@ import Data from './lib/database/data.js'
 import { connectToDatabase } from './utils/mongodb.js'
 import mhann from './lib/mhann.js'
 import { processRequest, validateMhannResponse } from './lib/validation.js'
+import { redisGet } from './lib/redis.js'
 
 expressOasGenerator.init(app, {});
 
@@ -46,6 +47,15 @@ app.get('/token', async (req, res) => {
 //     })
 // })
 
+app.get('/:id', async (req, res) => {
+    let link = await redisGet(req.params.id)
+    if(link) {
+        res.redirect(301, link)
+    } else {
+        res.status(400).send('Link expired')
+    }
+})
+
 expressOasGenerator.handleResponses(app);
 
 async function refreshData() {
@@ -74,6 +84,7 @@ async function startRefreshJob() {
 
 
 app.listen(PORT, () => {
+    // refreshData()
     startRefreshJob()
     console.log(`Listening on port ${PORT}`)
 })

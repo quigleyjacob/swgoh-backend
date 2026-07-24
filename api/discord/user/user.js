@@ -6,6 +6,9 @@ import { processRequest } from '../../../lib/validation.js'
 import { MyError } from '../../../utils/error.js'
 import Command from '../../../lib/database/guild/command.js'
 import Gac from '../../../lib/database/player/gac.js'
+import { getShortenedLinks } from '../../../utils/links.js'
+import { config } from 'dotenv'
+config()
 
 export async function getAccounts(req, res) {
     let discordId = req.params.id
@@ -105,6 +108,7 @@ export async function getGacBoard(req, res) {
     let discordId = req.params.id
     let allyCode = req.query.allyCode
     let renderMode = req.query.renderMode || 'both'
+    const baseUrl = process.env.BACKEND_PUBLIC_BASE_URL
     processRequest(res, async () => {
         if(!allyCode) {
             allyCode = await DiscordUser.getDefaultAllyCode(discordId)
@@ -112,6 +116,10 @@ export async function getGacBoard(req, res) {
         if(!allyCode) {
             throw new MyError(400, 'Unable to determine default account.')
         }
-        return Gac.generateGacBoardImage(discordId, allyCode, renderMode)
+        let response = await Gac.generateGacBoardImage(discordId, allyCode, renderMode)
+
+        let shortenedLinks = await getShortenedLinks(baseUrl, response.links)
+
+        return {...response, links: shortenedLinks}
     })
 }

@@ -1,5 +1,5 @@
 # 1. Use a lightweight Node base image
-FROM node:22-slim
+FROM node:24-slim
 
 # 2. Install Python, pip, fontconfig, and fonts
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -26,6 +26,8 @@ RUN npm ci
 
 # 7. Copy the rest of your application files
 COPY . .
+
+EXPOSE 5000
 
 # 8. Define the command to start your application
 CMD ["npm", "start"]
