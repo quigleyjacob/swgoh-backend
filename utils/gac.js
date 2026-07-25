@@ -171,7 +171,7 @@ function updateFetchParameters(parameters, location, key, value) {
                 parameters.body[key] = value
             } else {
                 parameters.body = {
-                    key: value
+                    [key]: value
                 }
             }
             break
