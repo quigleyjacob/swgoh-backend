@@ -1,5 +1,6 @@
 import PlayerArena from '../lib/database/player/playerArena.js'
 import { MyError } from './error.js'
+import { maskFetchOptionsForLogging } from './index.js'
 
 function getBoardStatusForPlayer(playerStatus, away = false, setIsAliveFromInGame = false) {
     if(playerStatus === null) {
@@ -213,7 +214,7 @@ export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
         options.body = JSON.stringify(parameters.body)
     }
 
-    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: hidden`)
+    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: ${maskFetchOptionsForLogging(options)}}`)
 
     try {
         let response = await fetch(endpoint, options)
