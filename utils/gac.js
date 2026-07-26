@@ -213,7 +213,7 @@ export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
         options.body = JSON.stringify(parameters.body)
     }
 
-    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: ${JSON.stringify(options)}`)
+    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: hidden`)
 
     try {
         let response = await fetch(endpoint, options)
