@@ -183,12 +183,12 @@ function updateFetchParameters(parameters, location, key, value) {
                 parameters.headers[key] = value
             } else {
                 parameters.headers = {
-                    key: value
+                    [key]: value
                 }
             }
             break
         default:
-            throw new MyError(400, 'Invalid allyCodeLocation in GAC endpoint settings')
+            throw new MyError(400, 'Invalid parameter in GAC endpoint settings')
     }
 }
 
