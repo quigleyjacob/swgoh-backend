@@ -171,7 +171,7 @@ function updateFetchParameters(parameters, location, key, value) {
                 parameters.body[key] = value
             } else {
                 parameters.body = {
-                    key: value
+                    [key]: value
                 }
             }
             break
@@ -183,12 +183,12 @@ function updateFetchParameters(parameters, location, key, value) {
                 parameters.headers[key] = value
             } else {
                 parameters.headers = {
-                    key: value
+                    [key]: value
                 }
             }
             break
         default:
-            throw new MyError(400, 'Invalid allyCodeLocation in GAC endpoint settings')
+            throw new MyError(400, 'Invalid parameter in GAC endpoint settings')
     }
 }
 
@@ -213,7 +213,7 @@ export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
         options.body = JSON.stringify(parameters.body)
     }
 
-    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: ${JSON.stringify(options)}`)
+    console.log(`Fetching GAC data from custom endpoint: ${endpoint} with options: hidden`)
 
     try {
         let response = await fetch(endpoint, options)
