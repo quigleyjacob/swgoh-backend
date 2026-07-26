@@ -200,7 +200,9 @@ export async function loadGACBoardFromCustomEndpoint(gacEndpoint, allyCode) {
 
     updateFetchParameters(parameters, gacEndpoint.allyCodeLocation, gacEndpoint.key, allyCode)
     ;(gacEndpoint.optionalSettings || []).forEach(row => {
-        updateFetchParameters(parameters, row.location, row.key, row.value)
+        if(!row.forAllyCode || row.forAllyCode === '' || row?.forAllyCode.replaceAll('-', '') === allyCode) {
+            updateFetchParameters(parameters, row.location, row.key, row.value)
+        }  
     })
 
     const endpoint = parameters.endpoint
