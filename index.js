@@ -28,7 +28,15 @@ app.get("/", async (req, res) => {
 })
 
 app.get('/token', async (req, res) => {
-    await Refresh.refreshLocalization()
+    // await Refresh.refreshLocalization()
+    // let newAssetVersion = 100042
+    // let previousAssetVersion = 100038
+    // try {
+    //     await Refresh.refreshAssets(newAssetVersion, previousAssetVersion)
+    // } catch(err){
+    //     console.log(err)
+    // }
+    // console.log(await DB.newGameVersionAvailable())
     res.send('hello from token')
 })
 
@@ -60,11 +68,12 @@ expressOasGenerator.handleResponses(app);
 
 async function refreshData() {
     console.log('Checking for new game data version')
-    // let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion } = await DB.newGameVersionAvailable()
-    let [newVersion, latestGamedataVersion, latestLocalizationBundleVersion] = [true, undefined, undefined]
+    let { newVersion, latestGamedataVersion, latestLocalizationBundleVersion, newAssetVersion, previousAssetVersion } = await DB.newGameVersionAvailable()
+    // let [newVersion, latestGamedataVersion, latestLocalizationBundleVersion] = [true, undefined, undefined]
     if(newVersion) {
         try {
             await Refresh.refreshMetaData()
+            // await Refresh.refreshAssets(newAssetVersion, previousAssetVersion)
             await Refresh.refreshGameData(latestGamedataVersion)
             await Refresh.refreshLocalization(latestLocalizationBundleVersion)
             await Refresh.refreshActiveDatacrons()
@@ -85,6 +94,6 @@ async function startRefreshJob() {
 
 app.listen(PORT, () => {
     // refreshData()
-    startRefreshJob()
+    // startRefreshJob()
     console.log(`Listening on port ${PORT}`)
 })
