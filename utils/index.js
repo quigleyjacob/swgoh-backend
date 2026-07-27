@@ -27,5 +27,5 @@ export function maskFetchOptionsForLogging(options = {}) {
     );
   }
 
-  return safeOptions;
+  return JSON.stringify(safeOptions);
 }
