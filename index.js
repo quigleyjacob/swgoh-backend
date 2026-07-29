@@ -93,7 +93,7 @@ async function startRefreshJob() {
 
 
 app.listen(PORT, () => {
-    // refreshData()
-    // startRefreshJob()
+    refreshData()
+    startRefreshJob()
     console.log(`Listening on port ${PORT}`)
 })
