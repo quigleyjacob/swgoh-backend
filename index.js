@@ -82,6 +82,8 @@ async function refreshData() {
             console.log(err)
         }
     } else {
+        await Refresh.refreshActiveDatacrons()
+        await Refresh.refreshActiveEra()
         console.log('No new game data version, exiting')
     }
 }
